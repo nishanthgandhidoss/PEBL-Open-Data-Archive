@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd">
+	   		
+     
+     
+      <bean
+		class="org.springframework.scripting.support.ScriptFactoryPostProcessor">
+		<property name="defaultRefreshCheckDelay" value="3000" />
+	</bean>
+
+	<!-- <bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:connparam.properties</value>
+			</list>
+		</property>
+	</bean> -->
+	
+	
+	            <!--   openshiftDeploy -->
+	<!--               
+	  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	  <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+	  <property name="url" value="jdbc:mysql://127.2.80.2:3306/easy_erp" />
+	  <property name="username" value="adminHAw9vEI" />
+	  <property name="password" value="admin"/> 
+	  </bean>
+	   -->
+	 <!--  localHost -->
+	  
+	  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		  <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		  <property name="url" value="jdbc:mysql://localhost:3306/poda" />
+		  <property name="username" value="root" />
+		  <property name="password" value="root" /> 
+	  </bean>
+	
+	<!-- Production -->
+	 <!--  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		  <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		  <property name="url" value="jdbc:mysql://localhost:3306/easy_erp" />
+		  <property name="username" value="admin" />
+		  <property name="password" value="success123" /> 
+	  </bean> -->
+	  
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
+		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}" p:username="${jdbc.username}" 
+		p:password="${jdbc.password}" /> -->
+
+
+	<!--<bean id="dataSource" class="in.cmps.dfv2.dao.DFDataSource"/>-->
+		
+	<!-- <bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		lazy-init="false">
+		<property name="driverClassName">
+			<value>${jdbc.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+
+		<property name="connectionProperties">
+			<props>
+				<prop key="mysql.net.READ_TIMEOUT">60000</prop>
+			</props>
+		</property>
+
+	</bean> -->
+<!-- 
+	<bean id="crudssCommonDAO" class="in.cmps.dfv2.dao.CRUDSSCommonDAOImpl">
+		<property name="sqlMapClientTemplate" ref="dataFirstSqlMapClientTemplate" />
+	</bean>
+
+    <bean id="jdbcDAO" class="in.cmps.dfv2.springmvc.dao.JdbcDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean> -->
+     
+     
+	  
+    
+</beans>

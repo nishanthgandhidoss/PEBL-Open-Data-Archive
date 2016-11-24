@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	
+	<definition name="loginRegistration" extends="base.definition">
+	    <put-attribute name="title" value="Login"></put-attribute>
+		<put-attribute name="header" value=""></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/loginRegistration.jsp"></put-attribute>
+		<put-attribute name="footer" value=""></put-attribute>
+	</definition>
+	
+	 <definition name="home" extends="base.definition">
+	    <put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/home.jsp"></put-attribute>
+	</definition>
+	
+	 <definition name="addgrn" extends="base.definition">
+	    <put-attribute name="title" value="Add GRN"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/grn/addgrn.jsp"></put-attribute>
+	</definition>
+	
+	 <definition name="listgrn" extends="base.definition">
+	    <put-attribute name="title" value="List GRN"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/grn/listGrn.jsp"></put-attribute>
+	</definition>
+	
+	 <definition name="barcodepage" extends="base.definition">
+	    <put-attribute name="title" value="Barcode Generation"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/barcode.jsp"></put-attribute>
+	</definition>        
+	
+	<definition name="rmTool" extends="base.definition">
+	    <put-attribute name="title" value="RM Management Tool"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/rmTool/rmTool.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="rmToolAjax" extends="ajax.definition">
+		<put-attribute name="body" value="/WEB-INF/views/jsp/rmTool/rmTool.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="listRM" extends="base.definition">
+	    <put-attribute name="title" value="RM List"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/rmTool/listRM.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="pricingTool" extends="base.definition">
+	    <put-attribute name="title" value="Pricing Management Tool"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/pricingTool/pricingTool.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="listPricing" extends="base.definition">
+	    <put-attribute name="title" value="Part Number List"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/pricingTool/listPricing.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="qualityCheck" extends="base.definition">
+	    <put-attribute name="title" value="RM Quality Check"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/quality/qualityCheck.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="operationTool" extends="base.definition">
+	    <put-attribute name="title" value="Operation Management Tool"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/operation/operationTool.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="departmentTool" extends="base.definition">
+	    <put-attribute name="title" value="Department Management Tool"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/department/departmentTool.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="createRouteCard" extends="base.definition">
+	    <put-attribute name="title" value="Create Route Card"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/routeCard/createRouteCard.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="listRouteCard" extends="base.definition">
+	    <put-attribute name="title" value="Route Card List"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/routeCard/listRouteCard.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="viewRouteCard" extends="base.definition">
+	    <put-attribute name="title" value="Route Card"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/routeCard/viewRouteCard.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="production" extends="base.definition">
+	    <put-attribute name="title" value="Production"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/routeCard/production.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="invoice" extends="base.definition">
+	    <put-attribute name="title" value="Invoice"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/routeCard/invoice.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="listInvoice" extends="base.definition">
+	    <put-attribute name="title" value="List Invoice"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/routeCard/listInvoice.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="addUser" extends="base.definition">
+	    <put-attribute name="title" value="User Administration"></put-attribute>
+		<!-- <put-attribute name="body" value="/WEB-INF/views/jsp/userAdmin/addUser.jsp"></put-attribute> -->
+		<put-attribute name="body" value="/WEB-INF/views/jsp/userAdmin/addUser.jsp"></put-attribute>
+		<put-attribute name="footer" value=""></put-attribute>
+	</definition>
+	
+	<definition name="managePassword" extends="base.definition">
+	    <put-attribute name="title" value="Manage Password"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/userAdmin/managePassword.jsp"></put-attribute>
+		<put-attribute name="footer" value=""></put-attribute>
+	</definition>
+	
+	<definition name="addSupplier" extends="base.definition">
+	    <put-attribute name="title" value="Supplier"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/supplier/addSupplier.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="commonlistPage" extends="base.definition">
+	    <put-attribute name="title" expression="${PAGE_TITLE}"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/commonjsp/commonListPage.jsp"></put-attribute>
+		<put-attribute name="footer" value=""></put-attribute>
+	</definition>
+	 
+	<definition name="commonlistAjax" extends="ajax.definition">
+		<put-attribute name="body" value="/WEB-INF/views/jsp/commonjsp/commonListPage.jsp"></put-attribute>
+	</definition>
+	
+	
+	
+	
+</tiles-definitions>

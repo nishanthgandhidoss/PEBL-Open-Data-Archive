@@ -1,0 +1,501 @@
+
+
+/* This css file is used to override the css 
+defined in the bootstrap3.3.6.min.css, 
+for customization of the application 
+ */
+ 
+ 
+ * {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+  }
+ 
+
+/* Enabling onhover for headers */
+  .dropdown:hover>.dropdown-menu {
+      display: block;
+  } 
+  
+ 
+  .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .open > a:hover {
+  
+    color: #fff;
+    background:none !important;
+    border-color: #447088;
+  }
+  
+
+   @media (max-width: 768px) {
+    
+	.navbar-inverse .navbar-nav .dropdown-menu {
+        display: none !important;
+    }
+
+    .navbar-inverse .navbar-nav .open .dropdown-menu {
+       display: block !important;
+    }
+    
+     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+   
+        color: #fff !important;
+     } 
+ } 
+
+
+
+    a:hover {
+    color: #3291d1;
+    text-decoration: none;
+}  
+
+   a {
+   outline: 0 !important;
+  }
+
+.container{
+	
+	margin-left:0px
+} 
+ 
+.navbar {
+    border-radius: 0px;
+}
+ 
+ .navbar-inverse {
+    /* background-color: #3291d1; */
+  color: #cccccc;  
+  background: #3A6073;
+  background: -webkit-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* Chrome 10+, Saf5.1+ */
+  background: -moz-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* FF3.6+ */
+  background: -ms-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* IE10 */
+  background: -o-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* Opera 11.10+ */
+  background: linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* W3C */
+  border:none !important
+
+}
+
+
+.dropdown-menu {
+	
+	border-left:3px solid #3A6073;
+	color:#3291d1;
+
+}
+
+
+.dropdown-menu >li>a {
+	
+	border-left:3px solid #fff !important;
+	color:#333 !important;
+	
+
+}
+
+
+.dropdown-menu > li > a:hover {
+	
+	border-left:3px solid #ff9900 !important;
+	background-color:#3A6073;
+	color:#fff !important;
+	text-shadow: 0 1px 0 #000;
+}
+
+.navbar-nav > .active{
+	
+	background-color:#3291d1;
+}
+
+.navbar-inverse .navbar-brand{
+    color: #b3b3b3;
+}
+
+.navbar-inverse .navbar-nav > li > a {  
+    color: #d9d9d9;
+    display: block;
+    text-decoration: none;
+    font-weight:bold
+  
+}
+
+
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    background: none;
+    color: #f2f2f2;
+    text-shadow: 0 1px 0 #000;
+}
+
+
+
+.navbar-inverse .navbar-nav > li > a:hover:before {
+  width: 100%;
+}
+
+ .navbar-inverse .navbar-nav > li > a:before {
+  content: "";
+  display: block;
+  position: absolute; 
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0;
+ /*  background: #ff9900; */
+  -webkit-transition: width .25s;
+  -moz-transition: width .25s;
+  -ms-transition: width .25s;
+  -o-transition: width .25s;
+  transition: width .25s;
+}
+ 
+ .navbar-inverse .navbar-toggle {
+    border-color: #447088;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: #3A6073;
+}
+
+.panel-primary > .panel-heading {
+	
+	  border-radius: 3px;
+	  background: #3A6073;
+	  background: #3A6073;
+	  background: -webkit-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* Chrome 10+, Saf5.1+ */
+	  background: -moz-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* FF3.6+ */
+	  background: -ms-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* IE10 */
+	  background: -o-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* Opera 11.10+ */
+	  background: linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* W3C */
+} 
+
+label {
+    display: inline-block;
+    font-weight:bold;
+    margin-bottom: 2px;
+    max-width: 100%;
+}
+ 
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    background-color: #333333;
+    color: #ff9900;
+}
+
+
+.datetimepicker{
+	font-size:16px;
+	
+}
+
+.form-control{
+	
+	color:#333;
+	background-color:#fff !important;
+	height:auto !important;
+}
+
+
+  .submit-btn {
+  
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+ .submit-btn, .appblue{
+  background: #fece01;
+  color: #222111;
+  font-weight: 600;
+  border:none;
+  text-shadow: 0 1px 0 #000;
+ }
+ 
+ .panel-info > .panel-heading {
+     background-color: #3A6073;
+     border-color: #447088;
+     color:#f2f2f2;
+ }
+ 
+ 
+ .panel-primary > .panel-heading {
+ 
+    border-color: #447088;
+ }
+ 
+ .panel-info {
+    border-color: #447088;
+}
+ 
+ .panel-primary {
+    border-color: #447088;
+}
+ 
+ 
+ 
+.white{
+	
+   color:#fff !important;
+}
+
+.padding10{
+	
+	padding:10px;
+}
+
+.padding5{
+	
+	padding:5px;
+}
+
+.paddingleft5{
+	
+	padding-left:5px;
+}
+
+.paddingleft10{
+	
+	padding-left:10px;
+}
+
+.margin5{
+	
+	margin:5px;
+}
+
+
+.marginleft5{
+	
+	margin-left:5px;
+}
+
+.paddingbottom20 {
+	padding-bottom: 20px;
+}
+
+.marginleft10{
+	
+	margin-left:10px;
+}
+
+.margintop10{
+	
+	margin-top:10px;
+}
+
+
+
+.bld{
+
+	font-weight:bold;
+}
+
+.panel-body {
+	padding: 20px;
+    padding-right: 20%;
+}
+ 
+ .panel-body>ul>li>a {
+	color:#262626;
+}
+ 
+ .dialogBoxSuccess,.dialogBoxSuccess:hover{
+  
+  background-color:#5bc0de;
+  color:#fff;
+}
+
+.dialogBoxError,.dialogBoxError:hover{
+  
+  background-color:#d9534f;
+  color:#fff;
+}
+ 
+ 
+  .bootstrap-dialog .modal-header.bootstrap-dialog-draggable {
+      cursor: move;
+  }
+  
+  .bootstrap-dialog-close-button{
+     
+     display:none !important
+  }
+  
+  .pointercursor{
+     cursor: pointer;
+  }
+  
+  .appgreen{
+  
+    color:#4caf50;
+  }
+  
+ .select2 {
+	width:100% ! important;
+}
+.select2-selection {
+	height: 32px ! important; 
+	padding-left: 6px;
+}
+  .mandatoryId{
+   color:crimson
+}
+
+.mandatorytoplabel{
+
+   font-style: italic;
+   margin:10px ;
+   font-size:12px
+}
+
+.panel-heading>a>.glyphicon{
+   
+   color:#fff
+}
+
+.panel-heading{
+
+    font-size:16px;
+    font-weight: bold;
+    font-style:normal
+}
+
+
+
+.select2-selection{
+
+    outline:none;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #6698b2 !important;
+    color: white;
+}
+
+.center {
+	   text-align: center;
+	   }
+  
+ .clearboth{
+ 
+    clear:both;
+ }
+ 
+ .bgc_grey{
+ 
+    background-color:#e6e6e6 !important;
+ }
+ 
+ .bgc_lightgreen{
+ 
+   background-color:#ebebe0 !important;
+ }
+ 
+ .bgc_lightgreen1{
+ 
+   background-color:#d5e0d1 !important;
+ }
+ 
+
+ 
+ .clickableTd { color: #337ab7;}
+ .clickableTd:hover { 
+ text-decoration: underline;
+ cursor:pointer;
+ }
+ 
+
+ 
+ html {
+  position: relative;
+  overflow-y: scroll; /* always show vertical scrollbar to avoid page shaking */
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 80px;
+ 
+}
+
+/*   set absolute height for footer */
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 10px;
+  background-color: #f5f5f5;
+}
+ 
+  /*   set absolute height for footer */
+  
+  .table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
+  /*  background-color: #6998b0; */
+}
+
+.headerCss{
+
+  background: #447088;
+  color:#d9d9d9
+  
+}
+
+.custom-bullet li:before
+{
+    /*Using a Bootstrap glyphicon as the bullet point*/
+    content: "\e080";
+    font-family: 'Glyphicons Halflings';
+    font-size: 9px;
+    float: left;
+    margin-top: 4px;
+    color: #1a2b33;
+    
+}
+
+.custom-bullet li a
+{
+   padding:5px
+}
+
+
+.custom-bullet li a:hover
+{
+   background:#4d7f99;
+   text-shadow: 0 1px 0 #000;
+   color:#f2f2f2;
+ 
+}
+
+.datepicker,
+.table-condensed {
+  width: 300px;
+  height:150px;
+}
+
+
+body.modal-open {
+    overflow: auto;
+}
+body.modal-open[style] {
+    padding-right: 0px !important;
+}
+
+.modal::-webkit-scrollbar {
+    width: 0 !important; /*removes the scrollbar but still scrollable*/
+    /* reference: http://stackoverflow.com/a/26500272/2259400 */
+}
+
+table.table-bordered.dataTable {
+    border-collapse: collapse !important;
+}
+
+  

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="base.definition" template="/WEB-INF/views/jsp/commonjsp/tileslayout/mainlayout.jsp">
+		<put-attribute name="title" value=""></put-attribute>
+		<put-attribute name="maincss" value="/WEB-INF/views/jsp/commonjsp/maincss.jsp"></put-attribute>
+		<put-attribute name="mainjs" value="/WEB-INF/views/jsp/commonjsp/mainjs.jsp"></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/views/jsp/commonjsp/header.jsp"></put-attribute>
+		<put-attribute name="body" value=""></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/jsp/commonjsp/footer.jsp"></put-attribute>
+	</definition>
+	
+	
+	<definition name="ajax.definition" template="/WEB-INF/views/jsp/commonjsp/tileslayout/ajaxlayout.jsp">
+		<put-attribute name="body" value=""></put-attribute>
+	</definition>
+	
+	
+	
+	<!-- Page not found Definition  -->
+	
+	
+	<definition name="404jsp" extends="base.definition">
+	    <put-attribute name="title" value="404-Page Not Found"></put-attribute>
+		<put-attribute name="maincss" value="/WEB-INF/views/jsp/commonjsp/maincss.jsp"></put-attribute>
+		<put-attribute name="mainjs" value=""></put-attribute>
+		<put-attribute name="header" value=""></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/commonjsp/404.jsp"></put-attribute>
+		<put-attribute name="footer" value=""></put-attribute>
+	</definition>
+	
+	<!-- Access Denied Definition  -->
+	
+	<definition name="403jsp" extends="base.definition">
+	    <put-attribute name="title" value="403-Access Denied"></put-attribute>
+		<put-attribute name="maincss" value="/WEB-INF/views/jsp/commonjsp/maincss.jsp"></put-attribute>
+		<put-attribute name="mainjs" value=""></put-attribute>
+		<put-attribute name="header" value=""></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/commonjsp/403.jsp"></put-attribute>
+		<put-attribute name="footer" value=""></put-attribute>
+	</definition>
+	
+	
+</tiles-definitions>
