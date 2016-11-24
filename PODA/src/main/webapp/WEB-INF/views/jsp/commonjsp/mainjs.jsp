@@ -1,7 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<spring:eval var="jkey" expression="T(com.erp.utils.Constants).JSON_KEY"/>
+<spring:eval var="jkey" expression="T(com.poda.utils.Constants).JSON_KEY"/>
 <script src="${webapp_path}/js/commonjs/jquery1.12.0.min.js"></script>
 <script src="${webapp_path}/js/commonjs/bootstrap3.3.6.min.js"></script>
 <script src="${webapp_path}/js/commonjs/jquery.dataTables.min.js"></script> 

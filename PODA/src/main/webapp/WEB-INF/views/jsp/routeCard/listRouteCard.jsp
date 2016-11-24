@@ -2,14 +2,14 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<spring:eval var="approveConstant" expression="T(com.erp.utils.Constants).ACTION_APPROVE"/>
-<spring:eval var="rejectConstant" expression="T(com.erp.utils.Constants).ACTION_REJECT"/>
-<spring:eval var="editConstant" expression="T(com.erp.utils.Constants).ACTION_EDIT"/>
-<spring:eval var="deleteConstant" expression="T(com.erp.utils.Constants).ACTION_DELETE"/>
-<spring:eval var="viewConstant" expression="T(com.erp.utils.Constants).ACTION_VIEW"/>
-<spring:eval var="productionConstant" expression="T(com.erp.utils.Constants).PRODUCTION"/>
-<spring:eval var="inspectionConstant" expression="T(com.erp.utils.Constants).INSPECTION"/>
-<spring:eval var="invoiceConstant" expression="T(com.erp.utils.Constants).INVOICE"/>
+<spring:eval var="approveConstant" expression="T(com.poda.utils.Constants).ACTION_APPROVE"/>
+<spring:eval var="rejectConstant" expression="T(com.poda.utils.Constants).ACTION_REJECT"/>
+<spring:eval var="editConstant" expression="T(com.poda.utils.Constants).ACTION_EDIT"/>
+<spring:eval var="deleteConstant" expression="T(com.poda.utils.Constants).ACTION_DELETE"/>
+<spring:eval var="viewConstant" expression="T(com.poda.utils.Constants).ACTION_VIEW"/>
+<spring:eval var="productionConstant" expression="T(com.poda.utils.Constants).PRODUCTION"/>
+<spring:eval var="inspectionConstant" expression="T(com.poda.utils.Constants).INSPECTION"/>
+<spring:eval var="invoiceConstant" expression="T(com.poda.utils.Constants).INVOICE"/>
 
 <link rel="stylesheet" href="${webapp_path}/css/datatable/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="${webapp_path}/css/datatable/responsive.bootstrap.min.css">

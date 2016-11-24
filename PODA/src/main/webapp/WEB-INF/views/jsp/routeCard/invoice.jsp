@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<spring:eval var="invoiceConstant" expression="T(com.erp.utils.Constants).INVOICE"/>
+<spring:eval var="invoiceConstant" expression="T(com.poda.utils.Constants).INVOICE"/>
 
 <script type="text/javascript" src="${webapp_path}/js/routecard/invoice.js"></script>
 

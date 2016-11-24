@@ -4,10 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<spring:eval var="approveConstant" expression="T(com.erp.utils.Constants).ACTION_APPROVE"/>
-<spring:eval var="rejectConstant" expression="T(com.erp.utils.Constants).ACTION_REJECT"/>
-<spring:eval var="editConstant" expression="T(com.erp.utils.Constants).ACTION_EDIT"/>
-<spring:eval var="deleteConstant" expression="T(com.erp.utils.Constants).ACTION_DELETE"/>
+<spring:eval var="approveConstant" expression="T(com.poda.utils.Constants).ACTION_APPROVE"/>
+<spring:eval var="rejectConstant" expression="T(com.poda.utils.Constants).ACTION_REJECT"/>
+<spring:eval var="editConstant" expression="T(com.poda.utils.Constants).ACTION_EDIT"/>
+<spring:eval var="deleteConstant" expression="T(com.poda.utils.Constants).ACTION_DELETE"/>
 
 <link rel="stylesheet" href="${webapp_path}/css/datatable/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="${webapp_path}/css/datatable/responsive.bootstrap.min.css">
