@@ -42,17 +42,17 @@ navbar {
 }
 
 #myNavbar{
- 
-   margin-left:20%;
-   margin-bottom:1%
+ 	float: left;
+    margin-bottom:1%;
+    margin-top: 1%;
+	margin-right: 10%;
+	margin-left: 10%;
 }
 
 #companyLogoId
  {
    padding-top:5px;
-   padding-left:5px;
    float:left;
-   width:55%;
    text-shadow: 0 1px 0 #000;
 }
 
@@ -127,7 +127,7 @@ $(document).ready(function () {
 });
 </script>
  
-  <nav class="navbar navbar-inverse" >
+  <nav class="navbar navbar-inverse" style="padding: 1%;">
   
     <div>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -172,17 +172,11 @@ $(document).ready(function () {
         </ul>
      </div>  --%>
      
-     <div id="userSignOutId">
-	      <ul class="nav navbar-nav pull-right">
-	        <li><a href="javascript:void(0)" style="font-size:12px;font-weight:bold;"><i class="glyphicon glyphicon-user"></i> WELCOME,  ${fn:toUpperCase(sessionScope.user.fullName)} (${fn:toUpperCase(sessionScope.user.userRole)})</a></li>
-	        <li><a href="${webapp_path}/logout.sp" id="logoutId" style="font-weight:bold;">LOGOUT <span class="glyphicon glyphicon-off"></span></a></li>
-	        <%-- <li><a href="${webapp_path}/"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li> --%>
-	      </ul>
-     </div>  
+      
     
-    <div class="collapse navbar-collapse" id="myNavbar" style="clear:both">
+    <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="${webapp_path}/home.sp" style="color:#ff9900"><span class="glyphicon glyphicon-home"> </span>&nbsp;HOME</a></li>
+        <li><a href="${webapp_path}/home.sp"><span class="glyphicon glyphicon-home"> </span>&nbsp;HOME</a></li>
         
         <li class="dropdown">
           <a class="dropdown-toggle headerLink" data-toggle="dropdown" href="#">Title 1 <span class="caret"></span></a>
@@ -263,6 +257,21 @@ $(document).ready(function () {
         <li><a href="${webapp_path}/"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>
       </ul> --%>
     </div>
+    
+    <div id="userSignOutId">
+	      <ul class="nav navbar-nav pull-right">
+	        <li class="dropdown">
+	        	<a class="dropdown-toggle headerLink" style="font-size:12px;font-weight:bold;"><i class="glyphicon glyphicon-user"></i> WELCOME, &nbsp;${fn:toUpperCase(sessionScope.user.firstName)}</a>
+	        	<ul class="dropdown-menu">
+	        		<li><a href="${webapp_path}/logout.sp" id="logoutId" style="font-weight:bold;">My Profile &nbsp;<span class="glyphicon glyphicon-user"></span></a>
+	        		<li><a href="${webapp_path}/logout.sp" id="logoutId" style="font-weight:bold;">Logout &nbsp;<span class="glyphicon glyphicon-off"></span></a>
+	        	</ul>
+	        </li>
+	        <li></li>
+	        <%-- <li><a href="${webapp_path}/"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li> --%>
+	      </ul>
+     </div> 
+     
     </div>
     
   </nav>  

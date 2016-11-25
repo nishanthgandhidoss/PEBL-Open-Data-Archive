@@ -66,12 +66,12 @@ for customization of the application
  .navbar-inverse {
     /* background-color: #3291d1; */
   color: #cccccc;  
-  background: #3A6073;
-  background: -webkit-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* Chrome 10+, Saf5.1+ */
-  background: -moz-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* FF3.6+ */
-  background: -ms-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* IE10 */
-  background: -o-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* Opera 11.10+ */
-  background: linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* W3C */
+  background: #fff;
+  /* background: -webkit-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); Chrome 10+, Saf5.1+
+  background: -moz-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); FF3.6+
+  background: -ms-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); IE10
+  background: -o-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); Opera 11.10+
+  background: linear-gradient(90deg, #2c4454 10%, #3c6377 90%); W3C */
   border:none !important
 
 }
@@ -112,7 +112,7 @@ for customization of the application
 }
 
 .navbar-inverse .navbar-nav > li > a {  
-    color: #d9d9d9;
+    color: #19191a;
     display: block;
     text-decoration: none;
     font-weight:bold
@@ -123,8 +123,8 @@ for customization of the application
 
 .navbar-inverse .navbar-nav > li > a:hover {
     background: none;
-    color: #f2f2f2;
-    text-shadow: 0 1px 0 #000;
+    color: #fdd106;
+    /* text-shadow: 0 1px 0 #000; */
 }
 
 
@@ -422,7 +422,7 @@ label {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 80px;
- 
+  background: #f3f3f3;
 }
 
 /*   set absolute height for footer */
