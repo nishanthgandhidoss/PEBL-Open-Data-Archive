@@ -263,7 +263,7 @@ $(document).ready(function () {
 	        <li class="dropdown">
 	        	<a class="dropdown-toggle headerLink" style="font-size:12px;font-weight:bold;"><i class="glyphicon glyphicon-user"></i> WELCOME, &nbsp;${fn:toUpperCase(sessionScope.user.firstName)}</a>
 	        	<ul class="dropdown-menu">
-	        		<li><a href="${webapp_path}/logout.sp" id="logoutId" style="font-weight:bold;">My Profile &nbsp;<span class="glyphicon glyphicon-user"></span></a>
+	        		<li><a href="${webapp_path}/editUser.sp" style="font-weight:bold;">My Profile &nbsp;<span class="glyphicon glyphicon-user"></span></a>
 	        		<li><a href="${webapp_path}/logout.sp" id="logoutId" style="font-weight:bold;">Logout &nbsp;<span class="glyphicon glyphicon-off"></span></a>
 	        	</ul>
 	        </li>

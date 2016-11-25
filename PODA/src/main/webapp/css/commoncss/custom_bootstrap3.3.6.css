@@ -213,9 +213,13 @@ label {
 }
 
  .submit-btn, .appblue{
-  background: #fece01;
+/*   background: #fece01;
   color: #222111;
   font-weight: 600;
+  border:none;
+  text-shadow: 0 1px 0 #000; */
+   background: #447088;
+  color: #fff !important;
   border:none;
   text-shadow: 0 1px 0 #000;
  }

@@ -101,6 +101,97 @@ public class UserController {
 		  return mv;
 	}
 	
+	 @RequestMapping(value="/editUser", method = RequestMethod.GET)
+		public ModelAndView editUser(ModelAndView mv, HttpServletRequest req, UserBO sessionUserBO) {
+			logger.info("inside editUser");
+			
+			List<UserBO>  userList=null;
+			try {
+				userService.setDefaultvalues(req,sessionUserBO);
+				userList = userService.getUsersList(sessionUserBO);
+				UserBO UserBO =userList.get(0);
+				mv.addObject("command",UserBO);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new ModelAndView("redirect:" + "404error.sp");
+			}
+		    
+			mv.addObject("cmd",Constants.ACTION_EDIT);
+			mv.setViewName("addUser");
+			
+			logger.info("Ending editUser");
+			return mv;
+		}
+	 
+	/* @RequestMapping(value="/admin/updateUser", method = RequestMethod.POST)
+		public void updateUser(UserBO userBO, ModelAndView mv, HttpServletRequest req, HttpServletResponse res) throws IOException {
+			
+	        logger.info("Inside Update User");
+			
+			try {
+				userBO.setCmd(Constants.ACTION_UPDATE);
+				userService.setDefaultvalues(req,userBO);
+				userBO = userService.updateUser(userBO);
+				userBO.setReturnMsg(userService.getUpdateSuccessMsg());
+				
+			}catch(Exception ex) {
+				 
+				ex.printStackTrace();
+				userBO.setReturnId(-1);
+				if(userBO.getReturnMsg()==null)
+				   userBO.setReturnMsg(userService.getErrorMSg());
+				 
+			}finally{
+				
+				userService.writeToJSON(res,userBO);
+			}
+			
+			
+		}
+	 
+	 
+	               When logged in as USER 
+	 
+		  @RequestMapping(value = "/managePassword", method = RequestMethod.GET)
+		  public ModelAndView managePassword(ModelAndView mv) {
+			
+			UserBO userBO = new UserBO();
+			mv.addObject("command",userBO);
+			mv.setViewName("managePassword");
+			return mv;
+		 }
+		
+	    
+	 
+    @RequestMapping(value="/resetPassword", method = RequestMethod.POST)
+	   public void resetPassword(UserBO userBO, ModelAndView mv, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		
+	        logger.info("Inside reset Password User");
+			
+			try {
+				HttpSession sess=req.getSession();
+				UserBO userBO1 = (UserBO)sess.getAttribute("user");
+				userBO.setId(userBO1.getId());
+				userBO.setUserName(userBO1.getUserName());
+				userService.setDefaultvalues(req,userBO);
+				userBO = userService.resetUserPassword(userBO);
+				userBO.setReturnMsg(userService.getUpdateSuccessMsg());
+				sess.invalidate();
+			}catch(Exception ex) {
+				 
+				ex.printStackTrace();
+				userBO.setReturnId(-1);
+				if(userBO.getReturnMsg()==null)
+				   userBO.setReturnMsg("Resetting password Failed.\n Please contact your application support team");
+				 
+			}finally{
+				
+				userService.writeToJSON(res,userBO);
+			}
+			logger.info("Outside reset Password User");
+		}
+	 */
+	
 	 /*@RequestMapping(value = "/appadmin/listCompanyRegistrations", method = RequestMethod.GET)
 		public ModelAndView listCompanyRegistrations(ModelAndView mv) {
 		 
