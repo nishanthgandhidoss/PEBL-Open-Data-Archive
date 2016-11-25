@@ -46,7 +46,7 @@ public class HomeController {
 		 
 		 if(userBO==null){
 		 
-		 userBO=homeService.getUserListByUserName(email);
+		 userBO=homeService.getUsersListByEmail(email);
 		 homeService.setUserRoleInShort(userBO);
 		 sess.removeAttribute("user");
 		 sess.setAttribute("user", userBO);

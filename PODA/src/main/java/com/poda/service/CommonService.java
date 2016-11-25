@@ -177,12 +177,12 @@ public class CommonService {
 	
 	
 	@SuppressWarnings("unchecked")
-	public UserBO getUserListByUserName(String email) throws Exception {
+	public UserBO getUsersListByEmail(String email) throws Exception {
 	
         ArrayList <UserBO>userList= new ArrayList<UserBO>();
 		HashMap<String,Object> inputMap= new HashMap<String,Object>();
 		inputMap.put("email",email);
-		userList = (ArrayList) getCommonDAO().getRecordListByMap("getUsersListByUserName", inputMap);
+		userList = (ArrayList) getCommonDAO().getRecordListByMap("getUsersListByEmail", inputMap);
 		return userList.get(0);
 	}
 	
@@ -198,15 +198,22 @@ public class CommonService {
 		
 		if(userRole.equals("ROLE_APPADMIN")){
 			userBO.setUserRole("App Admin");
-		}else if(userRole.equals("ROLE_ADMIN")){
-			userBO.setUserRole("Admin");
 		}else if(userRole.equals("ROLE_USER")){
 			userBO.setUserRole("User");
-		}else if(userRole.equals("ROLE_APPROVER")){
-			userBO.setUserRole("Approver");
 		}
 	}
 	
+	
+	public void setUserRoleInLong(UserBO userBO) {
+		
+		String userRole=userBO.getUserRole();
+		
+		if(userRole.equals("App Admin")){
+			userBO.setUserRole("ROLE_APPADMIN");
+		}else if(userRole.equals("User")){
+			userBO.setUserRole("ROLE_USER");
+		}
+	}
 	
 	public void setDefaultvalues(HttpServletRequest req,CommonBO formBO){
 		

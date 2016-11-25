@@ -94,14 +94,15 @@ function sameAslocalAddress(){
 <body>
   
 <header class="o-header">
-
-  <div class="o-container">
-    <h4 class="o-header__title" style="font-size:20px;color:#6d6d6d;font-weight:bold">Create User</h4>
-     <a href="${webapp_path}/admin/listUsers.sp" class="tooltipLink pull-right bld" data-toggle="tooltip" title="List Users" 
-      style="font-size:16px"> List Users 
-	<span class="glyphicon  glyphicon-th-list"></span>
-	</a> 
-  </div>
+	<c:if test="${sessionScope.user.userRole eq 'ROLE_APPADMIN' }">
+		<div class="o-container">
+			<h4 class="o-header__title" style="font-size:20px;color:#6d6d6d;font-weight:bold">Create User</h4>
+			<a href="${webapp_path}/admin/listUsers.sp" class="tooltipLink pull-right bld" data-toggle="tooltip" title="List Users" 
+			style="font-size:16px"> List Users 
+				<span class="glyphicon  glyphicon-th-list"></span>
+			</a> 
+		</div>
+	</c:if>
  
 </header>
 
@@ -145,11 +146,11 @@ function sameAslocalAddress(){
 					</div>
 					
 					<div class="form-group margin5">
-							 <label><span class="mandatoryId">*</span>University </label> 
+							 <label><span class="mandatoryId">*</span>Organization </label> 
 							<form:input path="orgName" class="form-control"/>
 					</div>
 					
-					<c:if test="${sessionScope.user.userRole eq 'AppAdmin' }">
+					<c:if test="${sessionScope.user.userRole eq 'ROLE_APPADMIN' }">
 				        <div class="form-group margin5">
 							  <label><span class="mandatoryId">*</span>User Role</label>
 							  <form:select path="userRole" class="form-control" style="padding-left:8px">

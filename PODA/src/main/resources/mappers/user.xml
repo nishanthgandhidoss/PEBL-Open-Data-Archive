@@ -38,7 +38,7 @@
 	
 	
 	
-	<select id="getUsersListByUserName" parameterType="Map" resultType="userbo">
+	<select id="getUsersListByEmail" parameterType="Map" resultType="userbo">
 	
 		SELECT
 		ID as id,
@@ -49,6 +49,8 @@
 		CONCAT(FIRST_NAME, ' ', LAST_NAME) as fullName,
 		USER_ROLE as userRole,
 		ENABLED as enabled,
+		PROFESSION as profession,
+		ORGANISATION_NAME as orgName,
 		CREATED_BY as createdBy,
 		CREATED_IP as createdIp,
 		CREATED_DATE as createdDate,

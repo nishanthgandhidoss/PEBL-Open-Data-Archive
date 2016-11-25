@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -105,12 +106,21 @@ public class UserController {
 		public ModelAndView editUser(ModelAndView mv, HttpServletRequest req, UserBO sessionUserBO) {
 			logger.info("inside editUser");
 			
-			List<UserBO>  userList=null;
+			List<UserBO> userList=null;
+			UserBO userBO = null;
 			try {
-				userService.setDefaultvalues(req,sessionUserBO);
-				userList = userService.getUsersList(sessionUserBO);
-				UserBO UserBO =userList.get(0);
-				mv.addObject("command",UserBO);
+				if(req.getParameter("id") != null) {
+					Long id = Long.parseLong(req.getParameter("id"));
+					sessionUserBO.setId(id);
+					userService.setDefaultvalues(req,sessionUserBO);
+					userList = userService.getUsersList(sessionUserBO);
+					userBO =userList.get(0);
+				} else {
+					HttpSession sess=req.getSession(true);
+					userBO=(UserBO)sess.getAttribute("user");
+					userService.setUserRoleInLong(userBO);
+				}
+				mv.addObject("command",userBO);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return new ModelAndView("redirect:" + "404error.sp");
