@@ -213,20 +213,7 @@ function sameAslocalAddress(){
 <script>
 	$(document).ready(function() {
 		
-		    var formObj=$('#userfrmId');
-		
-		    $('#dobId').on('changeDate', function(e) {
-	            formObj.formValidation('revalidateField', 'dob');
-	        });
-			
-		    $('#dojId').on('changeDate', function(e) {
-	           formObj.formValidation('revalidateField', 'doj'); // doj is defined as selector in the formValidation
-	        });
-		    
-		    $('#gender').on('change', function(e) {
-		    	formObj.formValidation('revalidateField', 'gender');
-	        });
-		
+	    var formObj=$('#userfrmId');
 	    $('#userfrmId').formValidation({
 	        framework: 'bootstrap',
 	        fields: {

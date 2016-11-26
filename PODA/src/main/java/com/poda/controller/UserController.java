@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.poda.model.DepartmentBO;
-import com.poda.model.RegistrationBO;
+
 import com.poda.model.UserBO;
 import com.poda.service.UserService;
 import com.poda.utils.Constants;
@@ -133,7 +132,7 @@ public class UserController {
 			return mv;
 		}
 	 
-	/* @RequestMapping(value="/admin/updateUser", method = RequestMethod.POST)
+	 	@RequestMapping(value="/admin/updateUser", method = RequestMethod.POST)
 		public void updateUser(UserBO userBO, ModelAndView mv, HttpServletRequest req, HttpServletResponse res) throws IOException {
 			
 	        logger.info("Inside Update User");
@@ -160,7 +159,7 @@ public class UserController {
 		}
 	 
 	 
-	               When logged in as USER 
+	/*            When logged in as USER 
 	 
 		  @RequestMapping(value = "/managePassword", method = RequestMethod.GET)
 		  public ModelAndView managePassword(ModelAndView mv) {

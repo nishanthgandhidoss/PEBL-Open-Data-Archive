@@ -160,7 +160,7 @@ function toggleloginRegisterToolTip(){
 	
 <div class="section">
     <div class="navbar-brand loginImage">
-        <img id="loginImage" src="/easyerpv9/images/tech_logo.jpg">
+        <img id="loginImage" src="${webapp}/images/tech_logo.jpg">
     </div>
 </div>
 
