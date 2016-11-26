@@ -7,26 +7,27 @@ public class StudyBO extends CommonBO{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String name;
-	private String description;
+	private String studyName;
+	private String studyDesc;
 	private String license;
-	private String isPublic;
+	private Integer isPublic = 1;
 	private String authors;
 	private String publication;
 	private String contact;
 	private String siteCollected;
 	
-	public String getName() {
-		return name;
+	
+	public String getStudyName() {
+		return studyName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setStudyName(String studyName) {
+		this.studyName = studyName;
 	}
-	public String getDescription() {
-		return description;
+	public String getStudyDesc() {
+		return studyDesc;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setStudyDesc(String studyDesc) {
+		this.studyDesc = studyDesc;
 	}
 	public String getLicense() {
 		return license;
@@ -34,10 +35,10 @@ public class StudyBO extends CommonBO{
 	public void setLicense(String license) {
 		this.license = license;
 	}
-	public String getIsPublic() {
+	public Integer getIsPublic() {
 		return isPublic;
 	}
-	public void setIsPublic(String isPublic) {
+	public void setIsPublic(Integer isPublic) {
 		this.isPublic = isPublic;
 	}
 	public String getAuthors() {

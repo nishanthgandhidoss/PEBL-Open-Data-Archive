@@ -91,7 +91,8 @@
 		</div>
    </c:if>
 	</div> --%>
-	<center><h1>Welcome to PEBL Open data archive. We are building ourself.</h1></center>
+	<h1><center>Welcome to PEBL Open data archive. We are building ourself.</center></h1>
+	<a href="${webapp_path}/addStudy.sp">Create Study</a>
 </div>
 
 <script>

@@ -34,7 +34,17 @@ public class StudyController {
 	@RequestMapping(value = "/addStudy", method = RequestMethod.GET)
 	public ModelAndView addStudy(ModelAndView mv, @ModelAttribute("command") StudyBO studyBO, BindingResult bindingResult, HttpServletRequest req) {
 		
-		
+		logger.info("addStudy - Start");
+		try {
+			studyBO=new StudyBO();
+			studyService.setDefaultvalues(req, studyBO);
+			mv.addObject("command", studyBO);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			return new ModelAndView("redirect:" + "404error.sp");
+		}
+		mv.setViewName("addStudy");
+		logger.info("addStudy - End");
 		return mv;
 	}
 }

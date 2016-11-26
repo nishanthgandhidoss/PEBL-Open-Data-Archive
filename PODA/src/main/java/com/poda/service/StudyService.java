@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudyService {
+public class StudyService extends CommonService{
 	
 	private static final Logger logger = LoggerFactory.getLogger(StudyService.class);
 	
