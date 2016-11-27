@@ -101,62 +101,64 @@ public class UserController {
 		  return mv;
 	}
 	
-	 @RequestMapping(value="/editUser", method = RequestMethod.GET)
-		public ModelAndView editUser(ModelAndView mv, HttpServletRequest req, UserBO sessionUserBO) {
-			logger.info("inside editUser");
-			
-			List<UserBO> userList=null;
-			UserBO userBO = null;
-			try {
-				if(req.getParameter("id") != null) {
-					Long id = Long.parseLong(req.getParameter("id"));
-					sessionUserBO.setId(id);
-					userService.setDefaultvalues(req,sessionUserBO);
-					userList = userService.getUsersList(sessionUserBO);
-					userBO =userList.get(0);
-				} else {
-					HttpSession sess=req.getSession(true);
-					userBO=(UserBO)sess.getAttribute("user");
-					userService.setUserRoleInLong(userBO);
-				}
-				mv.addObject("command",userBO);
-			} catch (Exception e) {
-				e.printStackTrace();
-				return new ModelAndView("redirect:" + "404error.sp");
+	@RequestMapping(value={"/editUser", "/admin/editUser"}, method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView editUser(ModelAndView mv, HttpServletRequest req, UserBO sessionUserBO) {
+		logger.info("inside editUser");
+		
+		List<UserBO> userList=null;
+		UserBO userBO = null;
+		try {
+			if(req.getParameter("id") != null) {
+				Long id = Long.parseLong(req.getParameter("id"));
+				sessionUserBO.setId(id);
+				userService.setDefaultvalues(req,sessionUserBO);
+				userList = userService.getUsersList(sessionUserBO);
+				userBO =userList.get(0);
+				mv.addObject("callFrom", "list");
+			} else {
+				HttpSession sess=req.getSession(true);
+				userBO=(UserBO)sess.getAttribute("user");
+				userService.setUserRoleInShort(userBO);
 			}
-		    
-			mv.addObject("cmd",Constants.ACTION_EDIT);
-			mv.setViewName("addUser");
-			
-			logger.info("Ending editUser");
-			return mv;
+			mv.addObject("command",userBO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ModelAndView("redirect:" + "404error.sp");
 		}
+	    
+		mv.addObject("cmd",Constants.ACTION_EDIT);
+		mv.setViewName("addUser");
+		
+		logger.info("Ending editUser");
+		return mv;
+	}
 	 
-	 	@RequestMapping(value="/admin/updateUser", method = RequestMethod.POST)
-		public void updateUser(UserBO userBO, ModelAndView mv, HttpServletRequest req, HttpServletResponse res) throws IOException {
+	@RequestMapping(value={"/updateUser", "/admin/updateUser"}, method = RequestMethod.POST)
+	public void updateUser(UserBO userBO, ModelAndView mv, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		
+        logger.info("Inside Update User");
+		
+		try {
+			userBO.setCmd(Constants.ACTION_UPDATE);
+			userService.setDefaultvalues(req,userBO);
+			Boolean isFromAdmin = Boolean.parseBoolean(req.getParameter("isFromAdmin"));
+			userBO = userService.updateUser(userBO, isFromAdmin);
+			userBO.setReturnMsg(userService.getUpdateSuccessMsg());
 			
-	        logger.info("Inside Update User");
+		}catch(Exception ex) {
+			 
+			ex.printStackTrace();
+			userBO.setReturnId(-1);
+			if(userBO.getReturnMsg()==null)
+			   userBO.setReturnMsg(userService.getErrorMSg());
+			 
+		}finally{
 			
-			try {
-				userBO.setCmd(Constants.ACTION_UPDATE);
-				userService.setDefaultvalues(req,userBO);
-				userBO = userService.updateUser(userBO);
-				userBO.setReturnMsg(userService.getUpdateSuccessMsg());
-				
-			}catch(Exception ex) {
-				 
-				ex.printStackTrace();
-				userBO.setReturnId(-1);
-				if(userBO.getReturnMsg()==null)
-				   userBO.setReturnMsg(userService.getErrorMSg());
-				 
-			}finally{
-				
-				userService.writeToJSON(res,userBO);
-			}
-			
-			
+			userService.writeToJSON(res,userBO);
 		}
+		
+		
+	}
 	 
 	 
 	/*            When logged in as USER 

@@ -160,13 +160,13 @@ for customization of the application
 .panel-primary > .panel-heading {
 	
 	  border-radius: 3px;
-	  background: #3A6073;
-	  background: #3A6073;
-	  background: -webkit-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* Chrome 10+, Saf5.1+ */
-	  background: -moz-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* FF3.6+ */
-	  background: -ms-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* IE10 */
-	  background: -o-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* Opera 11.10+ */
-	  background: linear-gradient(90deg, #2c4454 10%, #3c6377 90%); /* W3C */
+	  background: #222;
+	  color: #ffcd00;
+	  /* background: -webkit-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); Chrome 10+, Saf5.1+
+	  background: -moz-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); FF3.6+
+	  background: -ms-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); IE10
+	  background: -o-linear-gradient(90deg, #2c4454 10%, #3c6377 90%); Opera 11.10+
+	  background: linear-gradient(90deg, #2c4454 10%, #3c6377 90%); W3C */
 } 
 
 label {
@@ -215,11 +215,11 @@ label {
  .submit-btn, .appblue{
 /*   background: #fece01;
   color: #222111;
-  font-weight: 600;
   border:none;
   text-shadow: 0 1px 0 #000; */
-   background: #447088;
-  color: #fff !important;
+  background: #222;
+  color: #fdd106 !important;
+  font-weight: 600;
   border:none;
   text-shadow: 0 1px 0 #000;
  }

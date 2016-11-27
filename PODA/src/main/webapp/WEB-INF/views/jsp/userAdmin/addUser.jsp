@@ -107,7 +107,7 @@ function sameAslocalAddress(){
 </header>
 
   <div class="o-container clearboth">
- <form:form id="userfrmId">
+  <form:form id="userfrmId">
  <form:hidden path="id"/>
     <div class="o-section">
       <div id="tabs" class="c-tabs no-js">
@@ -117,6 +117,7 @@ function sameAslocalAddress(){
             <span>User Information</span>
           </a>
         </div>
+        <strong><a class="pull-right" style="padding-right: 20px;" href="${webapp_path}/managePassword.sp">Manage Password</a></strong>
         <div class="c-tab is-active">
            <div class="c-tab__content">
                 
@@ -150,7 +151,7 @@ function sameAslocalAddress(){
 							<form:input path="orgName" class="form-control"/>
 					</div>
 					
-					<c:if test="${sessionScope.user.userRole eq 'ROLE_APPADMIN' }">
+					<c:if test="${sessionScope.user.userRole eq 'App Admin' && callFrom eq 'list'}">
 				        <div class="form-group margin5">
 							  <label><span class="mandatoryId">*</span>User Role</label>
 							  <form:select path="userRole" class="form-control" style="padding-left:8px">
@@ -169,13 +170,15 @@ function sameAslocalAddress(){
 								  <div class="col-md-2"><form:radiobutton path="enabled" class="form-control" style="padding-left:8px" value="0"/></div>
 					    	  </div>
 					    </div>
+					    
+					    <input type="hidden" id="isFromAdmin" name="isFromAdmin" value="true"/>
 					 </c:if>   	
 				     
-				     <div class="form-group margin5" >
+				    <!--  <div class="form-group margin5" >
 					     <button type="button" class="submit-btn"  value="" onclick="showPasswordTxtbx()">
 					     Reset Password <span class="glyphicon glyphicon-repeat"></span>
 					     </button>
-				     </div>
+				     </div> -->
 				     
 				     <div class="form-group margin5" id="pwdDivId">
 							 <label><span class="mandatoryId">*</span>Password</label> 
@@ -293,12 +296,14 @@ function sameAslocalAddress(){
             $button = $form.data('formValidation').getSubmitButton();
             
         	var btnType = $button.attr('value');
-        	
+        	var isFromAdmin = $('isFromAdmin').val();
         
         	
         	if(btnType == "Update"){ 
-        		var url = "${webapp_path}/admin/updateUser.sp";
-        		
+        		var url = "${webapp_path}/updateUser.sp";
+        		if(isFromAdmin) {
+        			url = "${webapp_path}/admin/updateUser.sp";
+        		}
         	}else if(btnType == "Submit"){	
         		var url="${webapp_path}/admin/createUser.sp";
         	  

@@ -65,29 +65,24 @@
 	
 	
 	
-	<update id="updateUserInfo" parameterType="userbo">
+	<update id="updateUserInfo" parameterType="map">
 	
 		UPDATE tbl_users
 		SET
-		FIRST_NAME=#{firstName},
-		LAST_NAME=#{lastName},
-		FATHER_NAME=#{fatherName},
-		GENDER=#{gender},
-		DATE_OF_BIRTH=#{dob},
-		AGE=#{age},
-		CONTACT_NO=#{contact},
-		DATE_OF_JOINING=#{dateOfJoining},
-		<if test="password!= null">
-          PASSWORD=#{password}, <!-- check if the password is reset by the admin -->
+		FIRST_NAME=#{userBO.firstName},
+		LAST_NAME=#{userBO.lastName},
+		EMAIL=#{userBO.email},
+		PROFESSION=#{userBO.profession},
+		ORGANISATION_NAME=#{userBO.orgName},
+		<if test="isFromAdmin == true">
+         	USER_ROLE=#{userBO.userRole},
+			ENABLED=#{userBO.enabled},
         </if>
-		USER_ROLE=#{userRole},
-		ENABLED=#{enabled},
-		DEPARTMENT_ID=#{departmentId},
-		LAST_MODIFIED_BY =#{lastModifiedBy},
+		LAST_MODIFIED_BY =#{userBO.lastModifiedBy},
 		LAST_MODIFIED_DATE = NOW(),
-		LAST_MODIFIED_IP = #{lastModifiedFromIp}
+		LAST_MODIFIED_IP = #{userBO.lastModifiedIp}
 		WHERE 
-		ID = #{id} 
+		ID = #{userBO.id} 
 		
 	</update>
 	

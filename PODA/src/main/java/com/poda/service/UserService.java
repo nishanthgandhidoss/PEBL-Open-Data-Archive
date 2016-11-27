@@ -84,23 +84,22 @@ public class UserService extends CommonService{
 			return Arrays.asList(includedProps);
 	}
 	 
-	public UserBO updateUser(UserBO userBO) throws Exception {
-		String queryId = "updateUserInfo";
-		
-		if (userBO.getPassword() == null || userBO.getPassword().isEmpty()) {
-			userBO.setPassword(null);
-		} else {
-			userBO.setPassword(Utils.encryptPassword(userBO.getPassword()));
-		}
-		
-		int returnId = (int) getCommonDAO().update(userBO, queryId);
+	public UserBO updateUser(UserBO userBO, Boolean isFromAdmin) throws Exception {
+		logger.info("updateUser - Start");
+		String queryId;
+		queryId = "updateUserInfo";
+		HashMap<String, Object> inputMap = new HashMap<String, Object>();
+		inputMap.put("userBO", userBO);
+		inputMap.put("isFromAdmin", isFromAdmin);
+		int returnId = (int) getCommonDAO().update(inputMap, queryId);
 		
 		if(returnId < 1) {
 			userBO.setReturnMsg(getErrorMSg());
 			throw new Exception("Error Updating User");
 		}
-			userBO.setReturnId(returnId);
-			return userBO;
-		}
-		 
+		userBO.setReturnId(returnId);
+		logger.info("updateUser - End");
+		return userBO;
 	}
+		 
+}
