@@ -45,8 +45,7 @@ navbar {
  	float: left;
     margin-bottom:1%;
     margin-top: 1%;
-	margin-right: 10%;
-	margin-left: 10%;
+	margin-left: 16%;
 }
 
 #companyLogoId
@@ -226,13 +225,6 @@ $(document).ready(function () {
 	          </ul>
 	        </li>
         </c:if>
-        
-          <li class="dropdown">
-          <a class="dropdown-toggle headerLink" data-toggle="dropdown" href="javascript:void(0)">Title 5 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="${webapp_path}/managePassword.sp">Manage Password</a></li>
-          </ul>
-        </li>
       </ul>
       
      <!--  search bar div  starts-->
