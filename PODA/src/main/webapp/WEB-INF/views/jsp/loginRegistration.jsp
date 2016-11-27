@@ -157,113 +157,114 @@ function toggleloginRegisterToolTip(){
 	</div>
 </c:if>
 
-	
-<div class="section">
-    <div class="navbar-brand loginImage">
-        <img id="loginImage" src="${webapp_path}/images/tech_logo.jpg">
-    </div>
-</div>
-
-<div class="section loginSection">
-	<div class="pen-title">
-	  	<h1>PODA</h1><span>PEBL Open Data Archive  <i class='glyphicon glyphicon-thumbs-up'></i></span>
+<div class="container" style="width: 100%; margin-bottom:129px;">	
+	<div class="section">
+	    <div class="navbar-brand loginImage">
+	        <img id="loginImage" src="${webapp_path}/images/tech_logo.jpg">
+	    </div>
 	</div>
 	
-	<!-- Form Module-->
-	  <div class="module form-module" style="margin-top:0%"> <!-- top,right,bottom,left -->
-	  
-	  <div class="toggle" style="float: left; position: relative;" onclick="resetForm('#regFormId');toggleloginRegisterToolTip()">
-	  	<i class="fa fa-times fa-pencil"></i>
-	    <div class="tooltip">REGISTER</div>
-	  </div>
-	 
-	 <div class="form login-block" style="padding-bottom:10px">
-	   <h2 style="font-weight: bold">Login to your account</h2>
-	   
-	  <%--  <form id="frmID" action="${webapp_path}/auth/login_check?targetUrl=${targetUrl}" method="POST"> --%>
-	    <form id="frmID" action="${webapp_path}/auth/login_check?targetUrl=${targetUrl}"  method="POST">
-	     <input type="text" placeholder="Username" id="username" name="loginusername" oninput="clearMsg()"/>
-	     <input type="password" placeholder="Password" id="password" name="loginpassword" oninput="clearMsg()"/>
-	    <%--  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
-	     <input type="submit"  class="submit-btn" value="LOGIN" style="padding:5px">
-	   </form>
-	 </div>
-	 
-	 
-	<div class="form" style="padding-bottom:20%">
-	   <h2>Sign Up</h2>
-	 <form:form id="regFormId">
-	    
-	    <div class="form-group">
-	        <div class="input-group">
-	            <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></div>
-	            <form:input  class="form-control" path="firstName" placeholder="First Name"/>
-	        </div>
-	    </div>
-	    
-	     <div class="form-group">
-	        <div class="input-group">
-	          <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></div>
-	          <form:input  class="form-control" path="lastName" placeholder="Last Name" />
-	        </div>
-	    </div>
-	    
-	    <div class="form-group">
-	        <div class="input-group">
-	            <div class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
-	            <form:input type="email" class="form-control" path="email" placeholder="Email"/>
-	        </div>
-	    </div>
-	    
-	     <div class="form-group">
-	        <div class="input-group">
-	            <div class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
-	            <form:password class="form-control" path="password" placeholder="Password"/>
-	        </div>
-	    </div>
-	    
-	    <div class="form-group">
-	        <div class="input-group">
-	           <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div>
-	            <input type="password" class="form-control" name="confirmPasword" placeholder="Confirm password" />
-	        </div>
-	    </div>
-	    
-	    <div class="form-group">
-	        <div class="input-group">
-	           <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div>
-	            <form:select  class="form-control" path="profession" placeholder="Profession">
-	            	<form:option value="">--- Please Select ---</form:option>
-	            	<form:option value="Professor">Professor</form:option>
-	            	<form:option value="Student">Student</form:option>
-	            </form:select>
-	        </div>
-	    </div>	    
-	    
-	    <div class="form-group">
-	        <div class="input-group">
-	           <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div>
-	            <form:input  class="form-control" path="orgName" placeholder="University Name" />
-	        </div>
-	    </div>
-	    
-	    <div class="form-group">
-	       <div class="col-sm-6">
-	            <input type="submit" class="submit-btn" value="Register"/>
-	         </div>
-	
-	          <div class="col-sm-6">
-	           <input type="Reset" class="submit-btn" value="Reset" onclick="resetForm(this.form)"/>
-	          </div>
-	              
-	       </div>
-	       
-	 </form:form>
-	  
-	    </div>
-	 </div>
+	<div class="section loginSection">
+		<div class="pen-title">
+		  	<h1>PODA</h1><span>PEBL Open Data Archive  <i class='glyphicon glyphicon-thumbs-up'></i></span>
+		</div>
+		
+		<!-- Form Module-->
+		  <div class="module form-module" style="margin-top:0%"> <!-- top,right,bottom,left -->
+		  
+		  <div class="toggle" style="float: left; position: relative;" onclick="resetForm('#regFormId');toggleloginRegisterToolTip()">
+		  	<i class="fa fa-times fa-pencil"></i>
+		    <div class="tooltip">REGISTER</div>
+		  </div>
+		 
+		 <div class="form login-block" style="padding-bottom:10px">
+		   <h2 style="font-weight: bold">Login to your account</h2>
+		   
+		  <%--  <form id="frmID" action="${webapp_path}/auth/login_check?targetUrl=${targetUrl}" method="POST"> --%>
+		    <form id="frmID" action="${webapp_path}/auth/login_check?targetUrl=${targetUrl}"  method="POST">
+		     <input type="text" placeholder="Username" id="username" name="loginusername" oninput="clearMsg()"/>
+		     <input type="password" placeholder="Password" id="password" name="loginpassword" oninput="clearMsg()"/>
+		    <%--  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
+		     <input type="submit"  class="submit-btn" value="LOGIN" style="padding:5px">
+		   </form>
+		 </div>
+		 
+		 
+		<div class="form" style="padding-bottom:20%">
+		   <h2>Sign Up</h2>
+		 <form:form id="regFormId">
+		    
+		    <div class="form-group">
+		        <div class="input-group">
+		            <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></div>
+		            <form:input  class="form-control" path="firstName" placeholder="First Name"/>
+		        </div>
+		    </div>
+		    
+		     <div class="form-group">
+		        <div class="input-group">
+		          <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></div>
+		          <form:input  class="form-control" path="lastName" placeholder="Last Name" />
+		        </div>
+		    </div>
+		    
+		    <div class="form-group">
+		        <div class="input-group">
+		            <div class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+		            <form:input type="email" class="form-control" path="email" placeholder="Email"/>
+		        </div>
+		    </div>
+		    
+		     <div class="form-group">
+		        <div class="input-group">
+		            <div class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+		            <form:password class="form-control" path="password" placeholder="Password"/>
+		        </div>
+		    </div>
+		    
+		    <div class="form-group">
+		        <div class="input-group">
+		           <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+		            <input type="password" class="form-control" name="confirmPasword" placeholder="Confirm password" />
+		        </div>
+		    </div>
+		    
+		    <div class="form-group">
+		        <div class="input-group">
+		           <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+		            <form:select  class="form-control" path="profession" placeholder="Profession">
+		            	<form:option value="">--- Please Select ---</form:option>
+		            	<form:option value="Professor">Professor</form:option>
+		            	<form:option value="Student">Student</form:option>
+		            </form:select>
+		        </div>
+		    </div>	    
+		    
+		    <div class="form-group">
+		        <div class="input-group">
+		           <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+		            <form:input  class="form-control" path="orgName" placeholder="University Name" />
+		        </div>
+		    </div>
+		    
+		    <div class="form-group">
+		       <div class="col-sm-6">
+		            <input type="submit" class="submit-btn" value="Register"/>
+		         </div>
+		
+		          <div class="col-sm-6">
+		           <input type="Reset" class="submit-btn" value="Reset" onclick="resetForm(this.form)"/>
+		          </div>
+		              
+		       </div>
+		       
+		 </form:form>
+		  
+		    </div>
+		 </div>
+	</div>
 </div>
-  
+
 <script src="${webapp_path}/js/login.js"></script>
 
 <!-- http://formvalidation.io/examples/ajax-submit/ -->
