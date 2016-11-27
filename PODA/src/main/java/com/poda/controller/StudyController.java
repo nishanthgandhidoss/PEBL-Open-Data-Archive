@@ -106,5 +106,30 @@ public class StudyController {
 		mv.setViewName("commonlistPage");
 		return mv;
 	}
+	@RequestMapping(value="/editStudy", method = RequestMethod.POST)
+	public ModelAndView editStudy(ModelAndView mv, StudyBO studyBO, HttpServletRequest req) {
+		logger.info("inside editStudy");
+		
+		List<StudyBO> studyList = null;
+		try {
+			if(req.getParameter("id") != null)
+				studyBO.setId(Long.parseLong(req.getParameter("id")));
+			studyService.setDefaultvalues(req, studyBO);
+			studyList = studyService.getStudyList(studyBO);
+			studyBO = studyList.get(0);
+			mv.addObject("command", studyBO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ModelAndView("redirect:" + "404error.sp");
+		}
+	    
+		mv.addObject("cmd",Constants.ACTION_EDIT);
+		mv.setViewName("addStudy");
+		
+		logger.info("Ending editStudy");
+		return mv;
+	}
+ 
+	
 	
 }

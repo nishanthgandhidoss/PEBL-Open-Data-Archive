@@ -1,5 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<spring:eval var="editCmd" expression="T(com.poda.utils.Constants).ACTION_EDIT"/>
+
 <style type="text/css">
 
 	.mandatoryId {
@@ -62,7 +65,7 @@ $(document).ready(function(){
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 			  Create Study
-			  <c:if test="${callFor eq 'editStudy'}">
+			  <c:if test="${cmd eq editCmd}">
 			  	&nbsp;|&nbsp;Update
 			  </c:if>
 			  <a href="${webapp_path}/listStudy.sp" class="pull-right tooltipLink" data-toggle="tooltip" title="List Study">
@@ -120,7 +123,7 @@ $(document).ready(function(){
 					</div>
 					
 					<c:choose>
-               			<c:when test="${callFor eq 'editStudy'}">
+               			<c:when test="${callFor eq editCmd}">
 							<input class="submit-btn" name="commit" id="update-btn" value="Update" type="submit"/>
 						</c:when>
 						<c:otherwise>
