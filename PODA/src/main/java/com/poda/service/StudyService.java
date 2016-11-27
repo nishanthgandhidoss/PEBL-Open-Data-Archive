@@ -34,13 +34,14 @@ public class StudyService extends CommonService{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public ArrayList<StudyBO> getStudyList(StudyBO studyBO) throws Exception {
+	public ArrayList<StudyBO> getStudyList(StudyBO studyBO, boolean userStudyList) throws Exception {
 	
 		ArrayList<StudyBO> studyList = new ArrayList<StudyBO>();
 	
 		HashMap<String, Object> inputMap = new HashMap<String, Object>();
 		inputMap.put("id", studyBO.getId());
-	
+		if(userStudyList)
+			inputMap.put("createdBy", studyBO.getCreatedBy());
 		studyList = (ArrayList) getCommonDAO().getRecordListByMap("getStudyList", inputMap);
 	
 		return studyList;

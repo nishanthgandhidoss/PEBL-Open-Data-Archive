@@ -6,9 +6,9 @@
 
 	<insert id="createStudy" >
 		INSERT INTO tbl_study
-		(STUDY_NAME, STUDY_DESCRIPTION, LICENSE, IS_PUBLIC, AUTHORS, PUBLICATION, CONTACT, SITE_COLLECTED, CREATED_BY,CREATED_DATE,CREATED_IP)
+		(STUDY_NAME, STUDY_DESCRIPTION, LICENSE, IS_PUBLIC, AUTHORS, PUBLICATION, CONTACT, SITE_COLLECTED, CREATED_BY, CREATED_DATE, CREATED_IP)
 		VALUE
-		(#{studyName}, #{studyDesc}, #{license}, #{isPublic}, #{authors}, #{publication}, #{contact}, #{siteCollected}, "User", NOW(), #{createdIp}); 
+		(#{studyName}, #{studyDesc}, #{license}, #{isPublic}, #{authors}, #{publication}, #{contact}, #{siteCollected}, #{createdBy}, NOW(), #{createdIp}); 
 	</insert>
 	
 	<select id="getStudyList" parameterType="Map" resultType="studyBO">
@@ -28,9 +28,18 @@
 		CREATED_IP as createdIp
 		FROM
 		tbl_study
- 		<if test="id!= null">
-        	WHERE ID=#{id}
-        </if>
+		<if test="id != null or createdBy != null">
+	 		WHERE
+	 		<if test="id != null">
+	        	ID=#{id}
+	        </if>
+	        <if test="id != null and createdBy != null">
+	        	AND
+	        </if>
+	        <if test="createdBy != null">
+	        	CREATED_BY = #{createdBy}
+	        </if>
+	    </if>
 	</select>
 	
 	<update id="updateStudy" parameterType="studybo">

@@ -17,22 +17,6 @@
 <script src="${webapp_path}/js/datatable/dataTables.responsive.min.js"> </script>
 <script src="${webapp_path}/js/datatable/responsive.bootstrap.min.js"> </script>
 
-
-<script>
-
-$(document).ready(function() {
-	  $('#listTableID').DataTable({
-		  scrollX: false
-		} );
-	  
-	  
-	  $(".tooltipLink").tooltip();
-	  
-	  $('<div class="pull-right appblue golden" style="margin-bottom:10px; padding: 7px 0;"><a href="${webapp_path}/${ADD_URL[0]}" class="white bld padding10">${ADD_URL[1]}</a></div>').insertBefore("#listTableID_wrapper"); 
-});
-
-</script>
-
 <style>
 
 table.dataTable thead th, table.dataTable thead td {
@@ -40,25 +24,59 @@ table.dataTable thead th, table.dataTable thead td {
   border-bottom: 1px solid #111;
 }
 
+#tableID_info {
+	clear: none;	   
+}
+
+tfoot input {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+}
+  
+ table.table-bordered.dataTable {
+    border-collapse: collapse !important;
+}
+ 
 #listTableID_wrapper{
     clear:both;
 }
-
-#tableID_info {
-		   clear: none;
-		  }
-		  
-/* .glyphicon{
-  
-    font-size:16px;
-    padding:5px;
-} */
-
+	  
 .input-group-addon{
     background-color: #fff !important;
 }
 
 </style>
+
+<script>
+
+$(document).ready(function() {
+	$('#listTableID tfoot th').each(function() {
+	    var title = $(this).text();
+	    if(title!=="Actions")
+		    $(this).html('<input class="tooltipLink" data-toggle="tooltip" type="text" style="max-width:200px;border: 1px solid #ccc;" placeholder="'+title+'" title="Search '+title+'"/>');
+	});
+	var table = $('#listTableID').DataTable({"autoWidth": false});
+	table.columns().every(function() {
+	    var that = this;
+	    $('input', this.footer()).on('keyup change', function() {
+	        if (that.search() !== this.value) {
+	            that
+	                .search(this.value)
+	                .draw();
+	        }
+	    });
+	});
+	  
+	  
+	$(".tooltipLink").tooltip();
+	  
+	$('<div class="pull-right appblue golden" style="margin-bottom:10px; padding: 7px 0;"><a href="${webapp_path}/${ADD_URL[0]}" class="white bld padding10">${ADD_URL[1]}</a></div>').insertBefore("#listTableID_wrapper"); 
+});
+
+</script>
+
+
 <title>${LIST_PAGE_TITLE}</title>
 
 
@@ -75,11 +93,17 @@ table.dataTable thead th, table.dataTable thead td {
         <thead>
             <tr class="headerCss">
                <c:forEach var="headerName" items="${TBL_HEADER_LIST}">
-                <th>${headerName}</th>
+               		<th>${headerName}</th>
                </c:forEach>
             </tr>
         </thead>
-        
+        <tfoot>
+            <tr>
+	            <c:forEach var="headerName" items="${TBL_HEADER_LIST}">
+	                <th>${headerName}</th>
+	            </c:forEach>
+            </tr>
+        </tfoot>
         <tbody>
           <c:forEach var="obj" items="${OBJECT_LIST}">
              <tr>

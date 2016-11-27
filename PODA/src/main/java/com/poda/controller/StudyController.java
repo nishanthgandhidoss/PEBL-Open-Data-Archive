@@ -82,7 +82,7 @@ public class StudyController {
 		List<String> propertiesList = null;
 		try {
 			studyService.setDefaultvalues(req, studyBO);
-			studyList = studyService.getStudyList(studyBO);
+			studyList = studyService.getStudyList(studyBO, true);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ModelAndView("redirect:" + "404error.sp");
@@ -116,7 +116,7 @@ public class StudyController {
 			if(req.getParameter("id") != null)
 				studyBO.setId(Long.parseLong(req.getParameter("id")));
 			studyService.setDefaultvalues(req, studyBO);
-			studyList = studyService.getStudyList(studyBO);
+			studyList = studyService.getStudyList(studyBO, false);
 			studyBO = studyList.get(0);
 			mv.addObject("command", studyBO);
 		} catch (Exception e) {
