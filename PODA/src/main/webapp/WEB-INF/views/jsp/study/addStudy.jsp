@@ -92,10 +92,10 @@ $(document).ready(function(){
 					<div class="form-group">
 						<label class="control-label"><span title="required" class="mandatoryId">*</span>Public </label> 
 					 	<div class="row">
-							  <div class="col-md-2">Yes</div>
-							  <div class="col-md-2"><form:radiobutton path="isPublic" class="form-control" style="padding-left:8px" value="1"/></div>
-							  <div class="col-md-2">No</div>
-							  <div class="col-md-2"><form:radiobutton path="isPublic" class="form-control" style="padding-left:8px" value="0"/></div>
+							  <div class="col-md-1">Yes</div>
+							  <div class="col-md-1"><form:radiobutton path="isPublic" class="form-control" style="padding-left:8px" value="1"/></div>
+							  <div class="col-md-1">No</div>
+							  <div class="col-md-1"><form:radiobutton path="isPublic" class="form-control" style="padding-left:8px" value="0"/></div>
 				    	 </div>
 					</div>
 					
@@ -181,7 +181,7 @@ $(document).ready(function(){
             data.element.data('fv.icon').hide();
         }).on('success.form.fv', function(e) {
         	e.preventDefault();
-        	var url="${webapp_path}/admin/savePricing.sp";
+        	var url="${webapp_path}/createStudy.sp";
         	
         	// logic to diff URL for Approve / Update
         	// Form instance
@@ -192,7 +192,7 @@ $(document).ready(function(){
             $statusField = $form.find('[name="commit"]');
         	var btnId = $button.attr('id');
         	if(btnId == "update-btn") 
-        		url = "${webapp_path}/admin/updatePricing.sp";
+        		url = "${webapp_path}/updateStudy.sp";
         	
         	trimFormInputs();
         	//Json data

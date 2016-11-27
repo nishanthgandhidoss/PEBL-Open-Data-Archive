@@ -1,6 +1,9 @@
 package com.poda.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,5 +49,23 @@ public class StudyController {
 		mv.setViewName("addStudy");
 		logger.info("addStudy - End");
 		return mv;
+	}
+	
+	@RequestMapping(value = "/createStudy", method = RequestMethod.POST)
+	public void createStudy(StudyBO studyBO, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		logger.info("createStudy - Start");
+		try {
+			studyService.setDefaultvalues(req, studyBO);
+			studyService.createStudy(studyBO);
+			studyBO.setReturnMsg(studyService.getSuccessMSg());
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			studyBO.setReturnId(-1);
+			if(studyBO.getReturnMsg()==null)
+				studyBO.setReturnMsg(studyService.getErrorMSg());
+		} finally {
+			studyService.writeToJSON(res, studyBO);
+		}
+		logger.info("createStudy - End");
 	}
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mappers">
+
+	<insert id="createStudy" >
+		INSERT INTO tbl_study
+		(STUDY_NAME, STUDY_DESCRIPTION, LICENSE, ISPUBLIC, AUTHORS, PUBLICATION, CONTACT, SITE_COLLECTED, CREATED_BY,CREATED_DATE,CREATED_IP)
+		VALUE
+		(#{studyName}, #{studyDesc}, #{license}, #{isPublic}, #{authors}, #{publication}, #{contact}, #{siteCollected}, "User", NOW(), #{createdIp}); 
+	</insert>
+</mapper>

@@ -18,7 +18,7 @@ public class UserService extends CommonService{
 
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 	
-	public UserBO registerUser(UserBO userBO) throws Exception {
+	public synchronized UserBO registerUser(UserBO userBO) throws Exception {
 		
 		logger.info("registerUser - Start");
 		
