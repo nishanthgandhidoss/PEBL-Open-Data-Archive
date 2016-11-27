@@ -87,13 +87,12 @@
 	</update>
 	
 	
-	<select id="getPasswordByUserName" parameterType="userbo" resultType="String">
+	<select id="getPasswordByEmail" parameterType="userbo" resultType="String">
 	
 	  SELECT PASSWORD AS password 
 	  FROM tbl_users
 	  WHERE ID = #{id} AND 
-	  USER_NAME=#{userName} AND
-	  ORG_ID=#{orgId}
+	  EMAIL=#{email}
 	  
 	</select>
 	
@@ -103,10 +102,9 @@
         PASSWORD=#{password},
 		LAST_MODIFIED_BY ="user",
 		LAST_MODIFIED_DATE = NOW(),
-		LAST_MODIFIED_IP = #{createdFromIp}
+		LAST_MODIFIED_IP = #{lastModifiedIp}
 		WHERE ID = #{id}  
-	    AND USER_NAME=#{userName} 
-	    AND ORG_ID=#{orgId}
+	    AND EMAIL=#{email}
 	</update>
 	
 	<select id="getNextIdByOrg" resultType="Long" parameterType="commonbo">

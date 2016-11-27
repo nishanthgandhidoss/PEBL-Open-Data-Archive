@@ -12,6 +12,8 @@ public class UserBO extends CommonBO {
 
 	private String password;
 	
+	private String currentPassword;
+	
 	private String email;
 	
     private String firstName;
@@ -34,6 +36,14 @@ public class UserBO extends CommonBO {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getCurrentPassword() {
+		return currentPassword;
+	}
+
+	public void setCurrentPassword(String currentPassword) {
+		this.currentPassword = currentPassword;
 	}
 
 	public String getEmail() {

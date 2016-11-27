@@ -160,48 +160,50 @@ public class UserController {
 		
 	}
 	 
-	 
-	/*            When logged in as USER 
-	 
-		  @RequestMapping(value = "/managePassword", method = RequestMethod.GET)
-		  public ModelAndView managePassword(ModelAndView mv) {
-			
+	@RequestMapping(value = "/managePassword", method = RequestMethod.GET)
+	public ModelAndView managePassword(ModelAndView mv) {
+		logger.info("Inside Manage Password");
+		try {
 			UserBO userBO = new UserBO();
 			mv.addObject("command",userBO);
-			mv.setViewName("managePassword");
-			return mv;
-		 }
-		
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			return new ModelAndView("redirect:" + "404error.sp");
+		}
+		mv.setViewName("managePassword");
+		logger.info("outside Manage Password");
+		return mv;
+	}
+
 	    
 	 
-    @RequestMapping(value="/resetPassword", method = RequestMethod.POST)
-	   public void resetPassword(UserBO userBO, ModelAndView mv, HttpServletRequest req, HttpServletResponse res) throws IOException {
-		
-	        logger.info("Inside reset Password User");
+	@RequestMapping(value="/resetPassword", method = RequestMethod.POST)
+	public void resetPassword(UserBO userBO, ModelAndView mv, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		logger.info("Inside reset Password User");
+		try {
+			HttpSession sess=req.getSession();
+			UserBO userBO1 = (UserBO)sess.getAttribute("user");
+			userBO.setId(userBO1.getId());
+			userBO.setEmail(userBO1.getEmail());
+			userService.setDefaultvalues(req,userBO);
+			userBO = userService.resetUserPassword(userBO);
+			userBO.setReturnMsg(userService.getUpdateSuccessMsg());
+			sess.invalidate();
+		}catch(Exception ex) {
+			 
+			ex.printStackTrace();
+			userBO.setReturnId(-1);
+			if(userBO.getReturnMsg()==null)
+			   userBO.setReturnMsg("Resetting password Failed.\n Please contact your application support team");
+			 
+		}finally{
 			
-			try {
-				HttpSession sess=req.getSession();
-				UserBO userBO1 = (UserBO)sess.getAttribute("user");
-				userBO.setId(userBO1.getId());
-				userBO.setUserName(userBO1.getUserName());
-				userService.setDefaultvalues(req,userBO);
-				userBO = userService.resetUserPassword(userBO);
-				userBO.setReturnMsg(userService.getUpdateSuccessMsg());
-				sess.invalidate();
-			}catch(Exception ex) {
-				 
-				ex.printStackTrace();
-				userBO.setReturnId(-1);
-				if(userBO.getReturnMsg()==null)
-				   userBO.setReturnMsg("Resetting password Failed.\n Please contact your application support team");
-				 
-			}finally{
-				
-				userService.writeToJSON(res,userBO);
-			}
-			logger.info("Outside reset Password User");
+			userService.writeToJSON(res,userBO);
 		}
-	 */
+		logger.info("Outside reset Password User");
+	}
+	 
 	
 	 /*@RequestMapping(value = "/appadmin/listCompanyRegistrations", method = RequestMethod.GET)
 		public ModelAndView listCompanyRegistrations(ModelAndView mv) {

@@ -1,40 +1,90 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+<style type="text/css">
+
+	.mandatoryId {
+		color: crimson
+	}
+	.container {
+		 margin: 0 auto;
+		 padding: 0 30px;
+		 width:35%;
+	}
+	.panel-body {
+    	padding-right: 4%;
+    	padding-left: 4%;
+	}
+	.mandatorytoplabel {
+		font-style: italic;
+		margin: 10px;
+		font-size: 12px
+	}
+	.panel-heading>a>.glyphicon{ 
+		color:#fff;
+	}
+	.panel-heading{
+		font-size:16px;
+	    font-weight: bold;
+	    font-style:normal
+	}
+	.text-left{
+		text-align:left;
+	}
+	strong { 
+		padding: 0 5px 0 15px;
+	}
+	.pdtop { 
+		padding: 5px 0px; 
+	}
+	.submit-btn.disabled {
+  		opacity: 0.65; 
+  		cursor: not-allowed;
+	}
+	.select2 {
+		width:100% ! important;
+	}
+	.select2-selection {
+		height: 32px ! important; 
+		padding-left: 6px;
+	}
+	.col-xs-2 {
+		width:19%; /* Don't make more than 19, then it will cause distorition on UI */
+	}
+</style>
+
 <div class="container">
-	<div class="col-md-5">
-		<div class="panel panel-primary">
+	<div class="panel panel-primary">
 
-			<div class="panel-heading">Password Management</div>
-			
-			<div class="mandatoryId mandatorytoplabel">*&nbsp;Mandatory
-				fields</div>
+		<div class="panel-heading">Password Management</div>
+		
+		<div class="mandatoryId mandatorytoplabel">*&nbsp;Mandatory
+			fields</div>
 
-			<div class="panel-body">
+		<div class="panel-body">
 
-				<form:form id="frmId">
+			<form:form id="frmId">
 
-					<div class="form-group">
-						<label><span class="mandatoryId">*</span>Current Password</label>
-						<form:password path="currentPassword"  class="form-control" />
-					</div>
+				<div class="form-group">
+					<label><span class="mandatoryId">*</span>Current Password</label>
+					<form:password path="currentPassword"  class="form-control" />
+				</div>
 
-					<div class="form-group">
-						<label><span class="mandatoryId">*</span>New Password</label>
-						<form:password path="password"  class="form-control" />
-					</div>
+				<div class="form-group">
+					<label><span class="mandatoryId">*</span>New Password</label>
+					<form:password path="password"  class="form-control" />
+				</div>
 
-					<div class="form-group">
-						<label><span class="mandatoryId">*</span>Confirm Password</label>
-						<input type="password"  name="confirmPassword" class="form-control"/>
-					</div>
-					
-					<div class="form-group">
-					    <input  type="submit" value="Reset Password" class="submit-btn"   />
-				   </div>
+				<div class="form-group">
+					<label><span class="mandatoryId">*</span>Confirm Password</label>
+					<input type="password"  name="confirmPassword" class="form-control"/>
+				</div>
+				
+				<div class="form-group">
+				    <input  type="submit" value="Reset Password" class="submit-btn"   />
+			   </div>
 
-				</form:form>
-			</div>
+			</form:form>
 		</div>
 	</div>
 </div>

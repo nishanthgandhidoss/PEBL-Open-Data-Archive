@@ -10,7 +10,18 @@
 		<put-attribute name="body" value="/WEB-INF/views/jsp/loginRegistration.jsp"></put-attribute>
 	</definition>
 	
-	 <definition name="home" extends="base.definition">
+	<definition name="addUser" extends="base.definition">
+	    <put-attribute name="title" value="User Administration"></put-attribute>
+		<!-- <put-attribute name="body" value="/WEB-INF/views/jsp/userAdmin/addUser.jsp"></put-attribute> -->
+		<put-attribute name="body" value="/WEB-INF/views/jsp/userAdmin/addUser.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="managePassword" extends="base.definition">
+	    <put-attribute name="title" value="Manage Password"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/userAdmin/managePassword.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="home" extends="base.definition">
 	    <put-attribute name="title" value="Home Page"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/jsp/home.jsp"></put-attribute>
 	</definition>
@@ -22,11 +33,7 @@
 	
 		
 	
-	<definition name="addUser" extends="base.definition">
-	    <put-attribute name="title" value="User Administration"></put-attribute>
-		<!-- <put-attribute name="body" value="/WEB-INF/views/jsp/userAdmin/addUser.jsp"></put-attribute> -->
-		<put-attribute name="body" value="/WEB-INF/views/jsp/userAdmin/addUser.jsp"></put-attribute>
-	</definition>
+	
 	
 	<definition name="commonlistPage" extends="base.definition">
 	    <put-attribute name="title" expression="${PAGE_TITLE}"></put-attribute>
