@@ -85,7 +85,7 @@ public class UserService extends CommonService{
 			return Arrays.asList(includedProps);
 	}
 	 
-	public UserBO updateUser(UserBO userBO, Boolean isFromAdmin) throws Exception {
+	public synchronized UserBO updateUser(UserBO userBO, Boolean isFromAdmin) throws Exception {
 		logger.info("updateUser - Start");
 		String queryId;
 		queryId = "updateUserInfo";

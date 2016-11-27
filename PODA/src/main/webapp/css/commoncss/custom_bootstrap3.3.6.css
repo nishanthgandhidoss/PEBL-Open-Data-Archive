@@ -314,8 +314,9 @@ label {
  
  .dialogBoxSuccess,.dialogBoxSuccess:hover{
   
-  background-color:#5bc0de;
-  color:#fff;
+  background-color: #222;
+  color: #ffcd00;
+  font-weight: bold;
 }
 
 .dialogBoxError,.dialogBoxError:hover{

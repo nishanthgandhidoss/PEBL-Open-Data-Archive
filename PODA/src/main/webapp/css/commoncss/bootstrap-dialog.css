@@ -11,9 +11,10 @@
   border-top-right-radius: 4px;
 }
 .bootstrap-dialog .bootstrap-dialog-title {
-  color: #fff;
+  color: #ffcd00;
   display: inline-block;
   font-size: 16px;
+  font-weight: bold;
 }
 .bootstrap-dialog .bootstrap-dialog-message {
   font-size: 14px;
@@ -39,7 +40,7 @@
   color: #333;
 }
 .bootstrap-dialog.type-info .modal-header {
-  background-color: #5bc0de;
+  background-color: #222;
 }
 .bootstrap-dialog.type-primary .modal-header {
   background-color: #337ab7;

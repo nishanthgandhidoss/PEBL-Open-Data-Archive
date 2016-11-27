@@ -76,7 +76,7 @@ $(document).ready(function(){
 			 <div class="panel-body">
 			 
 				<form:form id="studyForm">
-
+					<form:hidden path="id"/>
 					<div class="form-group">
 						<label class="control-label"><span title="required" class="mandatoryId">*</span>Study Name </label> 
 					    <form:input path="studyName" class="form-control"/>
@@ -123,7 +123,7 @@ $(document).ready(function(){
 					</div>
 					
 					<c:choose>
-               			<c:when test="${callFor eq editCmd}">
+               			<c:when test="${cmd eq editCmd}">
 							<input class="submit-btn" name="commit" id="update-btn" value="Update" type="submit"/>
 						</c:when>
 						<c:otherwise>

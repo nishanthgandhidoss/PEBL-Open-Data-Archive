@@ -33,4 +33,21 @@
         </if>
 	</select>
 	
+	<update id="updateStudy" parameterType="studybo">
+		UPDATE tbl_study 
+		SET
+		STUDY_NAME = #{studyName}, 
+		STUDY_DESCRIPTION = #{studyDesc},
+		LICENSE = #{license},
+		IS_PUBLIC = #{isPublic},
+		AUTHORS = #{authors},
+		PUBLICATION = #{publication},
+		CONTACT = #{contact},
+		SITE_COLLECTED = #{siteCollected},
+		LAST_MODIFIED_BY = #{lastModifiedBy},
+		LAST_MODIFIED_DATE = #{lastModifiedDate},
+		LAST_MODIFIED_IP = #{lastModifiedIp}
+		WHERE 
+		ID = #{id}
+	</update>
 </mapper>

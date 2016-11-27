@@ -67,4 +67,19 @@ public class StudyService extends CommonService{
 		headerList.add("Study Description");
 		return headerList;
 	}
+	
+	public synchronized StudyBO updateStudy(StudyBO studyBO) throws Exception {
+		logger.info("updateStudy - Start");
+		String queryId;
+		queryId = "updateStudy";
+		int returnId = (int) getCommonDAO().update(studyBO, queryId);
+		
+		if(returnId < 1) {
+			studyBO.setReturnMsg(getErrorMSg());
+			throw new Exception("Error Updating Study");
+		}
+		studyBO.setReturnId(returnId);
+		logger.info("updateStudy - End");
+		return studyBO;
+	}
 }

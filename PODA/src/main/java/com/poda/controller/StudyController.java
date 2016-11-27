@@ -106,6 +106,7 @@ public class StudyController {
 		mv.setViewName("commonlistPage");
 		return mv;
 	}
+	
 	@RequestMapping(value="/editStudy", method = RequestMethod.POST)
 	public ModelAndView editStudy(ModelAndView mv, StudyBO studyBO, HttpServletRequest req) {
 		logger.info("inside editStudy");
@@ -130,6 +131,28 @@ public class StudyController {
 		return mv;
 	}
  
-	
+	@RequestMapping(value="/updateStudy", method = RequestMethod.POST)
+	public void updateStudy(StudyBO studyBO, ModelAndView mv, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		
+        logger.info("Inside updateStudy");
+		
+		try {
+			studyBO.setCmd(Constants.ACTION_UPDATE);
+			studyService.setDefaultvalues(req, studyBO);
+			studyBO = studyService.updateStudy(studyBO);
+			studyBO.setReturnMsg(studyService.getUpdateSuccessMsg());
+			
+		}catch(Exception ex) {
+			 
+			ex.printStackTrace();
+			studyBO.setReturnId(-1);
+			if(studyBO.getReturnMsg()==null)
+				studyBO.setReturnMsg(studyService.getErrorMSg());
+			 
+		}finally{
+			studyService.writeToJSON(res, studyBO);
+		 }
+		
+	}
 	
 }
