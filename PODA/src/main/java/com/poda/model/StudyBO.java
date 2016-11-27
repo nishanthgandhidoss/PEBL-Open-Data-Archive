@@ -11,6 +11,7 @@ public class StudyBO extends CommonBO{
 	private String studyDesc;
 	private String license;
 	private Integer isPublic = 1;
+	private String isPublicString;
 	private String authors;
 	private String publication;
 	private String contact;
@@ -40,6 +41,12 @@ public class StudyBO extends CommonBO{
 	}
 	public void setIsPublic(Integer isPublic) {
 		this.isPublic = isPublic;
+	}
+	public String getIsPublicString() {
+		return isPublicString;
+	}
+	public void setIsPublicString(String isPublicString) {
+		this.isPublicString = isPublicString;
 	}
 	public String getAuthors() {
 		return authors;

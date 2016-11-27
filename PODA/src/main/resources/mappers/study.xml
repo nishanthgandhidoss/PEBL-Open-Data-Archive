@@ -6,8 +6,31 @@
 
 	<insert id="createStudy" >
 		INSERT INTO tbl_study
-		(STUDY_NAME, STUDY_DESCRIPTION, LICENSE, ISPUBLIC, AUTHORS, PUBLICATION, CONTACT, SITE_COLLECTED, CREATED_BY,CREATED_DATE,CREATED_IP)
+		(STUDY_NAME, STUDY_DESCRIPTION, LICENSE, IS_PUBLIC, AUTHORS, PUBLICATION, CONTACT, SITE_COLLECTED, CREATED_BY,CREATED_DATE,CREATED_IP)
 		VALUE
 		(#{studyName}, #{studyDesc}, #{license}, #{isPublic}, #{authors}, #{publication}, #{contact}, #{siteCollected}, "User", NOW(), #{createdIp}); 
 	</insert>
+	
+	<select id="getStudyList" parameterType="Map" resultType="studyBO">
+		SELECT
+		ID as id,
+		STUDY_NAME as studyName, 
+		STUDY_DESCRIPTION as studyDesc,
+		LICENSE as license,
+		IS_PUBLIC as isPublic,
+		if(IS_PUBLIC = 1, "Yes", "No") as isPublicString,
+		AUTHORS as authors,
+		PUBLICATION as publication,
+		CONTACT as contact,
+		SITE_COLLECTED as siteCollected,
+		CREATED_BY as createdBy,
+		CREATED_DATE as createdDate,
+		CREATED_IP as createdIp
+		FROM
+		tbl_study
+ 		<if test="id!= null">
+        	WHERE ID=#{id}
+        </if>
+	</select>
+	
 </mapper>

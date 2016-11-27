@@ -28,7 +28,7 @@ $(document).ready(function() {
 	  
 	  $(".tooltipLink").tooltip();
 	  
-	  $('<div class="pull-right appblue white" style="margin-bottom:10px"><a href="${webapp_path}/${ADD_URL[0]}" class="white bld padding10">${ADD_URL[1]}<a/></div>').insertBefore("#listTableID_wrapper"); 
+	  $('<div class="pull-right appblue golden" style="margin-bottom:10px; padding: 7px 0;"><a href="${webapp_path}/${ADD_URL[0]}" class="white bld padding10">${ADD_URL[1]}</a></div>').insertBefore("#listTableID_wrapper"); 
 });
 
 </script>

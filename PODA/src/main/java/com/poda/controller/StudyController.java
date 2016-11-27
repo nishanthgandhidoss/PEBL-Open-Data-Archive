@@ -1,6 +1,8 @@
 package com.poda.controller;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.poda.model.StudyBO;
+import com.poda.model.UserBO;
 import com.poda.service.StudyService;
+import com.poda.utils.Constants;
 
 @Controller
 public class StudyController {
@@ -68,4 +72,39 @@ public class StudyController {
 		}
 		logger.info("createStudy - End");
 	}
+	
+	@RequestMapping(value = "/listStudy", method = RequestMethod.GET)
+	public ModelAndView listUsers(ModelAndView mv, HttpServletRequest req, StudyBO studyBO) {
+	 
+		logger.info("Inside listUsers");
+		
+		List<StudyBO> studyList = null;
+		List<String> propertiesList = null;
+		try {
+			studyService.setDefaultvalues(req, studyBO);
+			studyList = studyService.getStudyList(studyBO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ModelAndView("redirect:" + "404error.sp");
+		}
+	
+		propertiesList=studyService.getRequiredPropertiesList();
+		LinkedHashMap<String,String> actionMap= new LinkedHashMap<String,String>();
+		
+		actionMap.put(Constants.ACTION_EDIT, "/editStudy.sp");
+		actionMap.put(Constants.ACTION_DELETE, "/deleteStudy.sp");
+		
+		String url[]={"addStudy.sp","Add Study"};
+		  
+		mv.addObject("PAGE_TITLE", "Study List");
+		mv.addObject("LIST_HEADER", "Study List");
+		mv.addObject("ADD_URL", url);
+		mv.addObject("TBL_HEADER_LIST", studyService.getHeaderList());
+		mv.addObject("ACTIONS", actionMap);
+		mv.addObject("OBJECT_LIST", studyList);
+		mv.addObject("PROPERTIES_LIST", propertiesList);
+		mv.setViewName("commonlistPage");
+		return mv;
+	}
+	
 }

@@ -65,7 +65,7 @@ $(document).ready(function(){
 			  <c:if test="${callFor eq 'editStudy'}">
 			  	&nbsp;|&nbsp;Update
 			  </c:if>
-			  <a href="${webapp_path}/admin/listPricing.sp" class="pull-right tooltipLink" data-toggle="tooltip" title="List Study">
+			  <a href="${webapp_path}/listStudy.sp" class="pull-right tooltipLink" data-toggle="tooltip" title="List Study">
 			  <span class="glyphicon  glyphicon-th-list pull-right"></span>
 			  </a> 
 			  </div>

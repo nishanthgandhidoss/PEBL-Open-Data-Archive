@@ -1,10 +1,16 @@
 package com.poda.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.poda.model.StudyBO;
+import com.poda.model.UserBO;
 import com.poda.utils.Utils;
 
 @Service
@@ -27,5 +33,38 @@ public class StudyService extends CommonService{
 		return studyBO;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public ArrayList<StudyBO> getStudyList(StudyBO studyBO) throws Exception {
 	
+		ArrayList<StudyBO> studyList = new ArrayList<StudyBO>();
+	
+		HashMap<String, Object> inputMap = new HashMap<String, Object>();
+		inputMap.put("id", studyBO.getId());
+	
+		studyList = (ArrayList) getCommonDAO().getRecordListByMap("getStudyList", inputMap);
+	
+		return studyList;
+	} 
+	
+	public List<String> getRequiredPropertiesList() {
+		String includedProps[]={"createdDate","isPublicString","studyName","studyDesc","license","authors","publication","contact","siteCollected"};
+		return Arrays.asList(includedProps);
+	}
+	
+	public List<String> getHeaderList(){
+		List<String> headerList = new ArrayList<String>();
+		
+		headerList.add("ID");
+		headerList.add("Action");
+		headerList.add("Created Date");
+		headerList.add("Public");
+		headerList.add("Study Name");
+		headerList.add("License");
+		headerList.add("Authors");
+		headerList.add("Publication");
+		headerList.add("Contact");
+		headerList.add("Site Colledted");
+		headerList.add("Study Description");
+		return headerList;
+	}
 }
