@@ -2,13 +2,13 @@
 <script src="${webapp_path}/js/home.js"></script>
 
 <style>
-.btn-info, .btn-info:hover {
+.btn-info, .btn-info:hover, btn-info:active {
     color: #ffcd00;
     background-color: #222;
     font-weight: bold;
     border-width: 0px;
 }
-.btn-info:hover {
+.btn-info:hover, btn-info:active {
 	border-color: #ffcd00;
 	border-width: 2px 2px 1px 1px;
 }
