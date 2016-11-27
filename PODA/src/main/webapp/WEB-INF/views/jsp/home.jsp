@@ -93,6 +93,7 @@
 	</div> --%>
 	<h1><center>Welcome to PEBL Open data archive. We are building ourself.</center></h1>
 	<a href="${webapp_path}/addStudy.sp">Create Study</a>
+	<a href="${webapp_path}/listStudy.sp">List Study</a>
 </div>
 
 <script>
