@@ -48,7 +48,7 @@ public class StudyService extends CommonService{
 	} 
 	
 	public List<String> getRequiredPropertiesList() {
-		String includedProps[]={"createdDate","isPublicString","studyName","studyDesc","license","authors","publication","contact","siteCollected"};
+		String includedProps[]={"createdDate","isPublicString","studyName","license","authors","publication","contact","siteCollected","studyDesc"};
 		return Arrays.asList(includedProps);
 	}
 	

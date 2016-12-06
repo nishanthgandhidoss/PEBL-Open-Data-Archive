@@ -15,8 +15,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.poda.model.DataSetBO;
 import com.poda.model.StudyBO;
 import com.poda.model.UserBO;
 import com.poda.service.StudyService;
@@ -45,6 +48,7 @@ public class StudyController {
 		try {
 			studyBO=new StudyBO();
 			studyService.setDefaultvalues(req, studyBO);
+			mv.addObject("dataSetBO", new DataSetBO());
 			mv.addObject("command", studyBO);
 		} catch(Exception ex) {
 			ex.printStackTrace();

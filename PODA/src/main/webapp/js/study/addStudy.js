@@ -112,14 +112,14 @@ $(document).ready(function() {
         $('#bookForm')
             .formValidation('removeField', $row.find('[name="dataSetBO[' + index + '].file"]'))
             .formValidation('removeField', $row.find('[name="dataSetBO[' + index + '].dataSetName"]'))
-            .formValidation('removeField', $row.find('[name="dataSetBO[' + index + '].price"]'));
+            .formValidation('removeField', $row.find('[name="dataSetBO[' + index + '].taskType"]'));
 
         // Remove element containing the fields
         $row.remove();
     })
     .on('success.form.fv', function(e) {
     	e.preventDefault();
-    	var url="${webapp_path}/createStudy.sp";
+    	var url="createStudy.sp";
     	
     	// logic to diff URL for Approve / Update
     	// Form instance
@@ -130,9 +130,9 @@ $(document).ready(function() {
         $statusField = $form.find('[name="commit"]');
     	var btnId = $button.attr('id');
     	if(btnId == "update-btn") 
-    		url = "${webapp_path}/updateStudy.sp";
+    		url = "updateStudy.sp";
     	
-    	trimFormInputs();
+    	//trimFormInputs();
     	//Json data
     	var jsondata=submitFrm($form,url);
     	redirectToLoginIfNotAJsonObject(jsondata);

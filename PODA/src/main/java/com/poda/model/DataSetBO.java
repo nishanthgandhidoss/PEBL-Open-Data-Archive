@@ -1,5 +1,7 @@
 package com.poda.model;
 
+import java.io.File;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class DataSetBO extends CommonBO{
@@ -9,14 +11,15 @@ public class DataSetBO extends CommonBO{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private MultipartFile file;
+	private File file;
 	private String fileName;
 	private String dataSetName;
 	private Integer taskType;
-	public MultipartFile getFile() {
+	
+	public File getFile() {
 		return file;
 	}
-	public void setFile(MultipartFile file) {
+	public void setFile(File file) {
 		this.file = file;
 	}
 	public String getFileName() {

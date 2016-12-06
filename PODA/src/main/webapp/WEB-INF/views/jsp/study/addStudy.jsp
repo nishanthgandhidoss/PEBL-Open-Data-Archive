@@ -141,25 +141,24 @@
 			    	</div>
 				    <div class="form-group row">
 				    	<div class="col-xs-4">
-				    		<input class="form-control" name="dataSetBO[0].file" type="file" />
+				    		<input class="form-control" name="dataSetBO[0].file" type="file"/>
 				    	</div>
 				        <div class="col-xs-4">
-				            <input class="form-control" name="dataSetBO[0].dataSetName" type="text"/>
+				            <form:input class="form-control" path="dataSetBO[0].dataSetName"/>
 				        </div>
 				        <div class="col-xs-3">
-				            <select name="dataSetBO[0].taskType" class="form-control taskTypeGroup">
-						  		<option value="" selected="selected">Select</option>
-						  		<option value="1">Type I</option>
-						  		<option value="2">Type II</option>
-						  		<option value="3">Type III</option>
-					        </select>
+				            <form:select path="dataSetBO[0].taskType" class="form-control taskTypeGroup">
+						  		<form:option value="" selected="selected">Select</form:option>
+						  		<form:option value="1">Type I</form:option>
+						  		<form:option value="2">Type II</form:option>
+						  		<form:option value="3">Type III</form:option>
+					        </form:select>
 				        </div>
 				        <div class="col-xs-1">
 				            <button type="button" class="btn btn-default addButton"><i class="glyphicon glyphicon-plus pointercursor appgreen"></i></button>
 				        </div>
 				    </div>
 				
-				    <!-- The template for adding new field -->
 				    <div class="form-group row hide" id="dataSetTemplate">
 				    	<div class="col-xs-4">
 				    		<input class="form-control" name="file" type="file" />

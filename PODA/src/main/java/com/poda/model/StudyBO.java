@@ -1,5 +1,9 @@
 package com.poda.model;
 
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class StudyBO extends CommonBO{
 
 	/**
@@ -16,8 +20,16 @@ public class StudyBO extends CommonBO{
 	private String publication;
 	private String contact;
 	private String siteCollected;
+
+	@Autowired
+	private ArrayList<DataSetBO> dataSetBO;
 	
-	
+	public ArrayList<DataSetBO> getDataSetBO() {
+		return dataSetBO;
+	}
+	public void setDataSetBO(ArrayList<DataSetBO> dataSetBO) {
+		this.dataSetBO = dataSetBO;
+	}
 	public String getStudyName() {
 		return studyName;
 	}
