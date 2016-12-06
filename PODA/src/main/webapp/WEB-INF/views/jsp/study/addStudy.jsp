@@ -73,7 +73,7 @@
 		<span class="mandatoryId mandatorytoplabel">*&nbsp;Mandatory fields</span> 
 		 <div class="panel-body">
 		 
-			<form:form id="studyForm">
+			<form:form id="studyForm" enctype="multipart/form-data" method="POST" action="createStudy.sp">
 				<form:hidden path="id"/>
 				<div class="form-group">
 					<label class="control-label"><span title="required" class="mandatoryId">*</span>Study Name </label> 
@@ -141,7 +141,7 @@
 			    	</div>
 				    <div class="form-group row">
 				    	<div class="col-xs-4">
-				    		<input class="form-control" name="dataSetBO[0].file" type="file"/>
+				    		<form:input class="form-control" path="dataSetBO[0].file" type="file"/>
 				    	</div>
 				        <div class="col-xs-4">
 				            <form:input class="form-control" path="dataSetBO[0].dataSetName"/>
