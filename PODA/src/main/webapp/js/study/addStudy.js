@@ -134,7 +134,19 @@ $(document).ready(function() {
     	
     	//trimFormInputs();
     	//Json data
-    	var jsondata=submitFrm($form,url);
+    	var frmdata = new FormData($(this)[0]);
+    	frmdata = frmdata.serialize();
+		var jsonData;
+        $.ajax({
+	        type: "POST",
+	        url: url,
+	        data:frmdata,
+	        cache: false,
+	        async: false,
+	        success: function (data) {
+	        	jsonData=data;
+	        }
+        });
     	redirectToLoginIfNotAJsonObject(jsondata);
         var isSuccess=displayDialogOnFormSubmit(jsondata,$form);
         

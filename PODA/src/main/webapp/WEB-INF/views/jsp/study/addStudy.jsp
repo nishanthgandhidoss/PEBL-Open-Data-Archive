@@ -141,7 +141,7 @@
 			    	</div>
 				    <div class="form-group row">
 				    	<div class="col-xs-4">
-				    		<form:input class="form-control" path="dataSetBO[0].file" type="file"/>
+				    		<form:input class="form-control fileUpload" path="dataSetBO[0].file" type="file"/>
 				    	</div>
 				        <div class="col-xs-4">
 				            <form:input class="form-control" path="dataSetBO[0].dataSetName"/>
@@ -161,7 +161,7 @@
 				
 				    <div class="form-group row hide" id="dataSetTemplate">
 				    	<div class="col-xs-4">
-				    		<input class="form-control" name="file" type="file" />
+				    		<input class="form-control fileUpload" name="file" type="file" />
 				    	</div>
 				        <div class="col-xs-4">
 				            <input class="form-control" name="dataSetName" type="text"/>
