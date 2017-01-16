@@ -122,7 +122,6 @@ public class CommonService {
 		inputMap.put("tableName", tableName);
 		inputMap.put("columnName", columnName);
 		inputMap.put("columnValue", columnValue);
-		inputMap.put("orgId", commonBO.getOrgId());
 		inputMap.put("id", commonBO.getId());
 		
 		boolean returnFlag= (boolean)getCommonDAO().isExists(queryId, inputMap);

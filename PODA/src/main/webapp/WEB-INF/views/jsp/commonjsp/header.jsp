@@ -206,9 +206,11 @@ $(document).ready(function () {
 	        <li class="dropdown">
 	          <a class="dropdown-toggle headerLink" data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <%-- <li><a href="${webapp_path}/admin/addSupplier.sp">Add Supplier</a></li>
-	            <li><a href="${webapp_path}/admin/listSupplier.sp">View Suppliers</a></li>
-	             <li class="divider"></li>
+	             <li><a href="${webapp_path}/admin/addTaskType.sp">Add Task Type</a></li>
+	            <li><a href="${webapp_path}/admin/listTaskType.sp">View Task Type</a></li>
+	            <li class="divider"></li>
+	            <li><a href="${webapp_path}/admin/listUsers.sp">View Users</a></li>
+	            <%-- <li class="divider"></li>
 	            <li><a href="${webapp_path}/admin/rmTool.sp">Add Raw Material</a></li>
 	            <li><a href="${webapp_path}/admin/listRM.sp">List Raw Materials</a></li>
 	             <li class="divider"></li>
@@ -218,7 +220,6 @@ $(document).ready(function () {
 				<li><a href="${webapp_path}/admin/operationTool.sp">Add Operation</a></li>
 				<li><a href="${webapp_path}/admin/listOperation.sp">View Operations</a></li>
 				 <li class="divider"></li> --%>
-				<li><a href="${webapp_path}/admin/listUsers.sp">View Users</a></li>
 				<%-- <li class="divider"></li>
 				<li><a href="${webapp_path}/admin/departmentTool.sp">Add Department</a></li>
 				<li><a href="${webapp_path}/admin/listDepartment.sp">View Departments</a></li> --%>

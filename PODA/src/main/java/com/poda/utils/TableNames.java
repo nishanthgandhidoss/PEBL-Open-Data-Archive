@@ -36,4 +36,6 @@ public interface TableNames {
 	String TBL_DEPARTMENT = "tbl_department";
 	
 	String TBL_SUPPLIER = "tbl_supplier";
+
+	String TBL_TASK_TYPE = "tbl_task_type";
  }

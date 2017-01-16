@@ -31,7 +31,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/jsp/study/addStudy.jsp"></put-attribute>
 	</definition>
 	
-		
+	<definition name="addTaskType" extends="base.definition">
+	    <put-attribute name="title" value="Add Task Type"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/admin/addTaskType.jsp"></put-attribute>
+	</definition>	
 	
 	
 	
