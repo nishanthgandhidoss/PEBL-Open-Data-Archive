@@ -31,9 +31,11 @@ $(document).ready(function() {
                 }
             }
         },
-        bookIndex = 0;
+        index = 0;
 	
-	$('#studyForm').formValidation({
+	var formObj = $('#studyForm');
+	
+	formObj.formValidation({
         framework: 'bootstrap',
         icon: {
             valid: 'glyphicon glyphicon-ok',
@@ -67,9 +69,9 @@ $(document).ready(function() {
                     }
                 }
             },
-            "dataSetBO[0].file": fileValidators,
-            "dataSetBO[0].dataSetName": dataSetNameValidators,
-            "dataSetBO[0].taskType": taskTypeValidators
+            'dataSetBO[0].file': fileValidators,
+            'dataSetBO[0].dataSetName': dataSetNameValidators,
+            'dataSetBO[0].taskType': taskTypeValidators
         }
     })
     .on('success.field.fv', function(e, data) {
@@ -80,27 +82,27 @@ $(document).ready(function() {
     
     // Add button click handler
     .on('click', '.addButton', function() {
-        bookIndex++;
+        index++;
         var $template = $('#dataSetTemplate'),
             $clone    = $template
                             .clone()
                             .removeClass('hide')
                             .removeAttr('id')
-                            .attr('data-book-index', bookIndex)
+                            .attr('data-book-index', index)
                             .insertBefore($template);
 
         // Update the name attributes
         $clone
-            .find('[name="file"]').attr('name', 'dataSetBO[' + bookIndex + '].file').end()
-            .find('[name="dataSetName"]').attr('name', 'dataSetBO[' + bookIndex + '].dataSetName').end()
-            .find('[name="taskType"]').attr('name', 'dataSetBO[' + bookIndex + '].taskType').end();
+            .find('[name="file"]').attr('name', 'dataSetBO[' + index + '].file').end()
+            .find('[name="dataSetName"]').attr('name', 'dataSetBO[' + index + '].dataSetName').end()
+            .find('[name="taskType"]').attr('name', 'dataSetBO[' + index + '].taskType').end();
 
         // Add new fields
         // Note that we also pass the validator rules for new field as the third parameter
-        $('#bookForm')
-            .formValidation('addField', 'dataSetBO[' + bookIndex + '].file', titleValidators)
-            .formValidation('addField', 'dataSetBO[' + bookIndex + '].dataSetName', isbnValidators)
-            .formValidation('addField', 'dataSetBO[' + bookIndex + '].taskType', priceValidators);
+        formObj
+            .formValidation('addField', 'dataSetBO[' + index + '].file', fileValidators)
+            .formValidation('addField', 'dataSetBO[' + index + '].dataSetName', dataSetNameValidators)
+            .formValidation('addField', 'dataSetBO[' + index + '].taskType', taskTypeValidators);
     })
 
     // Remove button click handler
@@ -109,7 +111,7 @@ $(document).ready(function() {
             index = $row.attr('data-book-index');
 
         // Remove fields
-        $('#bookForm')
+        formObj
             .formValidation('removeField', $row.find('[name="dataSetBO[' + index + '].file"]'))
             .formValidation('removeField', $row.find('[name="dataSetBO[' + index + '].dataSetName"]'))
             .formValidation('removeField', $row.find('[name="dataSetBO[' + index + '].taskType"]'));
