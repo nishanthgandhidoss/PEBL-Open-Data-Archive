@@ -92,13 +92,13 @@ public class AdminController {
 		propertiesList = adminService.getRequiredPropertiesList();
 		LinkedHashMap<String, String> actionMap = new LinkedHashMap<String, String>();
 
-		actionMap.put(Constants.ACTION_EDIT, "/admin/editDepartment.sp");
-		actionMap.put(Constants.ACTION_DELETE, "/admin/deleteDepartment.sp");
+		actionMap.put(Constants.ACTION_EDIT, "/admin/editTaskType.sp");
+		actionMap.put(Constants.ACTION_DELETE, "/admin/deleteTaskType.sp");
 
-		String url[] = { "admin/departmentTool", "Add Department" };
+		String url[] = { "admin/addTaskType", "Add Task Type" };
 
-		mv.addObject("PAGE_TITLE", "Department List");
-		mv.addObject("LIST_HEADER", "Department Details");
+		mv.addObject("PAGE_TITLE", "Task Type List");
+		mv.addObject("LIST_HEADER", "Task Type Details");
 		mv.addObject("ADD_URL", url);
 		mv.addObject("TBL_HEADER_LIST", adminService.getHeaderList());
 		mv.addObject("ACTIONS", actionMap);
@@ -127,7 +127,7 @@ public class AdminController {
 		}
 	    
 		mv.addObject("cmd",Constants.ACTION_EDIT);
-		mv.setViewName("taskTypeTool");
+		mv.setViewName("addTaskType");
 		
 		logger.info("Ending editTaskType");
 		return mv;

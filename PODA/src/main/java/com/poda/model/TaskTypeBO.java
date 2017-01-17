@@ -10,6 +10,7 @@ public class TaskTypeBO extends CommonBO{
 	private String taskType;
 	private String taskTypeDescription;
 	private Integer isEnabled = 1;
+	private String isEnabledString;
 	
 	public String getTaskType() {
 		return taskType;
@@ -28,6 +29,12 @@ public class TaskTypeBO extends CommonBO{
 	}
 	public void setIsEnabled(Integer isEnabled) {
 		this.isEnabled = isEnabled;
+	}
+	public String getIsEnabledString() {
+		return isEnabledString;
+	}
+	public void setIsEnabledString(String isEnabledString) {
+		this.isEnabledString = isEnabledString;
 	}
 	
 }

@@ -9,29 +9,28 @@
 		tbl_task_type
 		(ID, TASK_TYPE, TASK_TYPE_DESCRIPTION, ENABLED, CREATED_BY, CREATED_DATE, CREATED_IP)
 		VALUE
-		(#{id},#{taskType},#{taskTypeDecription},#{isEnabled},#{createdBy},NOW(),#{createdFromIp})
+		(#{id},#{taskType},#{taskTypeDescription},#{isEnabled},#{createdBy},NOW(),#{createdIp})
 	</insert>
 	
 	<select id="isValueExists" parameterType="Map" resultType="Integer">
-		SELECT EXISTS(SELECT ${columnName} FROM ${tableName} WHERE
-		${columnName}=#{columnValue}
+		SELECT EXISTS(SELECT ${columnName} FROM ${tableName} WHERE ${columnName}=#{columnValue})
 	</select>
 	
 	<select id="isValueExistsUpdate" parameterType="Map" resultType="Integer">
-		SELECT EXISTS(SELECT ${columnName} FROM ${tableName} WHERE
-		${columnName}=#{columnValue} AND ID!=#{id}
+		SELECT EXISTS(SELECT ${columnName} FROM ${tableName} WHERE ${columnName}=#{columnValue} AND ID!=#{id})
 	</select>
 	
 	<select id="getTaskTypeList" parameterType="Map" resultType="taskTypeBO">
 		SELECT
 		ID AS id,
-		DEPARTMENT_NAME AS departmentName,
-		ORG_ID AS orgId,
+		TASK_TYPE AS taskType,
+		TASK_TYPE_DESCRIPTION AS taskTypeDescription,
+		ENABLED AS isEnabled,
+		if(ENABLED = 1, "Yes","No") as isEnabledString,
 		CREATED_BY AS createdBy,
 		CREATED_DATE AS createdDate
 		FROM
-		tbl_department
-		WHERE ORG_ID=#{orgId}
+		tbl_task_type
 		<if test="id!= null">
            AND ID=#{id}
         </if>
@@ -40,10 +39,12 @@
 	<update id="updateTaskType" parameterType="taskTypeBO">
 		UPDATE tbl_task_type
 		SET
-		DEPARTMENT_NAME = #{departmentName},
+		TASK_TYPE = #{taskType},
+		TASK_TYPE_DESCRIPTION = #{taskTypeDescription},
+		ENABLED = #{isEnabled},
 		LAST_MODIFIED_BY = #{lastModifiedBy},
 		LAST_MODIFIED_DATE = NOW(),
-		LAST_MODIFIED_IP = #{lastModifiedFromIp}
+		LAST_MODIFIED_IP = #{lastModifiedIp}
 		WHERE id = #{id}
 	</update>
 	

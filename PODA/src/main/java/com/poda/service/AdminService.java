@@ -28,7 +28,7 @@ public class AdminService extends CommonService {
 	public synchronized TaskTypeBO insertTaskType(TaskTypeBO tasktypeBO) throws Exception {
 		logger.info("Inside insertTaskType");
 	    if(isValueExists(tasktypeBO, TableNames.TBL_TASK_TYPE, "TASK_TYPE", tasktypeBO.getTaskType())){
-	    	tasktypeBO.setReturnMsg("Task Type Already Exists, please edit existing Operation.");
+	    	tasktypeBO.setReturnMsg("Task Type Already Exists, please edit existing Task Type.");
 	    	throw new Exception("Task Type Already Exists");
 	    }
 	    String queryId = "insertTaskType";
@@ -53,6 +53,7 @@ public class AdminService extends CommonService {
 		headerList.add("ID");
 		headerList.add("Action");
 		headerList.add("Task Type");
+		headerList.add("Enabled");
 		headerList.add("Created Date");
 		headerList.add("Created By");
 		headerList.add("Task Description");
@@ -60,7 +61,7 @@ public class AdminService extends CommonService {
 	}
 	
 	public List<String> getRequiredPropertiesList() {
-		String includedProps[]={"taskType","createdDate","createdBy","taskDescription"};
+		String includedProps[]={"taskType","isEnabledString", "createdDate","createdBy","taskTypeDescription"};
 		return Arrays.asList(includedProps);
 	}
 	
@@ -68,7 +69,7 @@ public class AdminService extends CommonService {
 	public synchronized TaskTypeBO updateTaskType(TaskTypeBO tasktypeBO) throws Exception{
 		logger.info("Inside updateTaskType");
 		if(isValueExists(tasktypeBO, TableNames.TBL_TASK_TYPE, "TASK_TYPE", tasktypeBO.getTaskType())) {
-			tasktypeBO.setReturnMsg("Task Type Already Exists, please edit existing Department.");
+			tasktypeBO.setReturnMsg("Task Type Already Exists, please edit existing Task Type.");
 	    	throw new Exception("Task Type Already Exists");
 	    }
 	    String queryId = "updateTaskType";
