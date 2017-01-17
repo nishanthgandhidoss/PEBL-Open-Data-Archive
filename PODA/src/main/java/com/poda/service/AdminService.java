@@ -42,12 +42,6 @@ public class AdminService extends CommonService {
 	    return tasktypeBO;
 	}
 
-	@SuppressWarnings("unchecked")
-	public ArrayList<TaskTypeBO> getTaskTypeList(TaskTypeBO taskTypeBO) throws Exception {
-		ArrayList<TaskTypeBO> taskTypeList = (ArrayList<TaskTypeBO>) getCommonDAO().getRecordListByObject("getTaskTypeList", taskTypeBO);
-		return taskTypeList;
-	}
-	
 	public List<String> getHeaderList(){
 		List<String> headerList = new ArrayList<String>();
 		headerList.add("ID");

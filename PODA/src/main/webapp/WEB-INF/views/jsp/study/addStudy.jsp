@@ -147,12 +147,10 @@
 				            <form:input class="form-control" path="dataSetBO[0].dataSetName"/>
 				        </div>
 				        <div class="col-xs-3">
-				            <form:select path="dataSetBO[0].taskType" class="form-control taskTypeGroup">
-						  		<form:option value="" selected="selected">Select</form:option>
-						  		<form:option value="1">Type I</form:option>
-						  		<form:option value="2">Type II</form:option>
-						  		<form:option value="3">Type III</form:option>
-					        </form:select>
+				            <form:select path="dataSetBO[0].taskType" class="form-control">
+						    	<form:option value="" selected="selected">Select</form:option>
+						    	<form:options items="${taskTypeList}" itemLabel="taskType" itemValue="id"/>
+						    </form:select>
 				        </div>
 				        <div class="col-xs-1">
 				            <button type="button" class="btn btn-default addButton"><i class="glyphicon glyphicon-plus pointercursor appgreen"></i></button>
@@ -167,11 +165,11 @@
 				            <input class="form-control" name="dataSetName" type="text"/>
 				        </div>
 				        <div class="col-xs-3">
-				            <select name="taskType" class="form-control taskTypeGroup">
+				            <select name="taskType" class="form-control">
 						  		<option value="" selected="selected">Select</option>
-						  		<option value="1">Type I</option>
-						  		<option value="2">Type II</option>
-						  		<option value="3">Type III</option>
+						  		<c:forEach var="taskType" items="${taskTypeList}">
+						  			<option value="${taskType.id}">${taskType.taskType}</option>
+						  		</c:forEach>
 					        </select>
 				        </div>
 				        <div class="col-xs-1" id="removeBtnDiv">

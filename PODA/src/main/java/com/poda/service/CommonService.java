@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.poda.dao.CommonDAOImpl;
 import com.poda.model.CommonBO;
+import com.poda.model.TaskTypeBO;
 import com.poda.model.UserBO;
 import com.poda.utils.Constants;
 import com.poda.utils.Utils;
@@ -127,6 +128,14 @@ public class CommonService {
 		boolean returnFlag= (boolean)getCommonDAO().isExists(queryId, inputMap);
 		return returnFlag;
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<TaskTypeBO> getTaskTypeList(TaskTypeBO taskTypeBO) throws Exception {
+		ArrayList<TaskTypeBO> taskTypeList = (ArrayList<TaskTypeBO>) getCommonDAO().getRecordListByObject("getTaskTypeList", taskTypeBO);
+		return taskTypeList;
+	}
+	
 	
 	public String getSuccessMSg() {
 

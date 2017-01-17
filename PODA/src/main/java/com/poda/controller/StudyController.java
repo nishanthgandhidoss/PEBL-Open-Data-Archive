@@ -1,6 +1,7 @@
 package com.poda.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.poda.model.DataSetBO;
 import com.poda.model.StudyBO;
+import com.poda.model.TaskTypeBO;
 import com.poda.model.UserBO;
 import com.poda.service.StudyService;
 import com.poda.utils.Constants;
@@ -48,6 +50,9 @@ public class StudyController {
 		try {
 			studyBO=new StudyBO();
 			studyService.setDefaultvalues(req, studyBO);
+			ArrayList<TaskTypeBO> taskTypeList = new ArrayList<TaskTypeBO>();
+			taskTypeList = studyService.getTaskTypeList(null);
+			mv.addObject("taskTypeList", taskTypeList);
 			mv.addObject("dataSetBO", new DataSetBO());
 			mv.addObject("command", studyBO);
 		} catch(Exception ex) {
