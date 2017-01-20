@@ -47,7 +47,7 @@
 	
 
 	<!-- Select users and user_roles from database -->
-<!-- Select users and user_roles from database -->
+	<!-- Select users and user_roles from database -->
 	<authentication-manager>
 		<authentication-provider>
 			<password-encoder ref="encoder" />
@@ -58,18 +58,6 @@
 		<!-- <authentication-provider ref="rememberMeAuthenticationProvider"></authentication-provider> -->
 	</authentication-manager>
 
-	<!-- <beans:bean id="rememberMeAuthenticationProvider"
-		class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
-		<beans:property name="key" value="reservation" />
-	</beans:bean> -->
-  
-     <!--  <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	  <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	  <beans:property name="url" value="jdbc:mysql://localhost:3306/easy_erp" />
-	  <beans:property name="username" value="root" />
-	  <beans:property name="password" value="root" /> 
-	  </beans:bean> -->
-    
 
 
 	<beans:bean id="encoder"
