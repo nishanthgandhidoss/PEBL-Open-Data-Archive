@@ -8,13 +8,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.poda.model.TaskTypeBO;
 import com.poda.model.UserBO;
 
 @Service
 public class HomeService extends CommonService {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeService.class);
+
+	public ArrayList<TaskTypeBO> welcomePage(TaskTypeBO taskTypeBO) throws Exception {
+		HashMap<String,Object> inputMap= new HashMap<String,Object>();
+		inputMap.put("id", 1);
+		ArrayList<TaskTypeBO> taskType = (ArrayList<TaskTypeBO>) getCommonDAO().getRecordListByObject("getTaskTypeList", taskTypeBO);
+		return taskType;
+	}
 	
+	
+
 	/*@SuppressWarnings("unchecked")
 	public List<E> getRouteCardIdAndNo(Long id, Long orgId) throws Exception {
 		logger.info("Inside getRouteCardIdAndNo");

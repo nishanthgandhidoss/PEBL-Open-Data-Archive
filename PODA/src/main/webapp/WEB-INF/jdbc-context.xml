@@ -21,9 +21,9 @@
 	  
 	  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		  <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		  <property name="url" value="jdbc:mysql://localhost:3306/poda" />
-		  <property name="username" value="root"/>
-		  <property name="password" value="root"/> 
+		  <property name="url" value="jdbc:mysql://cls-poda-test.it.mtu.edu:3306/poda" />
+		  <property name="username" value="poda-admin"/>
+		  <property name="password" value="PleaseSecureMe"/> 
 	  </bean>
 	    
 </beans>
