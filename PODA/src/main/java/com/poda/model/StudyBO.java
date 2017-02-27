@@ -20,7 +20,8 @@ public class StudyBO extends CommonBO{
 	private String publication;
 	private String contact;
 	private String siteCollected;
-
+	private Integer isDatasetsChanged = 0;
+	
 	@Autowired
 	private ArrayList<DataSetBO> dataSetBO;
 	
@@ -83,6 +84,12 @@ public class StudyBO extends CommonBO{
 	}
 	public void setSiteCollected(String siteCollected) {
 		this.siteCollected = siteCollected;
+	}
+	public Integer getIsDatasetsChanged() {
+		return isDatasetsChanged;
+	}
+	public void setIsDatasetsChanged(Integer isDatasetsChanged) {
+		this.isDatasetsChanged = isDatasetsChanged;
 	}
 	
 }

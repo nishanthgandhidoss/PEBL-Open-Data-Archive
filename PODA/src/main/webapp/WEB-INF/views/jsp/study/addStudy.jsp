@@ -74,7 +74,11 @@
 		 <div class="panel-body">
 		 
 			<form:form id="studyForm" enctype="multipart/form-data" method="POST">
+				
+				<!-- Hidden Variables -->
 				<form:hidden path="id"/>
+				<form:hidden path="isDatasetsChanged"/>
+				
 				<div class="form-group">
 					<label class="control-label"><span title="required" class="mandatoryId">*</span>Study Name </label> 
 				    <form:input path="studyName" class="form-control"/>
@@ -140,6 +144,7 @@
 				        </div>
 			    	</div>
 				    <div class="form-group row">
+				    	<form:hidden path="dataSetBO[0].isFileChanged"/>
 				    	<div class="col-xs-4">
 				    		<form:input class="form-control" path="dataSetBO[0].file" type="file"/>
 				    	</div>
@@ -158,6 +163,7 @@
 				    </div>
 				
 				    <div class="form-group row hide" id="dataSetTemplate">
+				    	<input type="hidden"  class="form-control" name="isFileChanged"/>
 				    	<div class="col-xs-4">
 				    		<input class="form-control" name="file" type="file" />
 				    	</div>
@@ -175,6 +181,7 @@
 				        <div class="col-xs-1" id="removeBtnDiv">
 				            <button type="button" class="btn btn-default removeButton"><i class="glyphicon glyphicon-minus pointercursor" style="color:#dc446e"></i></button>
 				        </div>
+				        
 				    </div>
 			    </div>
 			    

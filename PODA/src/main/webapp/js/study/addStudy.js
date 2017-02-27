@@ -96,7 +96,8 @@ $(document).ready(function() {
             .find('[name="file"]').attr('name', 'dataSetBO[' + index + '].file').end()
             .find('[name="dataSetName"]').attr('name', 'dataSetBO[' + index + '].dataSetName').end()
             .find('[name="taskType"]').attr('name', 'dataSetBO[' + index + '].taskType').end()
-        	.find('[name="isChanged"]').attr('name', 'dataSetBO[' + index + '].isChanged').end();
+        	.find('[name="isFileChanged"]').attr('name', 'dataSetBO[' + index + '].isFileChanged').end();
+        
         // Add new fields
         // Note that we also pass the validator rules for new field as the third parameter
         formObj

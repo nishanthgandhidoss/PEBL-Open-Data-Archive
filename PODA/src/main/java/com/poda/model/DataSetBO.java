@@ -16,6 +16,7 @@ public class DataSetBO extends CommonBO{
 	private String fileName;
 	private String dataSetName;
 	private Integer taskType;
+	private Integer isFileChanged = 0;
 	
 	public CommonsMultipartFile getFile() {
 		return file;
@@ -41,6 +42,11 @@ public class DataSetBO extends CommonBO{
 	public void setTaskType(Integer taskType) {
 		this.taskType = taskType;
 	}
-	
+	public Integer getIsFileChanged() {
+		return isFileChanged;
+	}
+	public void setIsFileChanged(Integer isFileChanged) {
+		this.isFileChanged = isFileChanged;
+	}
 	
 }
