@@ -73,7 +73,7 @@
 		<span class="mandatoryId mandatorytoplabel">*&nbsp;Mandatory fields</span> 
 		 <div class="panel-body">
 		 
-			<form:form id="studyForm" enctype="multipart/form-data" method="POST" action="createStudy.sp">
+			<form:form id="studyForm" enctype="multipart/form-data" method="POST">
 				<form:hidden path="id"/>
 				<div class="form-group">
 					<label class="control-label"><span title="required" class="mandatoryId">*</span>Study Name </label> 

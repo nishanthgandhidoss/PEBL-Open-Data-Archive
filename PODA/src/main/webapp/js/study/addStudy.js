@@ -95,8 +95,8 @@ $(document).ready(function() {
         $clone
             .find('[name="file"]').attr('name', 'dataSetBO[' + index + '].file').end()
             .find('[name="dataSetName"]').attr('name', 'dataSetBO[' + index + '].dataSetName').end()
-            .find('[name="taskType"]').attr('name', 'dataSetBO[' + index + '].taskType').end();
-
+            .find('[name="taskType"]').attr('name', 'dataSetBO[' + index + '].taskType').end()
+        	.find('[name="isChanged"]').attr('name', 'dataSetBO[' + index + '].isChanged').end();
         // Add new fields
         // Note that we also pass the validator rules for new field as the third parameter
         formObj
@@ -137,18 +137,21 @@ $(document).ready(function() {
     	//trimFormInputs();
     	//Json data
     	var frmdata = new FormData($(this)[0]);
-    	frmdata = frmdata.serialize();
-		var jsonData;
+    	var jsonData;
         $.ajax({
 	        type: "POST",
 	        url: url,
 	        data:frmdata,
 	        cache: false,
 	        async: false,
+	        contentType: false,
+            processData: false,
 	        success: function (data) {
 	        	jsonData=data;
 	        }
         });
+        
+    	/*var jsondata = submitFrm($form, url);*/
     	redirectToLoginIfNotAJsonObject(jsondata);
         var isSuccess=displayDialogOnFormSubmit(jsondata,$form);
         
