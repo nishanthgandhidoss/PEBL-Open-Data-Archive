@@ -8,7 +8,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.poda.model.DataSetBO;
 import com.poda.model.StudyBO;
 import com.poda.model.UserBO;
 import com.poda.utils.Utils;
@@ -17,10 +20,14 @@ import com.poda.utils.Utils;
 public class StudyService extends CommonService{
 	
 	private static final Logger logger = LoggerFactory.getLogger(StudyService.class);
-
+	
+	@Transactional(rollbackFor=Exception.class, propagation=Propagation.REQUIRED) 
 	public synchronized StudyBO createStudy(StudyBO studyBO) throws Exception {
 		// TODO Auto-generated method stub
 		logger.info("createStudy - Start");
+		
+		//uploading dataset framework
+		/*uploadDataset();*/
 		String queryId = "createStudy";
 		int returnId = (int) getCommonDAO().create(studyBO, queryId);
 		studyBO.setReturnId(returnId); // returnId initially set as -1 in CommonBO
@@ -31,6 +38,15 @@ public class StudyService extends CommonService{
 		}
 		logger.info("createStudy - End");
 		return studyBO;
+	}
+	
+	
+	public synchronized DataSetBO uploadDataset(DataSetBO dataSetBO) throws Exception {
+		
+		logger.info("Upload dataset - Start");
+		
+		logger.info("Upload dataset - End");
+		return dataSetBO;
 	}
 	
 	@SuppressWarnings("unchecked")
