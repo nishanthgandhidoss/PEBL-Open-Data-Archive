@@ -153,8 +153,8 @@ $(document).ready(function() {
         });
         
     	/*var jsondata = submitFrm($form, url);*/
-    	redirectToLoginIfNotAJsonObject(jsondata);
-        var isSuccess=displayDialogOnFormSubmit(jsondata,$form);
+    	redirectToLoginIfNotAJsonObject(jsonData);
+        var isSuccess=displayDialogOnFormSubmit(jsonData,$form);
         
         if(isSuccess)
   			 resetFormValidation(formObj);

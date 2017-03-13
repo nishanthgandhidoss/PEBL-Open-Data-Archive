@@ -41,7 +41,7 @@ public class StudyService extends CommonService{
 		ArrayList<DataSetBO> dataSetList = studyBO.getDataSetBO();
 		if(!dataSetList.isEmpty()) {
 			for(DataSetBO dataSetBO : dataSetList) {
-				if(dataSetBO.getDataSetName() != null) {
+				if(dataSetBO.getDataSetName() != null && dataSetBO.getTaskType() != null && dataSetBO.getFile() != null) {
 					setDefaultvalues(req, dataSetBO);
 					returnId = insertDataset(dataSetBO, studyBO.getId());
 					if (returnId < 1) {
