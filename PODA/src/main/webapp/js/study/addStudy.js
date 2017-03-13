@@ -4,7 +4,10 @@ $(document).ready(function() {
 	
 	$("#addDatasetBtn").click(function() {
 		$("#dataSetDetail").toggleClass("hidden");
-		$("#addDatasetBtn").val("Not Now");
+		if($("#addDatasetBtn").val() == "Not Now") 
+			$("#addDatasetBtn").val("Add Dataset Now");
+		else
+			$("#addDatasetBtn").val("Not Now");
 	});
 	
 	var fileValidators = {
