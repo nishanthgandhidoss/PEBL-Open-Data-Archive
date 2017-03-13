@@ -5,12 +5,17 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.poda.dao.CommonDAOImpl;
+import com.poda.dao.CommonDAOInterface;
 import com.poda.model.DataSetBO;
 import com.poda.model.StudyBO;
 import com.poda.model.UserBO;
@@ -22,31 +27,33 @@ public class StudyService extends CommonService{
 	private static final Logger logger = LoggerFactory.getLogger(StudyService.class);
 	
 	@Transactional(rollbackFor=Exception.class, propagation=Propagation.REQUIRED) 
-	public synchronized StudyBO createStudy(StudyBO studyBO) throws Exception {
+	public synchronized StudyBO createStudy(HttpServletRequest req, StudyBO studyBO) throws Exception {
 		// TODO Auto-generated method stub
 		logger.info("createStudy - Start");
 		
-		//uploading dataset framework
-		/*uploadDataset();*/
 		String queryId = "createStudy";
 		int returnId = (int) getCommonDAO().create(studyBO, queryId);
-		studyBO.setReturnId(returnId); // returnId initially set as -1 in CommonBO
-		
+		studyBO.setReturnId(returnId); // returnId initially set as -1 in CommonBO		
 		if (returnId < 1) {
 			studyBO.setReturnMsg(getErrorMSg());
-			throw new Exception("Error registering the user");
+			throw new Exception("Error inserting Study Details");
 		}
+		ArrayList<DataSetBO> dataSetList = studyBO.getDataSetBO();
+		if(!dataSetList.isEmpty()) {
+			for(DataSetBO dataSetBO : dataSetList) {
+				if(dataSetBO.getDataSetName() != null) {
+					setDefaultvalues(req, dataSetBO);
+					returnId = insertDataset(dataSetBO, studyBO.getId());
+					if (returnId < 1) {
+						studyBO.setReturnMsg(getErrorMSg());
+						throw new Exception("Error inserting Dataset object " + dataSetBO.getFile().getName());
+					}
+				}
+			}
+		}
+		
 		logger.info("createStudy - End");
 		return studyBO;
-	}
-	
-	
-	public synchronized DataSetBO uploadDataset(DataSetBO dataSetBO) throws Exception {
-		
-		logger.info("Upload dataset - Start");
-		
-		logger.info("Upload dataset - End");
-		return dataSetBO;
 	}
 	
 	@SuppressWarnings("unchecked")

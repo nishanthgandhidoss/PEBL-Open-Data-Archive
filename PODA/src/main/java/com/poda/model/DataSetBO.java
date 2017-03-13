@@ -14,6 +14,9 @@ public class DataSetBO extends CommonBO{
 	
 	private CommonsMultipartFile file;
 	private String fileName;
+	private String fileFormat;
+	private String filePath;
+	private String contentType;
 	private String dataSetName;
 	private Integer taskType;
 	private Integer isFileChanged = 0;
@@ -47,6 +50,24 @@ public class DataSetBO extends CommonBO{
 	}
 	public void setIsFileChanged(Integer isFileChanged) {
 		this.isFileChanged = isFileChanged;
+	}
+	public String getFileFormat() {
+		return fileFormat;
+	}
+	public void setFileFormat(String fileFormat) {
+		this.fileFormat = fileFormat;
+	}
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+	public String getContentType() {
+		return contentType;
+	}
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 	
 }

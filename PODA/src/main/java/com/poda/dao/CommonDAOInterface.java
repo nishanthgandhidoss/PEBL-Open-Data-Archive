@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.executor.BatchResult;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+
+import com.poda.model.StudyBO;
 
 public interface CommonDAOInterface {
 
@@ -20,7 +23,9 @@ public interface CommonDAOInterface {
 	public <E> List<E> selectList(String statement, Object parameter);
 
 	public <E> List<E> selectList(String statement, Object parameter, RowBounds rowBounds);
-
+	
+	public Long createStudy(@Param("studyBO") StudyBO studyBO);
+	
 	public <K, V> Map<K, V> selectMap(String statement, String mapKey);
 		// TODO Auto-generated method stub
 		

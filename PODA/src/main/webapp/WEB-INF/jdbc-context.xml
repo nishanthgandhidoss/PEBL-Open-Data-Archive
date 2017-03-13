@@ -28,9 +28,9 @@
 		  <property name="password" value="PleaseSecureMe"/>  -->
 		  
 		  <!-- Localhost -->
-		  <property name="url" value="jdbc:mysql://localhost?:3306/poda" />
+		  <property name="url" value="jdbc:mysql://localhost:3306/poda" />
 		  <property name="username" value="root"/>
-		  <property name="password" value="admin"/> 
+		  <property name="password" value="root"/> 
 		  
 	  </bean>
 	    

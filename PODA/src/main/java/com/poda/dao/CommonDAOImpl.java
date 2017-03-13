@@ -10,6 +10,8 @@ import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import com.poda.model.StudyBO;
+
 public class CommonDAOImpl extends SqlSessionDaoSupport implements CommonDAOInterface {
 
 	/*
@@ -388,13 +390,19 @@ public class CommonDAOImpl extends SqlSessionDaoSupport implements CommonDAOInte
 	@Override
 	public <T> T getMapper(Class<T> type) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getSqlSession().getMapper(type);
 	}
 
 	@Override
 	public Connection getConnection() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Long createStudy(StudyBO studyBO) {
+		// TODO Auto-generated method stub
+		return studyBO.getId();
 	}
 
 	/*

@@ -69,7 +69,7 @@ public class StudyController {
 		logger.info("createStudy - Start");
 		try {
 			studyService.setDefaultvalues(req, studyBO);
-			studyService.createStudy(studyBO);
+			studyService.createStudy(req, studyBO);
 			studyBO.setReturnMsg(studyService.getSuccessMSg());
 		} catch(Exception ex) {
 			ex.printStackTrace();
