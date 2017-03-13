@@ -127,9 +127,15 @@
 					<label class="control-label">Site Collected </label> 
 				 	<form:input path="siteCollected" class="form-control"/>
 				</div>
+				
+				<c:set var="dataSetList" scope="session" value="${command.dataSetBO}"/>
 				<c:choose>
-					<c:when test="${cmd ne editCmd}">
+					<c:when test="${cmd ne editCmd || empty dataSetList}">	
 						
+			    		<c:if test="${cmd eq editCmd && empty dataSetList}">
+			    			<div class="alert alert-info" style="text-align:center;font-weight:bold;font-size:24px">No Dataset Yet &#9785;</div>
+			    		</c:if>
+			    		
 						<div class="form-group">
 							<input class="submit-btn" id="addDatasetBtn" value="Add Datasets Now" type="button"/>
 						</div>
@@ -195,7 +201,35 @@
 				    	<div class="form-group">
 				    		<h4><label class="control-label">Datasets</label></h4>
 				    	</div>
-				    	
+				    	<c:choose>
+				    		<c:when test="${not empty dataSetList}">
+				    			<div class="table-responsive">
+									<table class="table table-hover table-bordered">
+										<thead>
+											<tr>
+												<th colspan="10">Dataset Name</th>
+												<th colspan="2">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="dataSet" items="${dataSetList}">
+												<tr>
+						    						<td colspan="10">${dataSet.dataSetName}</td>
+						    						<td colspan="2">
+						    							<c:if test="${dataSet.isEditable=='Y'}">
+											               <a href="javascript:void(0)" class="tooltipLink" data-toggle="tooltip" title="Edit"><span style="color:#3291d1;padding-left:10px" class="glyphicon glyphicon-edit"></span></a>
+											            </c:if>
+											            <c:if test="${dataSet.isRemovable=='Y'}">
+										                   <a href="javascript:void(0)" class="tooltipLink" data-toggle="tooltip" title="Delete"><span style="color:#dc446e;padding-left:10px" class="glyphicon glyphicon-trash"></span></a>
+										                </c:if>
+						    						</td>
+						    					</tr> 
+											</c:forEach>
+										</tbody>
+						    		</table>
+						    	</div>	
+				    		</c:when>
+				    	</c:choose>
 				    </c:otherwise>
 			    </c:choose>
 			    <div class="form-group">
