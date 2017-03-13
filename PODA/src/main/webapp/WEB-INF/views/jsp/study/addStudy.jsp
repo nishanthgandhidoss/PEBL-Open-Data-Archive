@@ -62,14 +62,18 @@
 <div class="container">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-		  Create Study
-		  <c:if test="${cmd eq editCmd}">
-		  	&nbsp;|&nbsp;Update
-		  </c:if>
-		  <a href="${webapp_path}/listStudy.sp" class="pull-right tooltipLink" data-toggle="tooltip" title="List Study">
-		  <span class="glyphicon  glyphicon-th-list pull-right"></span>
-		  </a> 
-		  </div>
+	    	<c:choose>
+			    <c:when test="${cmd eq editCmd}">
+			        Update Study
+			    </c:when>    
+			    <c:otherwise>
+			        Create Study
+			    </c:otherwise>
+			</c:choose>
+	  		<a href="${webapp_path}/listStudy.sp" class="pull-right tooltipLink" data-toggle="tooltip" title="List Study">
+	  			<span class="glyphicon  glyphicon-th-list pull-right"></span>
+	  		</a> 
+	  	</div>
 		<span class="mandatoryId mandatorytoplabel">*&nbsp;Mandatory fields</span> 
 		 <div class="panel-body">
 		 
@@ -123,68 +127,77 @@
 					<label class="control-label">Site Collected </label> 
 				 	<form:input path="siteCollected" class="form-control"/>
 				</div>
-				
-				<div class="form-group">
-					<input class="submit-btn" id="addDatasetBtn" value="Add Datasets Now" type="button"/>
-				</div>
-				
-				<div class="form-group hidden" id="dataSetDetail">
-			    	<div class="form-group">
-			    		<h4>Add Datasets</h4>
-			    	</div>
-			    	<div class="form-group">
-			    		<div class="col-xs-4">
-				            <label class="control-label"><span class="mandatoryId">*</span>Choose File</label>
-				        </div>
-			    		<div class="col-xs-4">
-				            <label class="control-label"><span class="mandatoryId">*</span>Dataset Name</label>
-				        </div>
-				        <div class="col-xs-2">
-				            <label class="control-label"><span class="mandatoryId">*</span>Task type</label>
-				        </div>
-			    	</div>
-				    <div class="form-group row">
-				    	<form:hidden path="dataSetBO[0].isFileChanged"/>
-				    	<div class="col-xs-4">
-				    		<form:input class="form-control" path="dataSetBO[0].file" type="file"/>
+				<c:choose>
+					<c:when test="${cmd ne editCmd}">
+						
+						<div class="form-group">
+							<input class="submit-btn" id="addDatasetBtn" value="Add Datasets Now" type="button"/>
+						</div>
+					
+						<div class="form-group hidden" id="dataSetDetail">
+					    	<div class="form-group">
+					    		<h4>Add Datasets</h4>
+					    	</div>
+					    	<div class="form-group">
+					    		<div class="col-xs-4">
+						            <label class="control-label"><span class="mandatoryId">*</span>Choose File</label>
+						        </div>
+					    		<div class="col-xs-4">
+						            <label class="control-label"><span class="mandatoryId">*</span>Dataset Name</label>
+						        </div>
+						        <div class="col-xs-2">
+						            <label class="control-label"><span class="mandatoryId">*</span>Task type</label>
+						        </div>
+					    	</div>
+						    <div class="form-group row">
+						    	<form:hidden path="dataSetBO[0].isFileChanged"/>
+						    	<div class="col-xs-4">
+						    		<form:input class="form-control" path="dataSetBO[0].file" type="file"/>
+						    	</div>
+						        <div class="col-xs-4">
+						            <form:input class="form-control" path="dataSetBO[0].dataSetName"/>
+						        </div>
+						        <div class="col-xs-3">
+						            <form:select path="dataSetBO[0].taskType" class="form-control">
+								    	<form:option value="" selected="selected">Select</form:option>
+								    	<form:options items="${taskTypeList}" itemLabel="taskType" itemValue="id"/>
+								    </form:select>
+						        </div>
+						        <div class="col-xs-1">
+						            <button type="button" class="btn btn-default addButton"><i class="glyphicon glyphicon-plus pointercursor appgreen"></i></button>
+						        </div>
+						    </div>
+						
+						    <div class="form-group row hide" id="dataSetTemplate">
+						    	<input type="hidden"  class="form-control" name="isFileChanged"/>
+						    	<div class="col-xs-4">
+						    		<input class="form-control" name="file" type="file" />
+						    	</div>
+						        <div class="col-xs-4">
+						            <input class="form-control" name="dataSetName" type="text"/>
+						        </div>
+						        <div class="col-xs-3">
+						            <select name="taskType" class="form-control">
+								  		<option value="" selected="selected">Select</option>
+								  		<c:forEach var="taskType" items="${taskTypeList}">
+								  			<option value="${taskType.id}">${taskType.taskType}</option>
+								  		</c:forEach>
+							        </select>
+						        </div>
+						        <div class="col-xs-1" id="removeBtnDiv">
+						            <button type="button" class="btn btn-default removeButton"><i class="glyphicon glyphicon-minus pointercursor" style="color:#dc446e"></i></button>
+						        </div>
+						        
+						    </div>
+					    </div>
+				    </c:when>
+				    <c:otherwise>
+				    	<div class="form-group">
+				    		<h4><label class="control-label">Datasets</label></h4>
 				    	</div>
-				        <div class="col-xs-4">
-				            <form:input class="form-control" path="dataSetBO[0].dataSetName"/>
-				        </div>
-				        <div class="col-xs-3">
-				            <form:select path="dataSetBO[0].taskType" class="form-control">
-						    	<form:option value="" selected="selected">Select</form:option>
-						    	<form:options items="${taskTypeList}" itemLabel="taskType" itemValue="id"/>
-						    </form:select>
-				        </div>
-				        <div class="col-xs-1">
-				            <button type="button" class="btn btn-default addButton"><i class="glyphicon glyphicon-plus pointercursor appgreen"></i></button>
-				        </div>
-				    </div>
-				
-				    <div class="form-group row hide" id="dataSetTemplate">
-				    	<input type="hidden"  class="form-control" name="isFileChanged"/>
-				    	<div class="col-xs-4">
-				    		<input class="form-control" name="file" type="file" />
-				    	</div>
-				        <div class="col-xs-4">
-				            <input class="form-control" name="dataSetName" type="text"/>
-				        </div>
-				        <div class="col-xs-3">
-				            <select name="taskType" class="form-control">
-						  		<option value="" selected="selected">Select</option>
-						  		<c:forEach var="taskType" items="${taskTypeList}">
-						  			<option value="${taskType.id}">${taskType.taskType}</option>
-						  		</c:forEach>
-					        </select>
-				        </div>
-				        <div class="col-xs-1" id="removeBtnDiv">
-				            <button type="button" class="btn btn-default removeButton"><i class="glyphicon glyphicon-minus pointercursor" style="color:#dc446e"></i></button>
-				        </div>
-				        
-				    </div>
-			    </div>
-			    
+				    	
+				    </c:otherwise>
+			    </c:choose>
 			    <div class="form-group">
 					<c:choose>
 	              			<c:when test="${cmd eq editCmd}">
