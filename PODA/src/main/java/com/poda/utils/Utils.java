@@ -1,16 +1,22 @@
 package com.poda.utils;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.poda.model.UserBO;
+import com.poda.utils.Constants;
 
 public class Utils {
 
@@ -88,7 +94,20 @@ public class Utils {
 		
 	}
 	
-
+	public static String uploadFile(CommonsMultipartFile file) {
+		
+		String filePath = null;
+		try {
+			byte[] bytes = file.getBytes();
+	        Path path = Paths.get(Constants.STUDY_FILE_UPLOAD_PATH + file.getOriginalFilename());
+	        Files.write(path, bytes);
+	        filePath = path.toString();
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+		return filePath;
+	}
+	
 	public static ArrayList<String> getLoggedInUserNameList() {
 		return loggedInUserNameList;
 	}

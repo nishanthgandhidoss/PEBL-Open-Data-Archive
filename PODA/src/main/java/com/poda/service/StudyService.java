@@ -45,13 +45,11 @@ public class StudyService extends CommonService{
 					setDefaultvalues(req, dataSetBO);
 					returnId = insertDataset(dataSetBO, studyBO.getId());
 					if (returnId < 1) {
-						studyBO.setReturnMsg(getErrorMSg());
 						throw new Exception("Error inserting Dataset object " + dataSetBO.getFile().getName());
 					}
 				}
 			}
 		}
-		
 		logger.info("createStudy - End");
 		return studyBO;
 	}

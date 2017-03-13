@@ -77,7 +77,7 @@
 		INSERT INTO tbl_dataset
 		(STUDY_ID, FILE_NAME, FILE_FORMAT, FILE_PATH, CONTENT_TYPE, DATASET_NAME, TASK_TYPE, CREATED_BY, CREATED_DATE, CREATED_IP)
 		VALUE
-		(#{studyId}, #{dataSetBO.fileName}, #{dataSetBO.fileFormat}, #{dataSetBO.contentType},#{dataSetBO.filePath}, 
+		(#{studyId}, #{dataSetBO.fileName}, #{dataSetBO.fileFormat}, #{dataSetBO.filePath}, #{dataSetBO.contentType},
 		#{dataSetBO.dataSetName}, #{dataSetBO.taskType}, #{dataSetBO.createdBy}, NOW(), #{dataSetBO.createdIp});
 	</insert>
 	

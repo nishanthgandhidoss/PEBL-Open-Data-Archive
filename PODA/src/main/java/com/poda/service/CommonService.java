@@ -18,6 +18,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.poda.dao.CommonDAOImpl;
 import com.poda.model.CommonBO;
 import com.poda.model.DataSetBO;
+import com.poda.model.StudyBO;
 import com.poda.model.TaskTypeBO;
 import com.poda.model.UserBO;
 import com.poda.utils.Constants;
@@ -283,10 +284,15 @@ public class CommonService {
 	
 	public int insertDataset(DataSetBO dataSetBO, Long studyId) throws Exception {
 		
-		// Need to change once you have upload set
-		dataSetBO.setFilePath("testing");
-		
 		CommonsMultipartFile dataFile = dataSetBO.getFile();
+		if(!dataFile.isEmpty()) {
+			String filePath = Utils.uploadFile(dataFile);
+			if(filePath == null) {
+				return -1;
+			}
+			dataSetBO.setFilePath(filePath);
+		}
+		
 		String fileName = dataFile.getOriginalFilename();
 		dataSetBO.setFileName(fileName);
 		dataSetBO.setFileFormat(fileName.substring(fileName.lastIndexOf(".") + 1).trim());
@@ -297,7 +303,6 @@ public class CommonService {
 		inputMap.put("dataSetBO", dataSetBO);
 		String queryId = "insertDataSet";
 		int returnId = (int) getCommonDAO().create(inputMap, queryId);
-		
 		return returnId;
 	}
 }	

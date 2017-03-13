@@ -55,4 +55,7 @@ public interface Constants {
 	String INVOICE_PREFIX = "I";
 	
 	String LEADING_ZERO_FORMAT = "%05d"; 
+	
+	String STUDY_FILE_UPLOAD_PATH = "F://temp//";
 }
+
