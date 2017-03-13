@@ -54,20 +54,6 @@ public class StudyService extends CommonService{
 		return studyBO;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public ArrayList<StudyBO> getStudyList(StudyBO studyBO, boolean userStudyList) throws Exception {
-	
-		ArrayList<StudyBO> studyList = new ArrayList<StudyBO>();
-	
-		HashMap<String, Object> inputMap = new HashMap<String, Object>();
-		inputMap.put("id", studyBO.getId());
-		if(userStudyList)
-			inputMap.put("createdBy", studyBO.getCreatedBy());
-		studyList = (ArrayList) getCommonDAO().getRecordListByMap("getStudyList", inputMap);
-	
-		return studyList;
-	} 
-	
 	public List<String> getRequiredPropertiesList() {
 		String includedProps[]={"createdDate","isPublicString","studyName","license","authors","publication","contact","siteCollected","studyDesc"};
 		return Arrays.asList(includedProps);
@@ -104,4 +90,5 @@ public class StudyService extends CommonService{
 		logger.info("updateStudy - End");
 		return studyBO;
 	}
+
 }

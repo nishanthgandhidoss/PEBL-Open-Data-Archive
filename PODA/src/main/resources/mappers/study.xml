@@ -75,10 +75,41 @@
 	
 	<insert id="insertDataSet" parameterType="Map">
 		INSERT INTO tbl_dataset
-		(STUDY_ID, FILE_NAME, FILE_FORMAT, FILE_PATH, CONTENT_TYPE, DATASET_NAME, TASK_TYPE, CREATED_BY, CREATED_DATE, CREATED_IP)
+		(STUDY_ID, FILE_NAME, FILE_FORMAT, FILE_PATH, FILE_SIZE, CONTENT_TYPE, DATASET_NAME, TASK_TYPE, CREATED_BY, CREATED_DATE, CREATED_IP)
 		VALUE
-		(#{studyId}, #{dataSetBO.fileName}, #{dataSetBO.fileFormat}, #{dataSetBO.filePath}, #{dataSetBO.contentType},
+		(#{studyId}, #{dataSetBO.fileName}, #{dataSetBO.fileFormat}, #{dataSetBO.filePath}, #{dataSetBO.fileSize}, #{dataSetBO.contentType},
 		#{dataSetBO.dataSetName}, #{dataSetBO.taskType}, #{dataSetBO.createdBy}, NOW(), #{dataSetBO.createdIp});
 	</insert>
+	
+	<select id="getDataSetList" parameterType="Map" resultType="dataSetBO">
+		SELECT
+		ID as id,
+		STUDY_ID as studyId, 
+		FILE_NAME as fileName,
+		FILE_FORMAT as fileFormat,
+		FILE_PATH as filePath,
+		FILE_SIZE as fileSize,
+		CONTENT_TYPE as contentType,
+		DATASET_NAME as dataSetName,
+		TASK_TYPE as taskType,
+		if(ENABLED = 1, "Yes", "No") as isEnabledString,
+		CREATED_BY as createdBy,
+		CREATED_DATE as createdDate,
+		CREATED_IP as createdIp
+		FROM
+		tbl_dataset
+		<if test="studyId != null or dataSetId != null">
+	 		WHERE
+	 		<if test="studyId != null">
+	        	STUDY_ID = #{studyId}
+	        </if>
+	        <if test="studyId != null and dataSetId != null">
+	        	AND
+	        </if>
+	        <if test="dataSetId != null">
+	        	ID = #{dataSetId}
+	        </if>
+	    </if>
+	</select>
 	
 </mapper>

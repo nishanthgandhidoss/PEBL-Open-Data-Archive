@@ -17,9 +17,13 @@ public class DataSetBO extends CommonBO{
 	private String fileFormat;
 	private String filePath;
 	private String contentType;
+	private Long fileSize;
+	private Long studyId;
 	private String dataSetName;
 	private Integer taskType;
 	private Integer isFileChanged = 0;
+	private Integer isEnabled = 0;
+	private String isEnabledString;
 	
 	public CommonsMultipartFile getFile() {
 		return file;
@@ -68,6 +72,30 @@ public class DataSetBO extends CommonBO{
 	}
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
+	}
+	public Long getStudyId() {
+		return studyId;
+	}
+	public void setStudyId(Long studyId) {
+		this.studyId = studyId;
+	}
+	public Long getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(long fileSize) {
+		this.fileSize = fileSize;
+	}
+	public Integer getIsEnabled() {
+		return isEnabled;
+	}
+	public void setIsEnabled(Integer isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+	public String getIsEnabledString() {
+		return isEnabledString;
+	}
+	public void setIsEnabledString(String isEnabledString) {
+		this.isEnabledString = isEnabledString;
 	}
 	
 }

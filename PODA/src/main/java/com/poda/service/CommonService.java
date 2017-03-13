@@ -139,6 +139,30 @@ public class CommonService {
 		return taskTypeList;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public ArrayList<StudyBO> getStudyList(StudyBO studyBO, boolean userStudyList) throws Exception {
+	
+		ArrayList<StudyBO> studyList = new ArrayList<StudyBO>();
+	
+		HashMap<String, Object> inputMap = new HashMap<String, Object>();
+		inputMap.put("id", studyBO.getId());
+		if(userStudyList)
+			inputMap.put("createdBy", studyBO.getCreatedBy());
+		studyList = (ArrayList) getCommonDAO().getRecordListByMap("getStudyList", inputMap);
+	
+		return studyList;
+	} 
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<DataSetBO> getDataSetList(Long dataSetId, Long studyid) throws Exception {
+	
+		ArrayList<DataSetBO> dataSetList = new ArrayList<DataSetBO>();
+		HashMap<String, Object> inputMap = new HashMap<String, Object>();
+		inputMap.put("dataSetId", dataSetId);
+		inputMap.put("studyId", studyid);
+		dataSetList = (ArrayList) getCommonDAO().getRecordListByMap("getDataSetList", inputMap);
+		return dataSetList;
+	} 
 	
 	public String getSuccessMSg() {
 
@@ -296,6 +320,7 @@ public class CommonService {
 		String fileName = dataFile.getOriginalFilename();
 		dataSetBO.setFileName(fileName);
 		dataSetBO.setFileFormat(fileName.substring(fileName.lastIndexOf(".") + 1).trim());
+		dataSetBO.setFileSize(dataFile.getSize());
 		dataSetBO.setContentType(dataFile.getContentType());
 		
 		HashMap<String,Object> inputMap= new HashMap<String,Object>();

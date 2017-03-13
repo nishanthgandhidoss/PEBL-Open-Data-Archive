@@ -121,12 +121,16 @@ public class StudyController {
 		logger.info("inside editStudy");
 		
 		List<StudyBO> studyList = null;
+		ArrayList<DataSetBO> dataSetList = null;
 		try {
 			if(req.getParameter("id") != null)
 				studyBO.setId(Long.parseLong(req.getParameter("id")));
 			studyService.setDefaultvalues(req, studyBO);
 			studyList = studyService.getStudyList(studyBO, false);
-			studyBO = studyList.get(0);
+			if(!studyList.isEmpty())
+				studyBO = studyList.get(0);
+			dataSetList = studyService.getDataSetList(null, studyBO.getId());
+			studyBO.setDataSetBO(dataSetList);
 			mv.addObject("command", studyBO);
 		} catch (Exception e) {
 			e.printStackTrace();
