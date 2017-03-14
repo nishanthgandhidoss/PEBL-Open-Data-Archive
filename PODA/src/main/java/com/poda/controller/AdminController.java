@@ -117,6 +117,7 @@ public class AdminController {
 		Long id = Long.parseLong(req.getParameter("id"));
 		try {
 			TaskTypeBO taskTypeBO = new TaskTypeBO();
+			taskTypeBO.setId(id);
 			adminService.setDefaultvalues(req, taskTypeBO);
 			taskTypeList = adminService.getTaskTypeList(taskTypeBO);
 			taskTypeBO = taskTypeList.get(0);
