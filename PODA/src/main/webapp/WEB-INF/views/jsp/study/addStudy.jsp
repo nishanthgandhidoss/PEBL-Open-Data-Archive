@@ -129,109 +129,107 @@
 				</div>
 				
 				<c:set var="dataSetList" scope="session" value="${command.dataSetBO}"/>
-				<c:choose>
-					<c:when test="${cmd ne editCmd || empty dataSetList}">	
-						
-			    		<c:if test="${cmd eq editCmd && empty dataSetList}">
-			    			<div class="alert alert-info" style="text-align:center;font-weight:bold;font-size:24px">No Dataset Yet &#9785;</div>
-			    		</c:if>
-			    		
-						<div class="form-group">
-							<input class="submit-btn" id="addDatasetBtn" value="Add Datasets Now" type="button"/>
-						</div>
-					
-						<div class="form-group hidden" id="dataSetDetail">
-					    	<div class="form-group">
-					    		<h4>Add Datasets</h4>
-					    	</div>
-					    	<div class="form-group">
-					    		<div class="col-xs-4">
-						            <label class="control-label"><span class="mandatoryId">*</span>Choose File</label>
-						        </div>
-					    		<div class="col-xs-4">
-						            <label class="control-label"><span class="mandatoryId">*</span>Dataset Name</label>
-						        </div>
-						        <div class="col-xs-2">
-						            <label class="control-label"><span class="mandatoryId">*</span>Task type</label>
-						        </div>
-					    	</div>
-						    <div class="form-group row">
-						    	<form:hidden path="dataSetBO[0].isFileChanged"/>
-						    	<div class="col-xs-4">
-						    		<form:input class="form-control" path="dataSetBO[0].file" type="file"/>
-						    	</div>
-						        <div class="col-xs-4">
-						            <form:input class="form-control" path="dataSetBO[0].dataSetName"/>
-						        </div>
-						        <div class="col-xs-3">
-						            <form:select path="dataSetBO[0].taskType" class="form-control">
-								    	<form:option value="" selected="selected">Select</form:option>
-								    	<form:options items="${taskTypeList}" itemLabel="taskType" itemValue="id"/>
-								    </form:select>
-						        </div>
-						        <div class="col-xs-1">
-						            <button type="button" class="btn btn-default addButton"><i class="glyphicon glyphicon-plus pointercursor appgreen"></i></button>
-						        </div>
-						    </div>
-						
-						    <div class="form-group row hide" id="dataSetTemplate">
-						    	<input type="hidden"  class="form-control" name="isFileChanged"/>
-						    	<div class="col-xs-4">
-						    		<input class="form-control" name="file" type="file" />
-						    	</div>
-						        <div class="col-xs-4">
-						            <input class="form-control" name="dataSetName" type="text"/>
-						        </div>
-						        <div class="col-xs-3">
-						            <select name="taskType" class="form-control">
-								  		<option value="" selected="selected">Select</option>
-								  		<c:forEach var="taskType" items="${taskTypeList}">
-								  			<option value="${taskType.id}">${taskType.taskType}</option>
-								  		</c:forEach>
-							        </select>
-						        </div>
-						        <div class="col-xs-1" id="removeBtnDiv">
-						            <button type="button" class="btn btn-default removeButton"><i class="glyphicon glyphicon-minus pointercursor" style="color:#dc446e"></i></button>
-						        </div>
-						        
-						    </div>
-					    </div>
-				    </c:when>
-				    <c:otherwise>
-				    	<div class="form-group">
-				    		<h4><label class="control-label">Datasets</label></h4>
+				
+				<c:if test="${cmd eq editCmd && empty dataSetList}">
+	    			<div class="alert alert-info" style="text-align:center;font-weight:bold;font-size:24px">No Dataset Yet &#9785;</div>
+	    		</c:if>
+	    		
+				
+				<c:if test="${cmd eq editCmd || not empty dataSetList}">	
+					<div class="form-group">
+			    		<h4><label class="control-label">Datasets</label></h4>
+			    	</div>
+		    		<c:if test="${not empty dataSetList}">
+		    			<div class="table-responsive">
+							<table class="table table-hover table-bordered">
+								<thead>
+									<tr>
+										<th colspan="10">Dataset Name</th>
+										<th colspan="2">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="dataSet" items="${dataSetList}">
+										<tr>
+				    						<td colspan="10">${dataSet.dataSetName}</td>
+				    						<td colspan="2">
+				    							<c:if test="${dataSet.isEditable=='Y'}">
+									               <a href="javascript:void(0)" class="tooltipLink" data-toggle="tooltip" title="Edit"><span style="color:#3291d1;padding-left:10px" class="glyphicon glyphicon-edit"></span></a>
+									            </c:if>
+									            <c:if test="${dataSet.isRemovable=='Y'}">
+								                   <a href="javascript:void(0)" class="tooltipLink" data-toggle="tooltip" title="Delete"><span style="color:#dc446e;padding-left:10px" class="glyphicon glyphicon-trash"></span></a>
+								                </c:if>
+				    						</td>
+				    					</tr> 
+									</c:forEach>
+								</tbody>
+				    		</table>
+				    	</div>	
+		    		</c:if>
+			    </c:if>
+				
+				
+				<div class="form-group">
+					<input class="submit-btn" id="addDatasetBtn" value="Add Datasets Now" type="button"/>
+				</div>
+			
+				<div class="form-group hidden" id="dataSetDetail">
+			    	<div class="form-group">
+			    		<h4>Add Datasets</h4>
+			    	</div>
+			    	<div class="form-group">
+			    		<div class="col-xs-4">
+				            <label class="control-label"><span class="mandatoryId">*</span>Choose File</label>
+				        </div>
+			    		<div class="col-xs-4">
+				            <label class="control-label"><span class="mandatoryId">*</span>Dataset Name</label>
+				        </div>
+				        <div class="col-xs-2">
+				            <label class="control-label"><span class="mandatoryId">*</span>Task type</label>
+				        </div>
+			    	</div>
+				    <div class="form-group row">
+				    	<form:hidden path="dataSetBO[0].isFileChanged"/>
+				    	<div class="col-xs-4">
+				    		<form:input class="form-control" path="dataSetBO[0].file" type="file"/>
 				    	</div>
-				    	<c:choose>
-				    		<c:when test="${not empty dataSetList}">
-				    			<div class="table-responsive">
-									<table class="table table-hover table-bordered">
-										<thead>
-											<tr>
-												<th colspan="10">Dataset Name</th>
-												<th colspan="2">Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="dataSet" items="${dataSetList}">
-												<tr>
-						    						<td colspan="10">${dataSet.dataSetName}</td>
-						    						<td colspan="2">
-						    							<c:if test="${dataSet.isEditable=='Y'}">
-											               <a href="javascript:void(0)" class="tooltipLink" data-toggle="tooltip" title="Edit"><span style="color:#3291d1;padding-left:10px" class="glyphicon glyphicon-edit"></span></a>
-											            </c:if>
-											            <c:if test="${dataSet.isRemovable=='Y'}">
-										                   <a href="javascript:void(0)" class="tooltipLink" data-toggle="tooltip" title="Delete"><span style="color:#dc446e;padding-left:10px" class="glyphicon glyphicon-trash"></span></a>
-										                </c:if>
-						    						</td>
-						    					</tr> 
-											</c:forEach>
-										</tbody>
-						    		</table>
-						    	</div>	
-				    		</c:when>
-				    	</c:choose>
-				    </c:otherwise>
-			    </c:choose>
+				        <div class="col-xs-4">
+				            <form:input class="form-control" path="dataSetBO[0].dataSetName"/>
+				        </div>
+				        <div class="col-xs-3">
+				            <form:select path="dataSetBO[0].taskType" class="form-control">
+						    	<form:option value="" selected="selected">Select</form:option>
+						    	<form:options items="${taskTypeList}" itemLabel="taskType" itemValue="id"/>
+						    </form:select>
+				        </div>
+				        <div class="col-xs-1">
+				            <button type="button" class="btn btn-default addButton"><i class="glyphicon glyphicon-plus pointercursor appgreen"></i></button>
+				        </div>
+				    </div>
+				
+				    <div class="form-group row hide" id="dataSetTemplate">
+				    	<input type="hidden"  class="form-control" name="isFileChanged"/>
+				    	<div class="col-xs-4">
+				    		<input class="form-control" name="file" type="file" />
+				    	</div>
+				        <div class="col-xs-4">
+				            <input class="form-control" name="dataSetName" type="text"/>
+				        </div>
+				        <div class="col-xs-3">
+				            <select name="taskType" class="form-control">
+						  		<option value="" selected="selected">Select</option>
+						  		<c:forEach var="taskType" items="${taskTypeList}">
+						  			<option value="${taskType.id}">${taskType.taskType}</option>
+						  		</c:forEach>
+					        </select>
+				        </div>
+				        <div class="col-xs-1" id="removeBtnDiv">
+				            <button type="button" class="btn btn-default removeButton"><i class="glyphicon glyphicon-minus pointercursor" style="color:#dc446e"></i></button>
+				        </div>
+				        
+				    </div>
+			    </div>
+			    
 			    <div class="form-group">
 					<c:choose>
 	              			<c:when test="${cmd eq editCmd}">
