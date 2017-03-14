@@ -45,7 +45,7 @@
 		  }
 
     
-	     function displayDialogOnFormSubmit(jObject,formObj){
+	     function displayDialogOnFormSubmit(jObject,formObj, isReload, redirectUrl){
 		
 		          var isSuccess;
 				  if(jObject.returnId>0){
@@ -63,7 +63,7 @@
 					 isSuccess=false;
 				 }
 				  
-			showDialog(dialogType,btnStyle,msg,formObj,isSuccess)
+			showDialog(dialogType,btnStyle,msg,formObj,isSuccess, isReload, redirectUrl)
             return isSuccess;
           }
 
@@ -80,8 +80,8 @@
     BootstrapDialog.TYPE_DANGER; */
 	
     
-    
-    function displayDialogWithJsondata(jsondata,jsonKey,formObj){
+    // Using it
+    function displayDialogWithJsondata(jsondata,jsonKey,formObj, isReload, redirectUrl){
 		var isSuccess;
 		$.each(jsondata, function(key, jObject) {
 			if (key == jsonKey && jObject.returnId > 0) {
@@ -96,14 +96,14 @@
 				isSuccess = false;
 			}
 			
-			showDialog(dialogType, btnStyle, msg, formObj, isSuccess)
+			showDialog(dialogType, btnStyle, msg, formObj, isSuccess, isReload, redirectUrl);
 		});
 		return isSuccess;
 	}
     
 
     
-   function showDialog(dialogType,btnStyle,msg,formObj,isSuccess,cmd){
+   function showDialog(dialogType,btnStyle,msg,formObj,isSuccess,isReload,redirectUrl) {
     	
     	
         BootstrapDialog.show({
@@ -127,6 +127,10 @@
 		                action: function(dialog){
 			                  dialog.close();
 			                  loadCustomFunction();
+			                  if(isReload == true)
+			                	  location.reload();
+			                  else
+			                	  window.location.replace(redirectUrl);
 		                  }  
 		               }]
                 });

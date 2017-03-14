@@ -126,6 +126,8 @@ $(document).ready(function() {
     .on('success.form.fv', function(e) {
     	e.preventDefault();
     	var url="createStudy.sp";
+    	var redirectUrl = "listStudy.sp";
+    	var isReload = false;
     	
     	// logic to diff URL for Approve / Update
     	// Form instance
@@ -135,9 +137,12 @@ $(document).ready(function() {
         // You might need to update the "status" field before submitting the form
         $statusField = $form.find('[name="commit"]');
     	var btnId = $button.attr('id');
-    	if(btnId == "update-btn") 
+    	if(btnId == "update-btn") {
     		url = "updateStudy.sp";
-    	
+    		redirectUrl = null;
+    		isReload = true;
+    	}
+    		
     	//trimFormInputs();
     	//Json data
     	var frmdata = new FormData($(this)[0]);
@@ -157,7 +162,7 @@ $(document).ready(function() {
         
     	/*var jsondata = submitFrm($form, url);*/
     	redirectToLoginIfNotAJsonObject(jsonData);
-        var isSuccess=displayDialogOnFormSubmit(jsonData,$form);
+        var isSuccess=displayDialogOnFormSubmit(jsonData,$form, isReload, redirectUrl);
         
         if(isSuccess)
   			 resetFormValidation(formObj);

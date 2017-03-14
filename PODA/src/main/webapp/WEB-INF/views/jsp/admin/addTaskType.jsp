@@ -154,17 +154,20 @@
 
 			var $form = $(e.target);
 			var $button = $form.data('formValidation').getSubmitButton(),
-			btnType = $button.attr('value'), url = null;
+			btnType = $button.attr('value'), url = null, isReload = null, redirectUrl = null;
 			if (btnType == "Update") {
 				url = "${webapp_path}/admin/updateTaskType.sp";
+				isReload = true;
 			} else if (btnType == "Submit") {
 				url = "${webapp_path}/admin/saveTaskType.sp";
+				isReload = false;
+				redirectUrl = "${webapp_path}/admin/listTaskType.sp"
 			}
 			trimFormInputs();
 
 			var jsondata = submitFrm($form, url);
 			redirectToLoginIfNotAJsonObject(jsondata);
-			var isSuccess = displayDialogOnFormSubmit(jsondata, $form);
+			var isSuccess = displayDialogOnFormSubmit(jsondata, $form, isReload, redirectUrl);
 			
 			if(isSuccess)
 	   			 resetFormValidation(formObj);

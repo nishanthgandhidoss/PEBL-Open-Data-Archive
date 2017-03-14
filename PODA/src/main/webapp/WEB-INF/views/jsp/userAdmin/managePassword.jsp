@@ -136,10 +136,10 @@
 			var $form = $(e.target);
 			$button = $form.data('formValidation').getSubmitButton();
 			var btnType = $button.attr('value');
-			var url = "${webapp_path}/resetPassword.sp";
+			var url = "${webapp_path}/resetPassword.sp", redirectUrl = "${webapp_path}/home.sp";
 			var jsondata = submitFrm($form, url);
 			redirectToLoginIfNotAJsonObject(jsondata);
-			var isSuccess = displayDialogOnFormSubmit(jsondata, $form);
+			var isSuccess = displayDialogOnFormSubmit(jsondata, $form, false, redirectUrl);
          
 		   });
 	});

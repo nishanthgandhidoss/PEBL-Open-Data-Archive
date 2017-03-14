@@ -298,15 +298,18 @@ function sameAslocalAddress(){
         	var btnType = $button.attr('value');
         	var isFromAdmin = $('isFromAdmin').val();
         
-        	
+        	var isReload, redirectUrl;	
         	if(btnType == "Update"){ 
         		var url = "${webapp_path}/updateUser.sp";
+        		isReload = true;
         		if(isFromAdmin) {
         			url = "${webapp_path}/admin/updateUser.sp";
         		}
+        		redirectUrl = null;
         	}else if(btnType == "Submit"){	
         		var url="${webapp_path}/admin/createUser.sp";
-        	  
+        	  	isReload = false;
+        	  	redirectUrl = "${webapp_path}/admin/listUser.sp";
         	}
         	
         	trimFormInputs();
@@ -314,7 +317,7 @@ function sameAslocalAddress(){
            
         	var jsondata=submitFrm($form,url);
         	redirectToLoginIfNotAJsonObject(jsondata);
-            var isSuccess=displayDialogOnFormSubmit(jsondata,$form);
+            var isSuccess=displayDialogOnFormSubmit(jsondata,$form,isReload, redirectUrl);
             
             if(isSuccess)
    			 resetFormValidation(formObj);

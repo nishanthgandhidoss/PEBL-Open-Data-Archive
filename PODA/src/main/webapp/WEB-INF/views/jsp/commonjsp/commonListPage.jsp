@@ -204,7 +204,7 @@ $(document).ready(function() {
 					dialogType = BootstrapDialog.TYPE_DANGER;
 					btnStyle = "dialogBoxError";
 					isSuccess = false;
-					showDialog(dialogType, btnStyle, msg, formObj, isSuccess)
+					showDialog(dialogType, btnStyle, msg, formObj, isSuccess, true, null)
 				}
 			});
 	   });

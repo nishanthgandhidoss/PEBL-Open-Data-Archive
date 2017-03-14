@@ -10,7 +10,7 @@
 		tbl_users
 		(FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, PROFESSION, ORGANISATION_NAME, CREATED_BY,CREATED_DATE,CREATED_IP)
 		VALUE
-		(#{firstName}, #{lastName}, #{email}, #{password}, #{profession}, #{orgName}, "User", NOW(), #{createdFromIp}); 
+		(#{firstName}, #{lastName}, #{email}, #{password}, #{profession}, #{orgName}, "User", NOW(), #{createdIp}); 
 		
 	</insert>
 	

@@ -360,7 +360,7 @@ function toggleloginRegisterToolTip(){
          	trimFormInputs();
         	var jsondata=submitFrm(this,url);
      		redirectToLoginIfNotAJsonObject(jsondata);
-     		var isSuccess= displayDialogOnFormSubmit(jsondata,formObj);
+     		var isSuccess= displayDialogOnFormSubmit(jsondata,formObj, true, null);
      		if(isSuccess) {
      			 resetFormValidation(formObj);
      		}
