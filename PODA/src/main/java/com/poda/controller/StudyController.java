@@ -127,6 +127,9 @@ public class StudyController {
 				studyBO.setId(Long.parseLong(req.getParameter("id")));
 			studyService.setDefaultvalues(req, studyBO);
 			studyList = studyService.getStudyList(studyBO, false);
+			ArrayList<TaskTypeBO> taskTypeList = new ArrayList<TaskTypeBO>();
+			taskTypeList = studyService.getTaskTypeList(null);
+			mv.addObject("taskTypeList", taskTypeList);
 			if(!studyList.isEmpty())
 				studyBO = studyList.get(0);
 			dataSetList = studyService.getDataSetList(null, studyBO.getId());
@@ -152,7 +155,7 @@ public class StudyController {
 		try {
 			studyBO.setCmd(Constants.ACTION_UPDATE);
 			studyService.setDefaultvalues(req, studyBO);
-			studyBO = studyService.updateStudy(studyBO);
+			studyBO = studyService.updateStudy(req, studyBO);
 			studyBO.setReturnMsg(studyService.getUpdateSuccessMsg());
 			
 		}catch(Exception ex) {

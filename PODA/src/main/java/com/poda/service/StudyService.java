@@ -76,7 +76,8 @@ public class StudyService extends CommonService{
 		return headerList;
 	}
 	
-	public synchronized StudyBO updateStudy(StudyBO studyBO) throws Exception {
+	@Transactional(rollbackFor=Exception.class, propagation=Propagation.REQUIRED) 
+	public synchronized StudyBO updateStudy(HttpServletRequest req, StudyBO studyBO) throws Exception {
 		logger.info("updateStudy - Start");
 		String queryId;
 		queryId = "updateStudy";
@@ -87,6 +88,20 @@ public class StudyService extends CommonService{
 			throw new Exception("Error Updating Study");
 		}
 		studyBO.setReturnId(returnId);
+		
+		ArrayList<DataSetBO> dataSetList = studyBO.getDataSetBO();
+		if(!dataSetList.isEmpty()) {
+			for(DataSetBO dataSetBO : dataSetList) {
+				if(dataSetBO.getDataSetName() != null && dataSetBO.getTaskType() != null && dataSetBO.getFile() != null) {
+					setDefaultvalues(req, dataSetBO);
+					returnId = insertDataset(dataSetBO, studyBO.getId());
+					if (returnId < 1) {
+						throw new Exception("Error inserting Dataset object " + dataSetBO.getFile().getName());
+					}
+				}
+			}
+		}
+		
 		logger.info("updateStudy - End");
 		return studyBO;
 	}
