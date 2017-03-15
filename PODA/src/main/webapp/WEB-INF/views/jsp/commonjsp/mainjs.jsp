@@ -128,7 +128,7 @@
 			                  dialog.close();
 			                  loadCustomFunction();
 			                  if(isReload == true)
-			                	  location.reload();
+			                	  window.location.reload();
 			                  else
 			                	  window.location.replace(redirectUrl);
 		                  }  

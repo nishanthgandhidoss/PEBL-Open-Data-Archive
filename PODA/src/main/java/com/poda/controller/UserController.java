@@ -142,6 +142,10 @@ public class UserController {
 			userBO.setCmd(Constants.ACTION_UPDATE);
 			userService.setDefaultvalues(req,userBO);
 			Boolean isFromAdmin = Boolean.parseBoolean(req.getParameter("isFromAdmin"));
+			HttpSession sess=req.getSession(true);
+			UserBO sessUserBO=(UserBO)sess.getAttribute("user");
+			sessUserBO.setFirstName(userBO.getFirstName());
+			sess.setAttribute("user", sessUserBO);
 			userBO = userService.updateUser(userBO, isFromAdmin);
 			userBO.setReturnMsg(userService.getUpdateSuccessMsg());
 			
