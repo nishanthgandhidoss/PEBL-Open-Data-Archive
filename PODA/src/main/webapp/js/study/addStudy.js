@@ -171,3 +171,25 @@ $(document).ready(function() {
         
     });
 });
+
+function updateDataSet(id, dataSetName, taskType, fileName) {
+	$("#dataSetForm #dataSetId").val(id)
+	$("#dataSetForm #dataSetName").val(dataSetName);
+	$("#dataSetForm #taskType").val(taskType);
+	$("#fileLabel").text(fileName);
+	$("#updateDataSet").modal('show');
+}
+ 
+
+function fileChange(){
+    var a = document.getElementById('file');
+    if(a.value == "")
+    {
+        $("#fileLabel").text("Choose file");
+    }
+    else
+    {
+        var theSplit = a.value.split('\\');
+        $("#fileLabel").text(theSplit[theSplit.length-1]);
+    }
+};
