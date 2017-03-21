@@ -330,4 +330,9 @@ public class CommonService {
 		int returnId = (int) getCommonDAO().create(inputMap, queryId);
 		return returnId;
 	}
+	
+	public DataSetBO updateDataSet(DataSetBO dataSetBO) throws Exception {
+		
+		return dataSetBO;
+	}
 }	

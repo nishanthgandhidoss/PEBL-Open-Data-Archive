@@ -171,4 +171,28 @@ public class StudyController {
 		
 	}
 	
+	@RequestMapping(value="/updateDataSet", method = RequestMethod.POST)
+	public void updateDataSet(DataSetBO dataSetBO, ModelAndView mv, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		
+        logger.info("Inside updateDataSet");
+		
+		try {
+			dataSetBO.setCmd(Constants.ACTION_UPDATE);
+			studyService.setDefaultvalues(req, dataSetBO);
+			dataSetBO = studyService.updateDataSet(dataSetBO);
+			dataSetBO.setReturnMsg(studyService.getUpdateSuccessMsg());
+			
+		}catch(Exception ex) {
+			 
+			ex.printStackTrace();
+			dataSetBO.setReturnId(-1);
+			if(dataSetBO.getReturnMsg()==null)
+				dataSetBO.setReturnMsg(studyService.getErrorMSg());
+			 
+		}finally{
+			studyService.writeToJSON(res, dataSetBO);
+		 }
+		 logger.info("Outside updateDataSet");
+	}
+	
 }
