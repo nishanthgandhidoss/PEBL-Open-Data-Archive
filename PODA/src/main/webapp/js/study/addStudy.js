@@ -10,6 +10,11 @@ $(document).ready(function() {
 			$("#addDatasetBtn").val("Not Now");
 	});
 	
+	$("#dummyBrowse").click(function(){
+	    $("#file").click(); 
+	    return false;
+	});
+	
 	var fileValidators = {
             row: '.col-xs-4',   // The title is placed inside a <div class="col-xs-4"> element
             validators: {
@@ -172,6 +177,8 @@ $(document).ready(function() {
     });
 });
 
+
+
 function updateDataSet(id, dataSetName, taskType, fileName) {
 	$("#dataSetForm #dataSetId").val(id)
 	$("#dataSetForm #dataSetName").val(dataSetName);
@@ -192,4 +199,4 @@ function fileChange(){
         var theSplit = a.value.split('\\');
         $("#fileLabel").text(theSplit[theSplit.length-1]);
     }
-};
+}

@@ -55,10 +55,12 @@
 	.col-xs-2 {
 		width:19%; /* Don't make more than 19, then it will cause distorition on UI */
 	}
-	#file {
-	    width:90px;
-	    color:transparent;
+	.custom-link-effect:hover {
+		color: #0e6098;
+		cursor: pointer ! important;
+		font-size: 1.1em;
 	}
+	#fileLabel {font-weight: normal}
 </style>
 
 
@@ -273,15 +275,15 @@
 						
 						<div class="form-group">
 							<label class="control-label">File </label> 
-<!-- 						 	<input class="form-control" id="file" name="file" type="file"/> -->
-						 	<input class="form-control hidden" type="file" id="file" name="file" onchange="fileChange()"><br>
-						 	<a onclick=""><label id="fileLabel">Choose file</label></a>
+							<input class="hidden" type="file" id="file" name="file" onchange="fileChange()"><br>
+						 	<a class="btn btn-primary" id="dummyBrowse">Browse</a>
+						 	<label class="control-label" id="fileLabel" style="padding-left: 10px;">Choose file</label>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="printBarcode()">Print</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="printBarcode()">Update</button>
 				</div>
 			</div>
 		</div>
