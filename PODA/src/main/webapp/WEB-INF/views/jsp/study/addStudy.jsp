@@ -160,7 +160,7 @@
 				    						<td colspan="10">${dataSet.dataSetName}</td>
 				    						<td colspan="2">
 				    							<c:if test="${dataSet.isEditable=='Y'}">
-									               <a href="javascript:void(0)" onclick="updateDataSet('${dataSet.id}', '${dataSet.dataSetName}', '${dataSet.taskType}', '${dataSet.fileName}')" class="tooltipLink" data-toggle="tooltip" title="Edit"><span style="color:#3291d1;padding-left:10px" class="glyphicon glyphicon-edit"></span></a>
+									               <a href="javascript:void(0)" onclick="editDataSet('${dataSet.id}', '${dataSet.dataSetName}', '${dataSet.taskType}', '${dataSet.fileName}')" class="tooltipLink" data-toggle="tooltip" title="Edit"><span style="color:#3291d1;padding-left:10px" class="glyphicon glyphicon-edit"></span></a>
 									            </c:if>
 									            <c:if test="${dataSet.isRemovable=='Y'}">
 								                   <a href="javascript:void(0)" class="tooltipLink" data-toggle="tooltip" title="Delete"><span style="color:#dc446e;padding-left:10px" class="glyphicon glyphicon-trash"></span></a>
@@ -260,14 +260,13 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<h3 class="modal-title" style="color:#dc446e" ><span>Dataset Update</span></h3>
 				</div>
-				<div class="modal-body">
-					<form id="dataSetForm" enctype="multipart/form-data" method="POST">
+				<form id="dataSetForm" enctype="multipart/form-data" method="POST">
+					<div class="modal-body">
 						<input name="id" id="dataSetId" type="hidden"/>
 						<div class="form-group">
 							<label class="control-label">Dataset Name </label> 
 						 	<input name="dataSetName" id="dataSetName" class="form-control"/>
 						</div>
-						
 						<div class="form-group">
 							<label class="control-label">Task type</label> 
 						 	<select name="taskType" id="taskType" class="form-control">
@@ -277,19 +276,18 @@
 						    	</c:forEach>
 						    </select>
 						</div>
-						
 						<div class="form-group">
 							<label class="control-label">File </label> 
 							<input class="hidden" type="file" id="file" name="file" onchange="fileChange()"><br>
 						 	<a class="btn btn-primary" id="dummyBrowse">Browse</a>
 						 	<label class="control-label" id="fileLabel" style="padding-left: 10px;">Choose file</label>
 						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="printBarcode()">Update</button>
-				</div>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Close"/>
+						<input type="submit" class="btn btn-primary" value="Update"/>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

@@ -175,11 +175,70 @@ $(document).ready(function() {
   			 resetAll(formObj);
         
     });
+	
+	var dataSetFormObj = $('#dataSetForm');
+	
+	dataSetFormObj.formValidation({
+		framework : 'bootstrap',
+		fields : {
+			dataSetName : {
+				validators: {
+	                notEmpty: {
+	                    message: 'Dataset name is required'
+	                }
+	            }
+			},
+			taskType: {
+				validators: {
+	                notEmpty: {
+	                    message: 'Task type is required'
+	                }
+	            }
+			},
+			file: {
+				validators: {
+	                notEmpty: {
+	                    message: 'Choose a File'
+	                }
+	            }
+			}
+		}
+	}).on('success.field.fv', function(e, data) {
+
+		var $parent = data.element.parents('.form-group');
+		$parent.removeClass('has-success');
+
+	}).on('success.form.fv', function(e) {
+
+		e.preventDefault();
+		
+		var $form = $(e.target);
+		var $button = $form.data('formValidation').getSubmitButton(),
+		btnType = $button.attr('value'), url = null, isReload = null, redirectUrl = null;
+		if (btnType == "Update") {
+			url = "updateDataSet.sp";
+			isReload = true;
+		} else if (btnType == "Submit") {
+			url = "saveDataSet.sp";
+			isReload = false;
+			redirectUrl = "listDataSet.sp"
+		}
+		trimFormInputs();
+
+		var jsondata = submitFrm($form, url);
+		redirectToLoginIfNotAJsonObject(jsondata);
+		var isSuccess = displayDialogOnFormSubmit(jsondata, $form, isReload, redirectUrl);
+		
+		if(isSuccess)
+   			 resetFormValidation(formObj);
+   		else
+   			 resetAll(formObj);
+	});
 });
 
 
 
-function updateDataSet(id, dataSetName, taskType, fileName) {
+function editDataSet(id, dataSetName, taskType, fileName) {
 	$("#dataSetForm #dataSetId").val(id)
 	$("#dataSetForm #dataSetName").val(dataSetName);
 	$("#dataSetForm #taskType").val(taskType);
@@ -200,3 +259,5 @@ function fileChange(){
         $("#fileLabel").text(theSplit[theSplit.length-1]);
     }
 }
+
+
