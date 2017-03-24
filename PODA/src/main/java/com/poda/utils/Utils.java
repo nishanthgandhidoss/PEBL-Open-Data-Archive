@@ -94,14 +94,19 @@ public class Utils {
 		
 	}
 	
-	public static String uploadFile(CommonsMultipartFile file) {
+	public static String uploadFile(CommonsMultipartFile file, Long studyId) {
 		
 		String filePath = null;
 		try {
 			byte[] bytes = file.getBytes();
-	        Path path = Paths.get(Constants.STUDY_FILE_UPLOAD_PATH + file.getOriginalFilename());
-	        Files.write(path, bytes);
-	        filePath = path.toString();
+			filePath = Constants.STUDY_FILE_UPLOAD_PATH + studyId.toString() + "//";
+			Path path = Paths.get(filePath);
+			if(Files.notExists(path)) {
+				Files.createDirectory(path);
+			} 
+			path = Paths.get(filePath + file.getOriginalFilename());
+			Files.write(path, bytes);
+			filePath = path.toString();
 		} catch(IOException ex) {
 			ex.printStackTrace();
 		}

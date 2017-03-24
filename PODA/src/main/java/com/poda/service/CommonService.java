@@ -310,7 +310,7 @@ public class CommonService {
 		
 		CommonsMultipartFile dataFile = dataSetBO.getFile();
 		if(!dataFile.isEmpty()) {
-			String filePath = Utils.uploadFile(dataFile);
+			String filePath = Utils.uploadFile(dataFile, studyId);
 			if(filePath == null) {
 				return -1;
 			}

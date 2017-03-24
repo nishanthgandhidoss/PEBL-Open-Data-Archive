@@ -270,7 +270,7 @@
 						
 						<div class="form-group">
 							<label class="control-label">Task type</label> 
-						 	<select name="taskType" class="form-control">
+						 	<select name="taskType" id="taskType" class="form-control">
 						    	<option value="" selected="selected">Select</option>
 						    	<c:forEach items="${taskTypeList}" var="taskTypeBO">
 						    		<option value="${taskTypeBO.id}">${taskTypeBO.taskType}</option>
