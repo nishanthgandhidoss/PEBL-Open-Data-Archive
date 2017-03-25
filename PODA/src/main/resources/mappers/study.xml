@@ -112,4 +112,23 @@
 	    </if>
 	</select>
 	
+	<update id="updateDataSet" parameterType="dataSetBo">
+		UPDATE tbl_dataset
+		SET
+		<if test="fileName != null">
+			FILE_NAME = #{fileName}, 
+			FILE_FORMAT = #{fileFormat},
+			FILE_PATH = #{filePath},
+			FILE_SIZE = #{fileSize},
+			CONTENT_TYPE = #{contentType},
+		</if> 
+		DATASET_NAME = #{dataSetName},
+		TASK_TYPE = #{taskType},
+		LAST_MODIFIED_BY = #{lastModifiedBy},
+		LAST_MODIFIED_DATE = #{lastModifiedDate},
+		LAST_MODIFIED_IP = #{lastModifiedIp}
+		WHERE 
+		ID = #{id}
+	</update>
+	
 </mapper>

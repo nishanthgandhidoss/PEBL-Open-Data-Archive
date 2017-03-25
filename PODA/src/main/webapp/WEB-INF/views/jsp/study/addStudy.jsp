@@ -86,7 +86,7 @@
 			<form:form id="studyForm" enctype="multipart/form-data" method="POST">
 				
 				<!-- Hidden Variables -->
-				<form:hidden path="id"/>
+				<form:hidden path="id" class="studyId"/>
 				<form:hidden path="isDatasetsChanged"/>
 				
 				<div class="form-group">
@@ -263,6 +263,7 @@
 				<form id="dataSetForm" enctype="multipart/form-data" method="POST">
 					<div class="modal-body">
 						<input name="id" id="dataSetId" type="hidden"/>
+						<input name="studyId" class="studyId" type="hidden"/>
 						<div class="form-group">
 							<label class="control-label">Dataset Name </label> 
 						 	<input name="dataSetName" id="dataSetName" class="form-control"/>

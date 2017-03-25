@@ -229,7 +229,7 @@ function showDialogWithPageReload(dialogType,btnStyle,msg,formObj,isSuccess,cmd)
 	
 	function trimFormInputs(){
 	  
-	  $("input, textarea").each(function(){
+	  $("input:not(:file), textarea").each(function(){
 		   $(this).val(jQuery.trim($(this).val()));
      });	
 	  

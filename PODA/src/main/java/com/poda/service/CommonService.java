@@ -309,20 +309,19 @@ public class CommonService {
 	public int insertDataset(DataSetBO dataSetBO, Long studyId) throws Exception {
 		
 		CommonsMultipartFile dataFile = dataSetBO.getFile();
-		if(!dataFile.isEmpty()) {
+		if(dataFile != null) {
 			String filePath = Utils.uploadFile(dataFile, studyId);
 			if(filePath == null) {
 				return -1;
 			}
 			dataSetBO.setFilePath(filePath);
+			String fileName = dataFile.getOriginalFilename();
+			dataSetBO.setFileName(fileName);
+			dataSetBO.setFileFormat(fileName.substring(fileName.lastIndexOf(".") + 1).trim());
+			dataSetBO.setFileSize(dataFile.getSize());
+			dataSetBO.setContentType(dataFile.getContentType());
 		}
-		
-		String fileName = dataFile.getOriginalFilename();
-		dataSetBO.setFileName(fileName);
-		dataSetBO.setFileFormat(fileName.substring(fileName.lastIndexOf(".") + 1).trim());
-		dataSetBO.setFileSize(dataFile.getSize());
-		dataSetBO.setContentType(dataFile.getContentType());
-		
+
 		HashMap<String,Object> inputMap= new HashMap<String,Object>();
 		inputMap.put("studyId", studyId);
 		inputMap.put("dataSetBO", dataSetBO);
@@ -333,6 +332,27 @@ public class CommonService {
 	
 	public DataSetBO updateDataSet(DataSetBO dataSetBO) throws Exception {
 		
+		CommonsMultipartFile dataFile = dataSetBO.getFile();
+		if(dataFile != null) {
+			String filePath = Utils.uploadFile(dataFile, dataSetBO.getStudyId());
+			if(filePath == null) {
+				dataSetBO.setReturnId(-1);
+			}
+			dataSetBO.setFilePath(filePath);
+			String fileName = dataFile.getOriginalFilename();
+			dataSetBO.setFileName(fileName);
+			dataSetBO.setFileFormat(fileName.substring(fileName.lastIndexOf(".") + 1).trim());
+			dataSetBO.setFileSize(dataFile.getSize());
+			dataSetBO.setContentType(dataFile.getContentType());
+		}
+		
+		String queryId = "updateDataSet";
+		int returnId = getCommonDAO().update(queryId, dataSetBO);
+		dataSetBO.setReturnId(returnId);
+		if(returnId < 1) {
+			dataSetBO.setReturnMsg(getErrorMSg());
+			throw new Exception("Error updating dataset Details");
+		}
 		return dataSetBO;
 	}
 }	

@@ -224,10 +224,22 @@ $(document).ready(function() {
 			redirectUrl = "listDataSet.sp"
 		}
 		trimFormInputs();
-
-		var jsondata = submitFrm($form, url);
-		redirectToLoginIfNotAJsonObject(jsondata);
-		var isSuccess = displayDialogOnFormSubmit(jsondata, $form, isReload, redirectUrl);
+		var frmdata = new FormData($(this)[0]);
+    	var jsonData;
+        $.ajax({
+	        type: "POST",
+	        url: url,
+	        data:frmdata,
+	        cache: false,
+	        async: false,
+	        contentType: false,
+            processData: false,
+	        success: function (data) {
+	        	jsonData=data;
+	        }
+        });
+		redirectToLoginIfNotAJsonObject(jsonData);
+		var isSuccess = displayDialogOnFormSubmit(jsonData, $form, isReload, redirectUrl);
 		
 		if(isSuccess)
    			 resetFormValidation(formObj);
@@ -237,9 +249,9 @@ $(document).ready(function() {
 });
 
 
-
 function editDataSet(id, dataSetName, taskType, fileName) {
-	$("#dataSetForm #dataSetId").val(id)
+	$("#dataSetForm #dataSetId").val(id);
+	$("#dataSetForm .studyId").val($(".studyId").val());
 	$("#dataSetForm #dataSetName").val(dataSetName);
 	$("#dataSetForm #taskType").val(taskType);
 	$("#fileLabel").text(fileName);
