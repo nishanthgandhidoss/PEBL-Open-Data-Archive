@@ -200,10 +200,10 @@
 				    		<form:input class="form-control" path="dataSetBO[0].file" type="file"/>
 				    	</div>
 				        <div class="col-xs-4">
-				            <form:input class="form-control" path="dataSetBO[0].dataSetName"/>
+				            <form:input class="form-control empty" path="dataSetBO[0].dataSetName"/>
 				        </div>
 				        <div class="col-xs-3">
-				            <form:select path="dataSetBO[0].taskType" class="form-control">
+				            <form:select path="dataSetBO[0].taskType" class="form-control empty">
 						    	<form:option value="" selected="selected">Select</form:option>
 						    	<form:options items="${taskTypeList}" itemLabel="taskType" itemValue="id"/>
 						    </form:select>
@@ -292,4 +292,12 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Script for empty dataset details text -->
+	<script>
+		$('#addDatasetBtn').click(function() {
+			$(".empty").val("");
+		});
+	</script>
+	
 </c:if>
