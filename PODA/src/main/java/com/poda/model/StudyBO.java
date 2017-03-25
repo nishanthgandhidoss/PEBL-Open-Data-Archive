@@ -21,6 +21,7 @@ public class StudyBO extends CommonBO{
 	private String contact;
 	private String siteCollected;
 	private Integer isDatasetsChanged = 0;
+	private Long downloadCount = 0L;
 	
 	@Autowired
 	private ArrayList<DataSetBO> dataSetBO;
@@ -90,6 +91,12 @@ public class StudyBO extends CommonBO{
 	}
 	public void setIsDatasetsChanged(Integer isDatasetsChanged) {
 		this.isDatasetsChanged = isDatasetsChanged;
+	}
+	public Long getDownloadCount() {
+		return downloadCount;
+	}
+	public void setDownloadCount(Long downloadCount) {
+		this.downloadCount = downloadCount;
 	}
 	
 }

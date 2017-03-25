@@ -57,5 +57,10 @@ public interface Constants {
 	String LEADING_ZERO_FORMAT = "%05d"; 
 	
 	String STUDY_FILE_UPLOAD_PATH = "F://temp//";
+	
+	String ACTION_DOWNLOAD = "download";
+	
+	String ACTION_LIST_DATASET = "listDataSet";
+	
 }
 

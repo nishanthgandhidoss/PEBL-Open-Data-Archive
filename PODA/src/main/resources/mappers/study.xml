@@ -131,4 +131,12 @@
 		ID = #{id}
 	</update>
 	
+	<update id="incrementDownloadCount" parameterType="Map">
+		UPDATE #{tableName}
+		SET
+		DOWNLOAD_COUNT = DOWNLOAD_COUNT + 1
+		WHERE
+		ID = #{id}
+	</update>
+	
 </mapper>

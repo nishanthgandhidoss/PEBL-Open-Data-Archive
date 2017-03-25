@@ -101,6 +101,8 @@ public class StudyController {
 		LinkedHashMap<String,String> actionMap= new LinkedHashMap<String,String>();
 		
 		actionMap.put(Constants.ACTION_EDIT, "/editStudy.sp");
+		actionMap.put(Constants.ACTION_DOWNLOAD, "/downloadStudy.sp");
+		actionMap.put(Constants.ACTION_LIST_DATASET, "/listDataSet.sp");
 		actionMap.put(Constants.ACTION_DELETE, "/deleteStudy.sp");
 		
 		String url[]={"addStudy.sp","Add Study"};
@@ -193,6 +195,31 @@ public class StudyController {
 			studyService.writeToJSON(res, dataSetBO);
 		 }
 		 logger.info("Outside updateDataSet");
+	}
+	
+	@RequestMapping(value="/downloadStudy", method = RequestMethod.POST)
+	public void downloadStudy(StudyBO studyBO, ModelAndView mv, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		
+        logger.info("Inside downloadStudy");
+		
+		try {
+			String currentUser = studyBO.getCreatedBy();
+			studyService.setDefaultvalues(req, studyBO);
+			boolean isCreatedUser = currentUser.equals(studyBO.getCreatedBy());
+			studyBO = studyService.downloadStudy(studyBO, isCreatedUser);
+			studyBO.setReturnMsg("Your download started");
+			
+		}catch(Exception ex) {
+			 
+			ex.printStackTrace();
+			studyBO.setReturnId(-1);
+			if(studyBO.getReturnMsg()==null)
+				studyBO.setReturnMsg(studyService.getErrorMSg());
+			 
+		}finally{
+			studyService.writeToJSON(res, studyBO);
+		 }
+		 logger.info("Outside downloadStudy");
 	}
 	
 }

@@ -8,6 +8,8 @@
 <spring:eval var="rejectConstant" expression="T(com.poda.utils.Constants).ACTION_REJECT"/>
 <spring:eval var="editConstant" expression="T(com.poda.utils.Constants).ACTION_EDIT"/>
 <spring:eval var="deleteConstant" expression="T(com.poda.utils.Constants).ACTION_DELETE"/>
+<spring:eval var="downloadConstant" expression="T(com.poda.utils.Constants).ACTION_DOWNLOAD"/>
+<spring:eval var="listDataSetConstant" expression="T(com.poda.utils.Constants).ACTION_LIST_DATASET"/>
 
 <link rel="stylesheet" href="${webapp_path}/css/datatable/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="${webapp_path}/css/datatable/responsive.bootstrap.min.css">
@@ -86,7 +88,7 @@ $(document).ready(function() {
 <form id="listFormId">
 
 <input type="hidden" id="hiddenObjId" name="id"/>
-<input type="hidden" id="hiddenApprovalStatus" name="isApproved"/>
+<input type="hidden" id="hiddenObjCreatedBy" name="createdBy"/>
 <div class="center"><h4>${LIST_HEADER}</h4></div>
 
    <table id="listTableID" class="table  table-striped table-bordered dt-responsive compact nowrap" cellspacing="0" width="100%">
@@ -129,13 +131,23 @@ $(document).ready(function() {
 		                   <!--   Edit -->
 		              
 		               <c:if test="${actionMp.key==editConstant && obj.isEditable=='Y'}">
-		               <a href="javascript:void(0)"  onclick="edit(${obj.id},'${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Edit"><span style="color:#3291d1;padding-left:10px" class="glyphicon glyphicon-edit"></span></a>
+		               		<a href="javascript:void(0)"  onclick="edit(${obj.id},'${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Edit"><span style="color:#3291d1;padding-left:10px" class="glyphicon glyphicon-edit"></span></a>
+		               </c:if>
+		             
+		             <!-- Download -->
+		               <c:if test="${actionMp.key==downloadConstant}">
+		               		<a href="javascript:void(0)"  onclick="downloadFile(${obj.id},'${obj.createdBy}','${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Download"><span style="color:#108f3f;padding-left:10px" class="glyphicon glyphicon-download-alt"></span></a>
+		               </c:if>
+		            
+		            <!-- list DataSet -->
+		               <c:if test="${actionMp.key==listDataSetConstant}">
+		               		<a href="javascript:void(0)"  onclick="listDataSet(${obj.id},'${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Dataset List"><span style="color:#a5520b;padding-left:10px" class="glyphicon glyphicon-list"></span></a>
 		               </c:if>
 		             
 		                    <!--   Delete -->
 		                    
 		               <c:if test="${actionMp.key==deleteConstant && obj.isRemovable=='Y'}">
-	                   <a href="javascript:void(0)" onclick="deleteAction(${obj.id},'${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Delete"><span style="color:#dc446e;padding-left:10px" class="glyphicon glyphicon-trash"></span></a>
+	                   		<a href="javascript:void(0)" onclick="deleteAction(${obj.id},'${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Delete"><span style="color:#dc446e;padding-left:10px" class="glyphicon glyphicon-trash"></span></a>
 	                   </c:if>
 	                   
                   </c:forEach>   
@@ -209,6 +221,15 @@ $(document).ready(function() {
 			});
 	   });
 	}
+   
+   function downloadFile(id, createdBy, url) {
+	   $("#hiddenObjId").val(id);
+	   $("#hiddenObjCreatedBy").val(createdBy);
+	   $("#listFormId").attr('action', url);
+	   $("#listFormId").attr('method', "POST");
+	   var jsonData = $("#listFormId").submit();
+	   alert(jsonData);
+   }
    
    function updateApprovalStatusAjax(url){
 	   var formObj = $("#listFormId");

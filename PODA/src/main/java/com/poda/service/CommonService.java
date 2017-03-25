@@ -355,4 +355,27 @@ public class CommonService {
 		}
 		return dataSetBO;
 	}
+	
+	public StudyBO downloadStudy(StudyBO studyBO, Boolean isCreatedUser) throws Exception {
+		
+		String queryId = "downloadStudy";
+		ArrayList<StudyBO> studyList = getStudyList(studyBO, false);
+		studyBO = studyList.get(0);
+		Utils.download(studyBO);
+		if(!isCreatedUser)
+			incrementDownloadCount(studyBO.getId());
+		return studyBO;
+	}
+	
+	public void incrementDownloadCount(Long studyId) throws Exception {
+		
+		String queryId = "incrementDownloadCount";
+		HashMap<String, Object> inputMap = new HashMap<String, Object>();
+		inputMap.put("id", studyId);
+		inputMap.put("tableName", "tbl_study");
+		int returnId = getCommonDAO().update(queryId, inputMap);
+		if(returnId < 1) {
+			throw new Exception("Increment download count failed");
+		}
+	}
 }	

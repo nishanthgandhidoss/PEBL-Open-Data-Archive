@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.poda.model.StudyBO;
 import com.poda.model.UserBO;
 import com.poda.utils.Constants;
 
@@ -113,6 +114,13 @@ public class Utils {
 		return filePath;
 	}
 	
+	public static void download(Object obj) {
+
+			if(obj.getClass().equals("StudyBO"))
+				System.out.println("I am in");
+		
+	}
+
 	public static ArrayList<String> getLoggedInUserNameList() {
 		return loggedInUserNameList;
 	}
@@ -121,4 +129,5 @@ public class Utils {
 		Utils.loggedInUserNameList = loggedInUserNameList;
 	}
 
+	
 }
