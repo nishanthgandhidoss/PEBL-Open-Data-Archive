@@ -242,7 +242,7 @@ public class StudyController {
 		
 		actionMap.put(Constants.ACTION_EDIT, "/editDataSet.sp");
 		actionMap.put(Constants.ACTION_DOWNLOAD, "/downloadDataSet.sp");
-		actionMap.put(Constants.ACTION_DELETE, "/deleteDataSet.sp");
+		actionMap.put(Constants.ACTION_DELETE, "/deleteDataSet.sp"); 
 		
 		String url[]={"addStudy.sp","Add Dataset"};
 		  
