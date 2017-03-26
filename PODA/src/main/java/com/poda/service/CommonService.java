@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -318,7 +319,7 @@ public class CommonService {
 			String fileName = dataFile.getOriginalFilename();
 			dataSetBO.setFileName(fileName);
 			dataSetBO.setFileFormat(fileName.substring(fileName.lastIndexOf(".") + 1).trim());
-			dataSetBO.setFileSize(dataFile.getSize());
+			dataSetBO.setFileSize(FileUtils.byteCountToDisplaySize(dataFile.getSize()));
 			dataSetBO.setContentType(dataFile.getContentType());
 		}
 
@@ -342,7 +343,7 @@ public class CommonService {
 			String fileName = dataFile.getOriginalFilename();
 			dataSetBO.setFileName(fileName);
 			dataSetBO.setFileFormat(fileName.substring(fileName.lastIndexOf(".") + 1).trim());
-			dataSetBO.setFileSize(dataFile.getSize());
+			dataSetBO.setFileSize(FileUtils.byteCountToDisplaySize(dataFile.getSize()));
 			dataSetBO.setContentType(dataFile.getContentType());
 		}
 		

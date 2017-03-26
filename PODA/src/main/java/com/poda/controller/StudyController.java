@@ -222,4 +222,39 @@ public class StudyController {
 		 logger.info("Outside downloadStudy");
 	}
 	
+	@RequestMapping(value = "/listDataSet", method = RequestMethod.GET)
+	public ModelAndView listDataSet(ModelAndView mv, HttpServletRequest req, StudyBO studyBO) {
+	 
+		logger.info("Inside listUsers");
+		
+		List<DataSetBO> dataSetList = null;
+		List<String> propertiesList = null;
+		try {
+			studyService.setDefaultvalues(req, studyBO);
+			dataSetList = studyService.getDataSetList(null, studyBO.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ModelAndView("redirect:" + "404error.sp");
+		}
+	
+		propertiesList=studyService.getDataSetRequiredPropertiesList(); //Change
+		LinkedHashMap<String,String> actionMap= new LinkedHashMap<String,String>();
+		
+		actionMap.put(Constants.ACTION_EDIT, "/editDataSet.sp");
+		actionMap.put(Constants.ACTION_DOWNLOAD, "/downloadDataSet.sp");
+		actionMap.put(Constants.ACTION_DELETE, "/deleteDataSet.sp");
+		
+		String url[]={"addStudy.sp","Add Dataset"};
+		  
+		mv.addObject("PAGE_TITLE", studyBO.getStudyName() + "Dataset List");
+		mv.addObject("LIST_HEADER", studyBO.getStudyName() + "Dataset List");
+		mv.addObject("ADD_URL", url);
+		mv.addObject("TBL_HEADER_LIST", studyService.getDataSetHeaderList()); // Change
+		mv.addObject("ACTIONS", actionMap);
+		mv.addObject("OBJECT_LIST", dataSetList);
+		mv.addObject("PROPERTIES_LIST", propertiesList);
+		mv.setViewName("dataSetList");
+		return mv;
+	}
+	
 }

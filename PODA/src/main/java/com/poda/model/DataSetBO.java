@@ -17,7 +17,7 @@ public class DataSetBO extends CommonBO{
 	private String fileFormat;
 	private String filePath;
 	private String contentType;
-	private Long fileSize;
+	private String fileSize;
 	private Long studyId;
 	private String dataSetName;
 	private Integer taskType;
@@ -80,10 +80,10 @@ public class DataSetBO extends CommonBO{
 	public void setStudyId(Long studyId) {
 		this.studyId = studyId;
 	}
-	public Long getFileSize() {
+	public String getFileSize() {
 		return fileSize;
 	}
-	public void setFileSize(long fileSize) {
+	public void setFileSize(String fileSize) {
 		this.fileSize = fileSize;
 	}
 	public Integer getIsEnabled() {

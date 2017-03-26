@@ -93,6 +93,7 @@
 		DATASET_NAME as dataSetName,
 		TASK_TYPE as taskType,
 		if(ENABLED = 1, "Yes", "No") as isEnabledString,
+		DOWNLOAD_COUNT as downloadCount,
 		CREATED_BY as createdBy,
 		CREATED_DATE as createdDate,
 		CREATED_IP as createdIp

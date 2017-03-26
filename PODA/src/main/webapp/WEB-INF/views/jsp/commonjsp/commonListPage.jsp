@@ -89,6 +89,7 @@ $(document).ready(function() {
 
 <input type="hidden" id="hiddenObjId" name="id"/>
 <input type="hidden" id="hiddenObjCreatedBy" name="createdBy"/>
+<input type="hidden" id="hiddenObjStudyName" name="studyName"/>
 <div class="center"><h4>${LIST_HEADER}</h4></div>
 
    <table id="listTableID" class="table  table-striped table-bordered dt-responsive compact nowrap" cellspacing="0" width="100%">
@@ -141,7 +142,7 @@ $(document).ready(function() {
 		            
 		            <!-- list DataSet -->
 		               <c:if test="${actionMp.key==listDataSetConstant}">
-		               		<a href="javascript:void(0)"  onclick="listDataSet(${obj.id},'${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Dataset List"><span style="color:#a5520b;padding-left:10px" class="glyphicon glyphicon-list"></span></a>
+		               		<a href="javascript:void(0)"  onclick="listDataSet(${obj.id},'${obj.studyName})','${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Dataset List"><span style="color:#a5520b;padding-left:10px" class="glyphicon glyphicon-list"></span></a>
 		               </c:if>
 		             
 		                    <!--   Delete -->
@@ -228,7 +229,15 @@ $(document).ready(function() {
 	   $("#listFormId").attr('action', url);
 	   $("#listFormId").attr('method', "POST");
 	   var jsonData = $("#listFormId").submit();
-	   alert(jsonData);
+   }
+   
+   function listDataSet(id, studyName, url) {
+	   alert(id + " " + url);
+	   $("#hiddenObjId").val(id);
+	   $("#hiddenObjStudyName").val(studyName);
+	   $("#listFormId").attr('acrion', url);
+	   $("#listFromId").attr('method', "POST");
+	   /* $("#listFormId").submit(); */
    }
    
    function updateApprovalStatusAjax(url){
