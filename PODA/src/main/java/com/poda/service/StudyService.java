@@ -77,6 +77,7 @@ public class StudyService extends CommonService{
 		headerList.add("Publication");
 		headerList.add("Contact");
 		headerList.add("Site Colledted");
+		headerList.add("Downloads");
 		headerList.add("Study Description");
 		return headerList;
 	}

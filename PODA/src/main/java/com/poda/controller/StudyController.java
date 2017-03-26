@@ -245,15 +245,17 @@ public class StudyController {
 		actionMap.put(Constants.ACTION_DELETE, "/deleteDataSet.sp"); 
 		
 		String url[]={"addStudy.sp","Add Dataset"};
-		  
-		mv.addObject("PAGE_TITLE", studyBO.getStudyName() + "Dataset List");
-		mv.addObject("LIST_HEADER", studyBO.getStudyName() + "Dataset List");
+		
+		String title = studyBO.getStudyName() + " " + "Dataset List";
+		
+		mv.addObject("PAGE_TITLE", title);
+		mv.addObject("LIST_HEADER", title);
 		mv.addObject("ADD_URL", url);
 		mv.addObject("TBL_HEADER_LIST", studyService.getDataSetHeaderList()); // Change
 		mv.addObject("ACTIONS", actionMap);
 		mv.addObject("OBJECT_LIST", dataSetList);
 		mv.addObject("PROPERTIES_LIST", propertiesList);
-		mv.setViewName("dataSetList");
+		mv.setViewName("listDataSet");
 		return mv;
 	}
 	

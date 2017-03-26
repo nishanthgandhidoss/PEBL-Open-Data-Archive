@@ -4,12 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<spring:eval var="approveConstant" expression="T(com.poda.utils.Constants).ACTION_APPROVE"/>
-<spring:eval var="rejectConstant" expression="T(com.poda.utils.Constants).ACTION_REJECT"/>
 <spring:eval var="editConstant" expression="T(com.poda.utils.Constants).ACTION_EDIT"/>
 <spring:eval var="deleteConstant" expression="T(com.poda.utils.Constants).ACTION_DELETE"/>
 <spring:eval var="downloadConstant" expression="T(com.poda.utils.Constants).ACTION_DOWNLOAD"/>
-<spring:eval var="listDataSetConstant" expression="T(com.poda.utils.Constants).ACTION_LIST_DATASET"/>
 
 <link rel="stylesheet" href="${webapp_path}/css/datatable/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="${webapp_path}/css/datatable/responsive.bootstrap.min.css">
@@ -88,8 +85,6 @@ $(document).ready(function() {
 <form id="listFormId">
 
 <input type="hidden" id="hiddenObjId" name="id"/>
-<input type="hidden" id="hiddenObjCreatedBy" name="createdBy"/>
-<input type="hidden" id="hiddenObjStudyName" name="studyName"/>
 <div class="center"><h4>${LIST_HEADER}</h4></div>
 
    <table id="listTableID" class="table  table-striped table-bordered dt-responsive compact nowrap" cellspacing="0" width="100%">
@@ -113,23 +108,8 @@ $(document).ready(function() {
                 <td>${obj.id}</td>
                 
                 <td>
-                   <%--  <a href="javascript:void(0)" onclick="loadQC(${grnObj.grnNo},${grnObj.noOfBags})" class="tooltipLink" data-toggle="tooltip" title="Quality Check"><span style="color:#4caf50" class="glyphicon glyphicon-check"></span></a>
-	                <a href="javascript:void(0)" onclick="loadBarcodeImg(${grnObj.grnNo})"  class="tooltipLink"  title="Print GRN Barcode"><span style="color:#333"class="glyphicon glyphicon-barcode"></span></a>
-	                <a href="javascript:void(0)" onclick="" class="tooltipLink" data-toggle="tooltip" title="Edit"><span style="color:#3291d1" class="glyphicon glyphicon-edit"></span></a>
-	                <a href="javascript:void(0)" class="tooltipLink" data-toggle="tooltip" title="Delete"><span style="color:#dc446e" class="glyphicon glyphicon-trash"></span></a> --%>
-	               <c:forEach var="actionMp" items="${ACTIONS}">
-	               
-	                        <!--   Approve/reject -->
-	               
-	                  <c:if test="${actionMp.key==approveConstant && obj.isApproved=='N'}">
-		                  <a href="javascript:void(0)" onclick="approve(${obj.id},'${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Approve"><span style="color:#4caf50;padding-left:10px" class="glyphicon glyphicon-thumbs-up"></span></a>
-		              </c:if>
-		              
-		              <c:if test="${actionMp.key==approveConstant && obj.isApproved=='Y'}">
-		                   <a href="javascript:void(0)" onclick="reject(${obj.id},'${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Reject"><span style="color:#dc446e;padding-left:10px" class="glyphicon glyphicon-thumbs-down"></span></a>
-		              </c:if>
-		              
-		                   <!--   Edit -->
+                   <c:forEach var="actionMp" items="${ACTIONS}">
+	                   <!--   Edit -->
 		              
 		               <c:if test="${actionMp.key==editConstant && obj.isEditable=='Y'}">
 		               		<a href="javascript:void(0)"  onclick="edit(${obj.id},'${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Edit"><span style="color:#3291d1;padding-left:10px" class="glyphicon glyphicon-edit"></span></a>
@@ -140,12 +120,7 @@ $(document).ready(function() {
 		               		<a href="javascript:void(0)"  onclick="downloadFile(${obj.id},'${obj.createdBy}','${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Download"><span style="color:#108f3f;padding-left:10px" class="glyphicon glyphicon-download-alt"></span></a>
 		               </c:if>
 		            
-		            <!-- list DataSet -->
-		               <c:if test="${actionMp.key==listDataSetConstant}">
-		               		<a href="javascript:void(0)"  onclick="listDataSet(${obj.id},'${obj.studyName}','${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Dataset List"><span style="color:#a5520b;padding-left:10px" class="glyphicon glyphicon-list"></span></a>
-		               </c:if>
-		             
-		                    <!--   Delete -->
+		               <!--   Delete -->
 		                    
 		               <c:if test="${actionMp.key==deleteConstant && obj.isRemovable=='Y'}">
 	                   		<a href="javascript:void(0)" onclick="deleteAction(${obj.id},'${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Delete"><span style="color:#dc446e;padding-left:10px" class="glyphicon glyphicon-trash"></span></a>
@@ -184,21 +159,6 @@ $(document).ready(function() {
   
    <script>
    
-   function approve(id,url){
-	  
-	    $("#hiddenObjId").val(id);
-	    $("#hiddenApprovalStatus").val("Y");
-	    updateApprovalStatusAjax(url);
-   }
-   
-   
-   function reject(id,url){
-	   
-	    $("#hiddenObjId").val(id);
-	    $("#hiddenApprovalStatus").val("N");
-	    updateApprovalStatusAjax(url);
-   }
-   
    function edit(id,url){
 	   $("#hiddenObjId").val(id);
 	   $("#listFormId").attr('action', url);
@@ -231,23 +191,6 @@ $(document).ready(function() {
 	   var jsonData = $("#listFormId").submit();
    }
    
-   function listDataSet(id, studyName, url) {
-	   $("#hiddenObjId").val(id);
-	   $("#hiddenObjStudyName").val(studyName);
-	   $("#hiddenObjCreatedBy, #listTableID_length").remove();
-	   $("#listFormId").attr('action', url);
-	   $("#listFromId").attr('method', "POST");
-	   $("#listFormId").submit();
-   }
-   
-   function updateApprovalStatusAjax(url){
-	   var formObj = $("#listFormId");
-	   var actionUrl="${webapp_path}"+url;
-	   var jsonData=submitFrm(formObj,actionUrl);
-	   var isSuccess = displayDialogOnFormSubmit(jsonData, formObj);
-	   
-   }
-   
    function displayDialogOnFormSubmit(jObject,formObj){
 		
        	var isSuccess;
@@ -269,9 +212,7 @@ $(document).ready(function() {
 		 showDialogWithPageReload(dialogType,btnStyle,msg,formObj,isSuccess)
 	 	return isSuccess;
 	}
-   
-   
-   
+
    </script>
    
                
