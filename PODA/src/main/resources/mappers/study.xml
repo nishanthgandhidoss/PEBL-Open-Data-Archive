@@ -94,6 +94,7 @@
 		TASK_TYPE as taskType,
 		if(ENABLED = 1, "Yes", "No") as isEnabledString,
 		DOWNLOAD_COUNT as downloadCount,
+		VERSION as version,
 		CREATED_BY as createdBy,
 		CREATED_DATE as createdDate,
 		CREATED_IP as createdIp
@@ -122,6 +123,7 @@
 			FILE_PATH = #{filePath},
 			FILE_SIZE = #{fileSize},
 			CONTENT_TYPE = #{contentType},
+			VERSION = VERSION + 1,
 		</if> 
 		DATASET_NAME = #{dataSetName},
 		TASK_TYPE = #{taskType},

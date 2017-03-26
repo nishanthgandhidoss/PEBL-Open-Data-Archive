@@ -249,9 +249,14 @@ $(document).ready(function() {
 });
 
 
-function editDataSet(id, dataSetName, taskType, fileName) {
+function editDataSet(id, version, dataSetName, taskType, fileName) {
 	$("#dataSetForm #dataSetId").val(id);
 	$("#dataSetForm .studyId").val($(".studyId").val());
+	$("#dataSetForm #version").val(version);
+	if(version > 1) {
+     	$("#currentVersion").removeClass("hidden");
+     	$("#currentVersion").append(version);
+    }
 	$("#dataSetForm #dataSetName").val(dataSetName);
 	$("#dataSetForm #taskType").val(taskType);
 	$("#fileLabel").text(fileName);
@@ -267,8 +272,12 @@ function fileChange(){
     }
     else
     {
-        var theSplit = a.value.split('\\');
+        var theSplit = a.value.split('\\'), version = $("#version").val();
         $("#fileLabel").text(theSplit[theSplit.length-1]);
+        if(version > 1) {
+        	$("#currentVersion").removeClass("hidden");
+        	$("#currentVersion").append(version);
+        }
     }
 }
 

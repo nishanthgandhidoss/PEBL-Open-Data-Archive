@@ -160,7 +160,7 @@
 				    						<td colspan="10">${dataSet.dataSetName}</td>
 				    						<td colspan="2">
 				    							<c:if test="${dataSet.isEditable=='Y'}">
-									               <a href="javascript:void(0)" onclick="editDataSet('${dataSet.id}', '${dataSet.dataSetName}', '${dataSet.taskType}', '${dataSet.fileName}')" class="tooltipLink" data-toggle="tooltip" title="Edit"><span style="color:#3291d1;padding-left:10px" class="glyphicon glyphicon-edit"></span></a>
+									               <a href="javascript:void(0)" onclick="editDataSet('${dataSet.id}', '${dataSet.version}', '${dataSet.dataSetName}', '${dataSet.taskType}', '${dataSet.fileName}')" class="tooltipLink" data-toggle="tooltip" title="Edit"><span style="color:#3291d1;padding-left:10px" class="glyphicon glyphicon-edit"></span></a>
 									            </c:if>
 									            <c:if test="${dataSet.isRemovable=='Y'}">
 								                   <a href="javascript:void(0)" class="tooltipLink" data-toggle="tooltip" title="Delete"><span style="color:#dc446e;padding-left:10px" class="glyphicon glyphicon-trash"></span></a>
@@ -264,6 +264,7 @@
 					<div class="modal-body">
 						<input name="id" id="dataSetId" type="hidden"/>
 						<input name="studyId" class="studyId" type="hidden"/>
+						<input name="version" id="version" type="hidden"/>
 						<div class="form-group">
 							<label class="control-label">Dataset Name </label> 
 						 	<input name="dataSetName" id="dataSetName" class="form-control"/>
@@ -281,7 +282,8 @@
 							<label class="control-label">File </label> 
 							<input class="hidden" type="file" id="file" name="file" onchange="fileChange()"><br>
 						 	<a class="btn btn-primary" id="dummyBrowse">Browse</a>
-						 	<label class="control-label" id="fileLabel" style="padding-left: 10px;">Choose file</label>
+						 	<label class="control-label" id="fileLabel" style="padding-left: 10px;" title="File Name">Choose file</label>
+						 	<span id="currentVersion" class="hidden" title="Version #"> <b>|</b> V </span>
 						</div>
 					</div>
 					<div class="modal-footer">

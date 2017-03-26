@@ -60,7 +60,7 @@ public class StudyService extends CommonService{
 	}
 	
 	public List<String> getDataSetRequiredPropertiesList() {
-		String includedProps[]={"createdDate","isEnabledString","dataSetName","taskType","downloadCount","fileSize","fileFormat"};
+		String includedProps[]={"createdDate","isEnabledString","dataSetName","taskType","version","downloadCount","fileSize","fileFormat"};
 		return Arrays.asList(includedProps);
 	}
 	
@@ -91,6 +91,7 @@ public class StudyService extends CommonService{
 		headerList.add("Public");
 		headerList.add("Dataset Name");
 		headerList.add("Task type");
+		headerList.add("Version #");
 		headerList.add("Downloads");
 		headerList.add("Size");
 		headerList.add("Format");

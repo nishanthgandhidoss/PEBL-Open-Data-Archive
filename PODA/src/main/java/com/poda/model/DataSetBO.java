@@ -25,6 +25,7 @@ public class DataSetBO extends CommonBO{
 	private Integer isEnabled = 0;
 	private String isEnabledString;
 	private Long downloadCount = 0L;
+	private Long version;
 	
 	public CommonsMultipartFile getFile() {
 		return file;
@@ -103,6 +104,12 @@ public class DataSetBO extends CommonBO{
 	}
 	public void setDownloadCount(Long downloadCount) {
 		this.downloadCount = downloadCount;
+	}
+	public Long getVersion() {
+		return version;
+	}
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 	
 }
