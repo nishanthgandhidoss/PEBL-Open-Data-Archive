@@ -256,6 +256,8 @@ function editDataSet(id, version, dataSetName, taskType, fileName) {
 	if(version > 1) {
      	$("#currentVersion").removeClass("hidden");
      	$("#currentVersion").append(version);
+    } else {
+    	$("#currentVersion").addClass("hidden");
     }
 	$("#dataSetForm #dataSetName").val(dataSetName);
 	$("#dataSetForm #taskType").val(taskType);
@@ -277,6 +279,8 @@ function fileChange(){
         if(version > 1) {
         	$("#currentVersion").removeClass("hidden");
         	$("#currentVersion").append(version);
+        } else {
+        	$("#currentVersion").addClass("hidden");
         }
     }
 }
