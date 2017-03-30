@@ -83,33 +83,36 @@
 	
 	<select id="getDataSetList" parameterType="Map" resultType="dataSetBO">
 		SELECT
-		ID as id,
-		STUDY_ID as studyId, 
-		FILE_NAME as fileName,
-		FILE_FORMAT as fileFormat,
-		FILE_PATH as filePath,
-		FILE_SIZE as fileSize,
-		CONTENT_TYPE as contentType,
-		DATASET_NAME as dataSetName,
-		TASK_TYPE as taskType,
-		if(ENABLED = 1, "Yes", "No") as isEnabledString,
-		DOWNLOAD_COUNT as downloadCount,
-		VERSION as version,
-		CREATED_BY as createdBy,
-		CREATED_DATE as createdDate,
-		CREATED_IP as createdIp
+		ds.ID as id,
+		ds.STUDY_ID as studyId, 
+		ds.FILE_NAME as fileName,
+		ds.FILE_FORMAT as fileFormat,
+		ds.FILE_PATH as filePath,
+		ds.FILE_SIZE as fileSize,
+		ds.CONTENT_TYPE as contentType,
+		ds.DATASET_NAME as dataSetName,
+		ds.TASK_TYPE as taskType,
+		tt.TASK_TYPE as taskTypeString,
+		if(ds.ENABLED = 1, "Yes", "No") as isEnabledString,
+		ds.DOWNLOAD_COUNT as downloadCount,
+		ds.VERSION as version,
+		ds.CREATED_BY as createdBy,
+		ds.CREATED_DATE as createdDate,
+		ds.CREATED_IP as createdIp
 		FROM
-		tbl_dataset
+		tbl_dataset ds, tbl_task_type tt
+		WHERE
+		ds.TASK_TYPE = tt.ID
 		<if test="studyId != null or dataSetId != null">
-	 		WHERE
+	 		AND
 	 		<if test="studyId != null">
-	        	STUDY_ID = #{studyId}
+	        	ds.STUDY_ID = #{studyId}
 	        </if>
 	        <if test="studyId != null and dataSetId != null">
 	        	AND
 	        </if>
 	        <if test="dataSetId != null">
-	        	ID = #{dataSetId}
+	        	ds.ID = #{dataSetId}
 	        </if>
 	    </if>
 	</select>

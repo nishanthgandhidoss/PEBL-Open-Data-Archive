@@ -21,6 +21,7 @@ public class DataSetBO extends CommonBO{
 	private Long studyId;
 	private String dataSetName;
 	private Integer taskType;
+	private String taskTypeString;
 	private Integer isFileChanged = 0;
 	private Integer isEnabled = 0;
 	private String isEnabledString;
@@ -110,6 +111,12 @@ public class DataSetBO extends CommonBO{
 	}
 	public void setVersion(Long version) {
 		this.version = version;
+	}
+	public String getTaskTypeString() {
+		return taskTypeString;
+	}
+	public void setTaskTypeString(String taskTypeString) {
+		this.taskTypeString = taskTypeString;
 	}
 	
 }
