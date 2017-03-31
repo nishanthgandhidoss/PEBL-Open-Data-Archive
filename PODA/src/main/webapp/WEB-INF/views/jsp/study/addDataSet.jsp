@@ -61,7 +61,7 @@
 <div class="container">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-		  Task Type Management
+		  Dataset
 		  <c:if test="${cmd eq editCmd}">
 		  	&nbsp;|&nbsp;Update
 		  </c:if>
@@ -74,6 +74,8 @@
 	 	    	<form:form id="dataSetForm">
 	 	    		<form:hidden path="id"/>
 	 	    		<form:hidden path="studyId"/>
+	 	    		<form:input path="version" id="version" type="hidden"/>
+	 	    		<form:input path="fileName" id="fileName" type="hidden"/>
 					<div class="form-group">
 						<label><span class="mandatoryId">*</span>Dataset Name </label>
 						<form:input path="dataSetName" class="form-control" />
@@ -87,10 +89,23 @@
 					    </form:select>
 					</div>
 
-					<div class="form-group">
-						<label class="control-label"><span title="required" class="mandatoryId">*</span>Enabled </label> 
-					 	<form:input class="form-control" path="file" type="file"/>
-					</div>
+					<c:choose>
+						<c:when test="${cmd eq editCmd}">
+							<div class="form-group">
+								<label class="control-label">File </label> 
+								<form:input class="hidden" type="file" path="file" onchange="fileChange()"/><br>
+							 	<a class="btn btn-primary" id="dummyBrowse">Browse</a>
+							 	<label class="control-label" id="fileLabel" style="padding-left: 10px;" title="File Name"></label>
+							 	<span id="currentVersion" class="hidden" title="Version #"> <b>|</b> V </span>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="form-group">
+								<label class="control-label"><span title="required" class="mandatoryId">*</span>File </label> 
+							 	<form:input class="form-control" path="file" type="file"/>
+							</div>
+						</c:otherwise>
+					</c:choose>
 					
 					<div class="form-group">
 						<c:choose>
@@ -110,6 +125,14 @@
 
 <script>
 	$(document).ready(function() {
+		
+		$("#fileLabel").text($("#fileName").val());
+		
+		$("#dummyBrowse").click(function(){
+		    $("#file").click(); 
+		    return false;
+		});
+		
 		var formObj = $('#dataSetForm');
 		formObj.formValidation({
 			framework : 'bootstrap',
@@ -168,4 +191,41 @@
 	   			 resetAll(formObj);
 		});
 	});
+	
+	function editDataSet(id, version, dataSetName, taskType, fileName) {
+		$("#dataSetForm #dataSetId").val(id);
+		$("#dataSetForm .studyId").val($(".studyId").val());
+		$("#dataSetForm #version").val(version);
+		if(version > 1) {
+	     	$("#currentVersion").removeClass("hidden");
+	     	$("#currentVersion").append(version);
+	    } else {
+	    	$("#currentVersion").addClass("hidden");
+	    }
+		$("#dataSetForm #dataSetName").val(dataSetName);
+		$("#dataSetForm #taskType").val(taskType);
+		$("#fileLabel").text(fileName);
+		$("#updateDataSet").modal('show');
+	}
+	 
+
+	function fileChange(){
+	    var a = document.getElementById('file');
+	    if(a.value == "")
+	    {
+	        $("#fileLabel").text("Choose file");
+	    }
+	    else
+	    {
+	        var theSplit = a.value.split('\\'), version = $("#version").val();
+	        $("#fileLabel").text(theSplit[theSplit.length-1]);
+	        if(version > 1) {
+	        	$("#currentVersion").removeClass("hidden");
+	        	$("#currentVersion").text(" | V " + version);
+	        } else {
+	        	$("#currentVersion").addClass("hidden");
+	        }
+	    }
+	}
+	
 </script>

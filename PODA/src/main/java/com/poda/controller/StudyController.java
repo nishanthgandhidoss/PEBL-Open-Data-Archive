@@ -195,6 +195,28 @@ public class StudyController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/editDataSet", method = RequestMethod.POST)
+	public ModelAndView editDataSet(ModelAndView mv, @ModelAttribute("command") DataSetBO dataSetBO, BindingResult bindingResult, HttpServletRequest req) {
+		
+		logger.info("editDataSet - Start");
+		try {
+			studyService.setDefaultvalues(req, dataSetBO);
+			ArrayList<DataSetBO> dataSetList = (ArrayList<DataSetBO>) studyService.getDataSetList(dataSetBO.getId(), dataSetBO.getStudyId());
+			dataSetBO = dataSetList.get(0);
+			ArrayList<TaskTypeBO> taskTypeList = new ArrayList<TaskTypeBO>();
+			taskTypeList = studyService.getTaskTypeList(null);
+			mv.addObject("taskTypeList", taskTypeList);
+			mv.addObject("command", dataSetBO);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			return new ModelAndView("redirect:" + "404error.sp");
+		}
+		mv.addObject("cmd",Constants.ACTION_EDIT);
+		mv.setViewName("addDataSet");
+		logger.info("editDataSet - End");
+		return mv;
+	}
+	
 	@RequestMapping(value = "/saveDataSet", method = RequestMethod.POST)
 	public void saveDataSet(StudyBO studyBO, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		logger.info("saveDataSet - Start");
@@ -212,6 +234,8 @@ public class StudyController {
 		}
 		logger.info("saveDataSet - End");
 	}
+	
+	
 	
 	@RequestMapping(value="/updateDataSet", method = RequestMethod.POST)
 	public void updateDataSet(DataSetBO dataSetBO, ModelAndView mv, HttpServletRequest req, HttpServletResponse res) throws IOException {

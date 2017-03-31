@@ -85,6 +85,7 @@ $(document).ready(function() {
 <form id="listFormId">
 
 <input type="hidden" id="hiddenObjId" name="id"/>
+<input type="hidden" id="hiddenObjStudyId" name="studyId"/>
 <div class="center"><h4>${LIST_HEADER}</h4></div>
 
    <table id="listTableID" class="table  table-striped table-bordered dt-responsive compact nowrap" cellspacing="0" width="100%">
@@ -112,7 +113,7 @@ $(document).ready(function() {
 	                   <!--   Edit -->
 		              
 		               <c:if test="${actionMp.key==editConstant && obj.isEditable=='Y'}">
-		               		<a href="javascript:void(0)"  onclick="edit(${obj.id},'${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Edit"><span style="color:#3291d1;padding-left:10px" class="glyphicon glyphicon-edit"></span></a>
+		               		<a href="javascript:void(0)"  onclick="edit(${obj.id}, ${obj.studyId}, '${webapp_path}${actionMp.value}')" class="tooltipLink" data-toggle="tooltip" title="Edit"><span style="color:#3291d1;padding-left:10px" class="glyphicon glyphicon-edit"></span></a>
 		               </c:if>
 		             
 		             <!-- Download -->
@@ -159,12 +160,12 @@ $(document).ready(function() {
   
    <script>
    
-   function edit(id,url){
+   function edit(id,studyId,url){
 	   $("#hiddenObjId").val(id);
+	   $("#hiddenObjStudyId").val(studyId);
 	   $("#listFormId").attr('action', url);
 	   $("#listFormId").attr('method', "POST");
 	   $("#listFormId").submit();
-	   
    }
    
    function deleteAction(id,url){

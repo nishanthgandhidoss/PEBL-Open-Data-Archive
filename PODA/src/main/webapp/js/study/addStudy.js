@@ -278,7 +278,7 @@ function fileChange(){
         $("#fileLabel").text(theSplit[theSplit.length-1]);
         if(version > 1) {
         	$("#currentVersion").removeClass("hidden");
-        	$("#currentVersion").append(version);
+        	$("#currentVersion").text(" | V " + version);
         } else {
         	$("#currentVersion").addClass("hidden");
         }

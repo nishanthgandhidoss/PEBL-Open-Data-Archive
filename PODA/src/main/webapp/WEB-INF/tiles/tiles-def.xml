@@ -37,7 +37,7 @@
 	</definition>	
 	
 	<definition name="addDataSet" extends="base.definition">
-	    <put-attribute name="title" value="Add Data Set"></put-attribute>
+	    <put-attribute name="title" value="Dataset Management"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/jsp/study/addDataSet.jsp"></put-attribute>
 	</definition>
 	
