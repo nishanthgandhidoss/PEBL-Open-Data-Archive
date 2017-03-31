@@ -65,32 +65,31 @@
 		  <c:if test="${cmd eq editCmd}">
 		  	&nbsp;|&nbsp;Update
 		  </c:if>
-		  <a href="${webapp_path}/admin/listTaskType.sp" class="pull-right tooltipLink" data-toggle="tooltip" title="List Task Type">
+		  <a href="${webapp_path}/admin/listDataSet.sp" class="pull-right tooltipLink" data-toggle="tooltip" title="List Data Set"> 
 		  <span class="glyphicon glyphicon-th-list pull-right"></span>
 		  </a> 
 		 </div>
 	 	<div class="mandatoryId mandatorytoplabel">*&nbsp;Mandatory fields</div> 
 			<div class="panel-body">
-	 	    	<form:form id="taskTypeForm">
+	 	    	<form:form id="dataSetForm">
 	 	    		<form:hidden path="id"/>
+	 	    		<form:hidden path="studyId"/>
 					<div class="form-group">
-						<label><span class="mandatoryId">*</span>Task Type </label>
-						<form:input path="taskType" class="form-control" />
+						<label><span class="mandatoryId">*</span>Dataset Name </label>
+						<form:input path="dataSetName" class="form-control" />
 					</div>
 					
 					<div class="form-group">
-						<label><span class="mandatoryId">*</span>Task Description </label>
-						<form:textarea path="taskTypeDescription" class="form-control" />
+						<label><span class="mandatoryId">*</span>Task Type </label>
+						<form:select path="taskType" class="form-control empty">
+					    	<form:option value="" selected="selected">Select</form:option>
+					    	<form:options items="${taskTypeList}" itemLabel="taskType" itemValue="id"/>
+					    </form:select>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label"><span title="required" class="mandatoryId">*</span>Enabled </label> 
-					 	<div class="row">
-							  <div class="col-md-1">Yes</div>
-							  <div class="col-md-1"><form:radiobutton path="isEnabled" class="form-control" style="padding-left:8px" value="1"/></div>
-							  <div class="col-md-1">No</div>
-							  <div class="col-md-1"><form:radiobutton path="isEnabled" class="form-control" style="padding-left:8px" value="0"/></div>
-				    	 </div>
+					 	<form:input class="form-control" path="file" type="file"/>
 					</div>
 					
 					<div class="form-group">
@@ -111,33 +110,28 @@
 
 <script>
 	$(document).ready(function() {
-		var formObj = $('#taskTypeForm');
+		var formObj = $('#dataSetForm');
 		formObj.formValidation({
 			framework : 'bootstrap',
 			fields : {
-				taskType : {
+				dataSetName : {
+					validators : {
+						notEmpty : {
+							message : 'Dataset is required'
+						}
+					}
+				},
+				taskType: {
 					validators : {
 						notEmpty : {
 							message : 'Task type is required'
 						}
 					}
 				},
-				taskTypeDescription: {
+				file: {
 					validators : {
 						notEmpty : {
-							message : 'Task type description is required'
-						},
-						stringLength: {
-	                    	min: 10,
-							max: 600,
-	                        message: 'Study Description must be between 10 to 600 characters'
-	                    }
-					}
-				},
-				isEnabled: {
-					validators : {
-						notEmpty : {
-							message : 'Task type is required'
+							message : 'Data file is required'
 						}
 					}
 				}
@@ -155,12 +149,12 @@
 			var $button = $form.data('formValidation').getSubmitButton(),
 			btnType = $button.attr('value'), url = null, isReload = null, redirectUrl = null;
 			if (btnType == "Update") {
-				url = "${webapp_path}/admin/updateTaskType.sp";
+				url = "${webapp_path}/updateDataSet.sp";
 				isReload = true;
 			} else if (btnType == "Submit") {
-				url = "${webapp_path}/admin/saveTaskType.sp";
+				url = "${webapp_path}/saveDataSet.sp";
 				isReload = false;
-				redirectUrl = "${webapp_path}/admin/listTaskType.sp"
+				redirectUrl = "${webapp_path}/listDataSet.sp"
 			}
 			trimFormInputs();
 

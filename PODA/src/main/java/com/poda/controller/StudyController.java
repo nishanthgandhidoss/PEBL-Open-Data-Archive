@@ -173,6 +173,46 @@ public class StudyController {
 		
 	}
 	
+	@RequestMapping(value = "/addDataSet", method = RequestMethod.GET)
+	public ModelAndView addDataSet(ModelAndView mv, @ModelAttribute("command") DataSetBO dataSetBO, BindingResult bindingResult, HttpServletRequest req) {
+		
+		logger.info("addDataSet - Start");
+		try {
+			dataSetBO = new DataSetBO();
+			studyService.setDefaultvalues(req, dataSetBO);
+			Long studyId = Long.parseLong(req.getParameter("studyId"));
+			dataSetBO.setStudyId(studyId); 
+			ArrayList<TaskTypeBO> taskTypeList = new ArrayList<TaskTypeBO>();
+			taskTypeList = studyService.getTaskTypeList(null);
+			mv.addObject("taskTypeList", taskTypeList);
+			mv.addObject("command", dataSetBO);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			return new ModelAndView("redirect:" + "404error.sp");
+		}
+		mv.setViewName("addDataSet");
+		logger.info("addDataSet - End");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/saveDataSet", method = RequestMethod.POST)
+	public void saveDataSet(StudyBO studyBO, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		logger.info("saveDataSet - Start");
+		try {
+			studyService.setDefaultvalues(req, studyBO);
+			//studyService.createStudy(req, studyBO);
+			studyBO.setReturnMsg(studyService.getSuccessMSg());
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			studyBO.setReturnId(-1);
+			if(studyBO.getReturnMsg()==null)
+				studyBO.setReturnMsg(studyService.getErrorMSg());
+		} finally {
+			studyService.writeToJSON(res, studyBO);
+		}
+		logger.info("saveDataSet - End");
+	}
+	
 	@RequestMapping(value="/updateDataSet", method = RequestMethod.POST)
 	public void updateDataSet(DataSetBO dataSetBO, ModelAndView mv, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
@@ -244,9 +284,9 @@ public class StudyController {
 		actionMap.put(Constants.ACTION_DOWNLOAD, "/downloadDataSet.sp");
 		actionMap.put(Constants.ACTION_DELETE, "/deleteDataSet.sp"); 
 		
-		String url[]={"addStudy.sp","Add Dataset"};
+		String url[]={"addDataSet.sp?studyId=" + studyBO.getId(), "Add Dataset"};
 		
-		String title = studyBO.getStudyName() + " " + "Dataset List";
+		String title = studyBO.getStudyName() + " " + "Datasets";
 		
 		mv.addObject("PAGE_TITLE", title);
 		mv.addObject("LIST_HEADER", title);

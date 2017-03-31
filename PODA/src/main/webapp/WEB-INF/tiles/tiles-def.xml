@@ -36,6 +36,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/jsp/admin/addTaskType.jsp"></put-attribute>
 	</definition>	
 	
+	<definition name="addDataSet" extends="base.definition">
+	    <put-attribute name="title" value="Add Data Set"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/jsp/study/addDataSet.jsp"></put-attribute>
+	</definition>
+	
 	<definition name="listDataSet" extends="base.definition">
 	    <put-attribute name="title" expression="${PAGE_TITLE}"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/jsp/study/listDataSet.jsp"></put-attribute>
